@@ -1,0 +1,376 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>[React]Why React译文 | Steam</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Steam">
+    
+    <meta name="description" content="一.前言最近开始学习React，根据网上的各种点评，最终还是觉得看官方的英文文档是最合适的，因此就从’Getting started’开始，然后就是’Tutorial’。但是这两部分内容中会有很多相关知识需要了解，比如’JSX in Depth’，’Package Managment’等等，还有一个">
+    
+    
+    
+    
+    <link rel="alternative" href="/Tinnypp/atom.xml## RSS address." title="Steam" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/Tinny.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/Tinny.jpg">
+    
+
+  
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    
+  
+  <link href="http://cdn.bootcss.com/highlight.js/8.2/styles/railscasts.min.css" rel="stylesheet">
+  <script src="http://cdn.bootcss.com/highlight.js/8.2/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?d182ed77fc48758bf45a33835ee35745";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+      <script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v1/st.js','_st');
+
+  _st('install','.............Add your swiftype userID...............');
+</script>
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="Steam" title="Steam"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Steam">Steam</a></h1>
+				<h2 class="blog-motto">DREAM makes you different</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+                    <ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+					
+						<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="st-search-inpu" maxlength="20" placeholder="Search" />
+						</form>
+					
+					</li>
+                <!--<li><div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div></li>-->
+
+				</ul>
+			</nav>	
+</div>
+    </header>
+    <div id="container" class="clearfix">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/05/03/Why-React译文/" title="[React]Why React译文" itemprop="url">[React]Why React译文</a>
+  </h1>
+  <p class="article-time">
+    <time datetime="2016-05-02T23:44:37.000Z" itemprop="datePublished">2016-05-03</time>
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title"></strong>
+		<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一-前言"><span class="toc-number">1.</span> <span class="toc-text">一.前言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二-Why-React-原文"><span class="toc-number">2.</span> <span class="toc-text">二.Why React 原文</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三-Why-React-译文"><span class="toc-number">3.</span> <span class="toc-text">三.Why React 译文</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四-说明"><span class="toc-number">4.</span> <span class="toc-text">四.说明</span></a></li></ol>
+		</div>
+		
+		<h4 id="一-前言"><a href="#一-前言" class="headerlink" title="一.前言"></a>一.前言</h4><p>最近开始学习React，根据网上的各种点评，最终还是觉得看官方的英文文档是最合适的，因此就从’Getting started’开始，然后就是’Tutorial’。但是这两部分内容中会有很多相关知识需要了解，比如’JSX in Depth’，’Package Managment’等等，还有一个部分是’Why React’。其实这些都是非常短小的文章，我本来觉得看一看就好，但是思前想后最终还是决定要把这些文章翻译一遍。因为这些短小精悍的文章之所以存在的理由就是他们真的非常有必要，虽然看似短小无内容，但是其实对于深层次理解React设计思想是很有帮助的。因此，就在这种想法之下我决定翻译第一篇和React相关的文章——‘Why React’。下面分为两个部分，第一部分是英文原文文档，第二部分是我的翻译。初次翻译，可能会有很多不准确的地方，还请大家指正。</p>
+<h4 id="二-Why-React-原文"><a href="#二-Why-React-原文" class="headerlink" title="二.Why React 原文"></a>二.Why React 原文</h4><p><strong>Why React?</strong></p>
+<p>React is a JavaScript library for creating user interfaces by Facebook and Instagram. Many people choose to think of React as the V in MVC.</p>
+<p>We built React to solve one problem: building large applications with data that changes over time.</p>
+<p><strong>Simple</strong></p>
+<p>Simply express how your app should look at any given point in time, and React will automatically manage all UI updates when your underlying data changes.</p>
+<p><strong>Declarative</strong></p>
+<p>When the data changes, React conceptually hits the “refresh” button, and knows to only update the changed parts.</p>
+<p><strong>Build Composable Components</strong></p>
+<p>React is all about building reusable components. In fact, with React the only thing you do is build components. Since they’re so encapsulated, components make code reuse, testing, and separation of concerns easy.</p>
+<p><strong>Give It Five Minutes</strong></p>
+<p>React challenges a lot of conventional wisdom, and at first glance some of the ideas may seem crazy. Give it five minutes while reading this guide; those crazy ideas have worked for building thousands of components both inside and outside of Facebook and Instagram.</p>
+<p><strong>Learn More</strong></p>
+<p>You can learn more about our motivations behind building React in this blog post.</p>
+<h4 id="三-Why-React-译文"><a href="#三-Why-React-译文" class="headerlink" title="三.Why React 译文"></a>三.Why React 译文</h4><p><strong>为什么选择React?</strong></p>
+<p>我们创造React只为解决一个问题：制造那些拥有数据随时间在不断变化的大型应用。</p>
+<p><strong>简单</strong></p>
+<p>仅仅通过及时地表达你的应用应该在给定的触发点长成什么样子，当你的潜在数据发生变化的时候，React就会自动管理所有的UI更新。</p>
+<p><strong>声名式</strong></p>
+<p>当数据变化时，React仿佛会触碰’刷新’按钮一样，并且知道仅仅更新变化的部分。</p>
+<p><strong>构建可分解的组件</strong></p>
+<p>React的所有其实就是关于构建可复用的组件。实际上，你使用React的唯一一件事情就是建造组件。鉴于组件都是被严格的封装起来，使得代码的复用，测试，以及问题的分离更加简单。</p>
+<p><strong>给它五分钟</strong></p>
+<p>React挑战了很多传统的智慧，当看到它的第一眼，很多想法似乎非常疯狂。<a href="https://signalvnoise.com/posts/3124-give-it-five-minutes" target="_blank" rel="external">请给它五分钟来</a>，来阅读一下这篇导则；那些疯狂的想法就会为建造数以千计的组件产生作用，不论是在Facebook和Instagram内部还是外部。</p>
+<p><strong>了解更多</strong></p>
+<p>在<a href="https://facebook.github.io/react/blog/2013/06/05/why-react.html" target="_blank" rel="external">这篇博客</a>中，你可以了解更多关于我们构建React背后的动机。</p>
+<h4 id="四-说明"><a href="#四-说明" class="headerlink" title="四.说明"></a>四.说明</h4><p>这篇文章看似短小，但是却非常精悍，非常宏观和一针见血地指明了React的目的，应用场景，以及实际使用时所做的事情的目的和内容以及效果。这对于我们深刻理解React有非常大的作用，我们能够从整体上把控自己使用React时所做的事情。所以还是依然值得一读，并且值得多次阅读，从中领悟到React的根本。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/react/">react</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2016/05/03/Why-React译文/" data-title="[React]Why React译文 | Steam" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/05/02/hexo-如何生成一篇新的post/"  title="[hexo]如何生成一篇新的post">
+ <strong>Old:</strong><br/> 
+ <span>[hexo]如何生成一篇新的post
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	
+	<div class="ds-thread" data-title="[React]Why React译文" data-thread-key="Why-React译文" data-author-key="Steam" data-url="http://yoursite.com/post/Why-React译文"></div>
+	
+</section>
+
+
+</div>  
+    </div>
+    <footer><div id="footer" >
+	<div class="copyright">
+		<span>Powered by <a href="https://github.com/hexojs/hexo">Hexo</a> and theme by 
+		<a href="https://github.com/levonlin/Tinnypp">Tinnypp</a>.</span>
+		
+			<span>© Steam</span>
+		
+	<div>
+</div></footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  //back to top
+  function backToTop(){
+    var buttonHTML = $("<a href=\"#top\" id=\"back-top\">" + "<span>Back to Top</span></a>");
+    buttonHTML.appendTo($("body"));
+    var buttonToTop = $("#back-top");
+    // hide #back-top first
+    buttonToTop.hide();
+
+    // fade in #back-top
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                buttonToTop.fadeIn();
+            } else {
+                buttonToTop.fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        buttonToTop.click(function() {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+  }
+  backToTop();
+
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      ta = $('#toc.toc-aside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+        
+    }
+  });
+
+  var show = true;
+  c.click(function(){
+    if(show == true){
+        a.addClass('fadeOut').css('display', 'none');
+        ta.css('display', 'block').addClass('fadeIn');
+        m.addClass('moveMain');  
+    }else{
+        a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');     
+        ta.css('display', 'none'); 
+        m.removeClass('moveMain');
+        $('#toc.toc-aside').css('display', 'none');
+    }
+    show = !show;
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,240-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"tinnypp"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';    //change to ds.src = '/js/embed.js'; to add useragent for duoshuo
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+<script type="text/javascript">
+  function footerPosition() {
+    var contentHeight = document.documentElement.scrollHeight,
+        winHeight = window.innerHeight;
+    if(contentHeight <= winHeight) {
+      $('footer').addClass('fixed-bottom');
+    } else {
+      $('footer').removeClass('fixed-bottom');
+    }
+  }
+  footerPosition();
+  $(window).resize(footerPosition);
+</script>
+
+
+  </body>
+</html>
