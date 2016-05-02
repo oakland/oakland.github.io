@@ -1,0 +1,396 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>[hexo]如何生成一篇新的post | Steam</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Steam">
+    
+    <meta name="description" content="如何生成一篇新的post一.前言接上一篇文章：《如何更换hexo主题、删除文章》。
+前面两篇文章分别讲解了如何搭建hexo博客，以及如何更改主题删除文章，接下来就要开始我们的博客之旅了，如何生成一篇新的博客。
+关于如何新建一篇博客，官网上有很详细和明确的说明：
+
+将上面的话翻译一下就是：使用 hex">
+    
+    
+    
+    
+    <link rel="alternative" href="/Tinnypp/atom.xml## RSS address." title="Steam" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/Tinny.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/Tinny.jpg">
+    
+
+  
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    
+  
+  <link href="http://cdn.bootcss.com/highlight.js/8.2/styles/railscasts.min.css" rel="stylesheet">
+  <script src="http://cdn.bootcss.com/highlight.js/8.2/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?d182ed77fc48758bf45a33835ee35745";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+      <script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v1/st.js','_st');
+
+  _st('install','.............Add your swiftype userID...............');
+</script>
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Steam">Steam</a></h1>
+				<h2 class="blog-motto">DREAM makes you different</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+                    <ul>
+					 
+						<li><a href="/Tinnypp">首页</a></li>
+					
+						<li><a href="/Tinnypp/archives">归档</a></li>
+					
+					<li>
+					
+						<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="st-search-inpu" maxlength="20" placeholder="Search" />
+						</form>
+					
+					</li>
+                <!--<li><div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div></li>-->
+
+				</ul>
+			</nav>	
+</div>
+    </header>
+    <div id="container" class="clearfix">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/05/02/hexo-如何生成一篇新的post/" title="[hexo]如何生成一篇新的post" itemprop="url">[hexo]如何生成一篇新的post</a>
+  </h1>
+  <p class="article-time">
+    <time datetime="2016-05-02T07:44:43.000Z" itemprop="datePublished">2016-05-02</time>
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title"></strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#如何生成一篇新的post"><span class="toc-number">1.</span> <span class="toc-text">如何生成一篇新的post</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#一-前言"><span class="toc-number">1.1.</span> <span class="toc-text">一.前言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二-layout-为-post-的情况"><span class="toc-number">1.2.</span> <span class="toc-text">二. layout 为 post 的情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#三-layout-为-draft-的情况"><span class="toc-number">1.3.</span> <span class="toc-text">三. layout 为 draft 的情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#四-layout-为-page-的情况"><span class="toc-number">1.4.</span> <span class="toc-text">四. layout 为 page 的情况</span></a></li></ol></li></ol>
+		</div>
+		
+		<h3 id="如何生成一篇新的post"><a href="#如何生成一篇新的post" class="headerlink" title="如何生成一篇新的post"></a>如何生成一篇新的post</h3><h4 id="一-前言"><a href="#一-前言" class="headerlink" title="一.前言"></a>一.前言</h4><p>接上一篇文章：<a href="http://oakland.github.io/2016/04/30/%E5%A6%82%E4%BD%95%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98%E3%80%81%E5%88%A0%E9%99%A4%E6%96%87%E7%AB%A0/" target="_blank" rel="external">《如何更换hexo主题、删除文章》</a>。</p>
+<p>前面两篇文章分别讲解了如何搭建hexo博客，以及如何更改主题删除文章，接下来就要开始我们的博客之旅了，如何生成一篇新的博客。</p>
+<p>关于如何新建一篇博客，<a href="https://hexo.io/docs/commands.html#new" target="_blank" rel="external">官网</a>上有很详细和明确的说明：</p>
+<p><img src="./1462175898980.png" alt="commands中new命令"></p>
+<p>将上面的话翻译一下就是：使用 <code>hexo new [layout] &lt;title&gt;</code> 命令来生成一篇文章，如果 <code>layout</code> 没有指明的话，hexo会使用_config.yml中 <code>default_layout</code> 的默认配置（通常情况下就是post）。如果 <code>title</code>包含空格的话，需要用引号括起来。</p>
+<p>这句话有几个地方需要解释一下：</p>
+<ol>
+<li><code>layout</code>是什么？layout的意思是布局，hexo博客安装成功后，在默认的根部录下，有一个scaffolds文件夹，里面有个3个文件，分别是draft.md / page.md / post.md。这3个文件就是默认的 layout 。这三个布局分别会有什么样的作用和效果，我们会在后面的内容中进行详细说明。</li>
+<li>如果不提供layout的话，也可以生成博客，不过默认的layout是在 _config.yml 中的配置。一般情况下，如果没有更改过任何 _config.yml 中的内容的话，默认的 layout 是 post，如下图：<br><img src="./1462177593910.png" alt="默认情况下layout的配置"></li>
+<li>如果 <code>title</code> 包含空格的话， <code>title</code> 需要用引号包裹起来。也就是意味着，如果 <code>title</code> 没有空格的话，可以不使用引号。</li>
+</ol>
+<p>现在，我们根据上面的解释，举例来说明我们新生成一篇文章时应该如何执行命令。</p>
+<p>假设我们想要写一篇名为 myBlog 的博客，如果输入完整的命令的话，应该是： <code>hexo new post &quot;myBlog&quot;</code>。但是因为默认情况下，我们的 <code>layout</code> 就是post，所以我们可以将 post 省略掉，写为 <code>hexo new &quot;myBlog&quot;</code> 。又因为我们的博客名字中没有空格，因此可以将省略号去掉，写为<code>hexo new myBlog</code>。这个命令已经是简化到不能再简化的命令了。而如果我们的博客名称是 <code>my first blog</code>，因为名称包含了空格，所以我们的命令就必须将博客名称包裹起来，也就是说最简化的命令就是 <code>hexo new &quot;my first blog&quot;</code> 。 这就是为什么很多网上的攻略说新生成一篇文章时用 <code>hexo new &lt;title&gt;</code> 的命令的原因，这个命令没错，但是只是大部分的情况，而不是完整的命令。</p>
+<p>我们学习任何的工具或者语言，最好的学习方式就是看官方文档说明，而从最开始的时候一定要按照官方的文档说明进行操作，只有当我们熟悉了这些命令，并且能够了解这些命令产生的后果之后再进行简化操作。这样的学习和实践过程才能保证我们在学习和进步的道路上步步为营，到后期才会能够轻松攻城略池。<br>这也是为什么我需要把这么一个简单的命令进行如此详细讲解的原因。</p>
+<p>言归正传，刚才的例子中，我们只说了 <code>layout</code> 是 post 的情况，那么很多朋友会问，如果 <code>layout</code> 不是post呢？默认情况下， <code>layout</code> 还有 draft 和 page 两种情况。也就是说，出去 <code>title</code> 是否包含空格的情况之外，我们新生成一篇文章的情况还有两种可能： <code>hexo new draft myBlog</code> 和 <code>hexo new page myBlog</code> 这两种情况。下面我会 就 <code>layout</code> 的三种情况，将生成一篇新的文章是不同的情况做详细的说明和讲解。</p>
+<h4 id="二-layout-为-post-的情况"><a href="#二-layout-为-post-的情况" class="headerlink" title="二. layout 为 post 的情况"></a>二. <code>layout</code> 为 post 的情况</h4><p>还是以上面的情况为例，我们的命令是 <code>hexo new post myBlog</code> ，执行这个命令之后，你会发现命令行会有如下提示</p>
+<p><img src="./1462179023975.png" alt="执行命令之后的提示"></p>
+<p>它告诉你，在根目录的下的 source 文件夹中创建了一个 _post 文件夹，并且在内生成了一个myBlog.md的文件。打开对应的文件夹，你会发现myBlog.md的文件，这就是你新生成的文件。你可以通过某种支持markdown的编辑器打开这个文件，然后使用markdown格式的方法书写这篇博客。关于什么是markdown格式，以及如何编写markdown，还有哪些编辑器可以打开markdown并且进行书写markdown，这里不做说明，大家可以自行在网上搜索相关的内容，有很多，未来有时间的话我会就我自己使用markdown的情况写一篇总结，但是目前没有相关的文章。</p>
+<p>好了，我们打开myBlog.md这个文件，会看到如下的情况：</p>
+<p><img src="./1462179484506.png" alt="myBlog初次打开时的情况"></p>
+<p>title 和 date 一看就明白是什么意思，不用解释了。tags表示的是你可以对这篇文章设置标签，假设这篇博客是写你的日常生活的，你给它定义一个life的标签。tags下面有3道横线，这个不能删除，表示以下是正文部分。也就是说3道横线以上的部分不会在你的文章中得到体现，但是会在你的页面中对应产生相应的内容，我会在后面以截图的形式告诉大家上面三项分别对应什么。你的博客的具体内容其实就是写在这3道横线下面的。我们现在假设我们书写了以下内容：</p>
+<p><img src="./1462179887722.png" alt="第一次修改myBlog之后的情况"></p>
+<p>保存myBlog.md文件之后，我们先看下我们的根目录，里面没有public这个文件夹，我们在命令行中执行 <code>hexo g</code> 命令，这个时候你会发现在根目录下会新产生一个public的文件夹，打开之后会有很多内容，这个<code>hexo g</code>是<code>hexo generate</code>命令的缩写，表示生成博客的意思。也就是这个命令的作用是将你刚才编写的myBlog.md文件生成了一个静态的html文件，还有一些其他的内容个配置，都生成在public文件夹中。了解了<code>hexo g</code>命令的作用之后。我们再执行 <code>hexo s</code> 这个命令：</p>
+<p><img src="./1462180093802.png" alt="hexo s命令后的提示"></p>
+<p>终端中会有提示，hexo在4000端口运行，我们打开4000端口，可以看到以下内容：</p>
+<p><img src="./1462180490290.png" alt="打开主页之后的效果"></p>
+<p>点击“阅读更多”可以看到实际的你刚才写的内容的效果，大家自行打开就明白了markdown的效果和作用，这个不需要太多解释。</p>
+<p>那么我们的tags设置的内容在哪里呢？怎么没有展示呢？我们在博客的主页中会找到一个tags的标题，下面会有你刚才设置的tags的效果，如下图：</p>
+<p><img src="./1462180793348.png" alt="tags显示的效果"></p>
+<p>因为我写这篇文章的时候使用的Tinnypp主题，因此，除了显示tags是life之外，还会显示目前 life 标签的文章只有一篇。</p>
+<p>不同的主题，关于title 和 date 还有tags在主页上的表现形式是不同的。大家仔细找一下就能理解。<br>最后如果对这篇博客的效果满意的话，直接执行<code>hexo d</code>将这篇文章部署到github上，就可以让全世界有网络的人都可以看到你的文章了！</p>
+<p>以上就是我们如何用post生成一篇博客的情况的详细说明。总结一下就是三步：</p>
+<ol>
+<li>执行<code>hexo new post myBlog</code>，在source/_post文件夹下生成一个 myBlog.md的文件。</li>
+<li>编辑myBlog.md，书写自己的博客内容。</li>
+<li>执行 <code>hexo g</code>生成静态页面；执行 <code>hexo s</code> 启动本地服务器预览效果；执行 <code>hexo d</code> 将文章部署到github实现真正的网络博客。</li>
+</ol>
+<p>通常，我们大部分的文章都是通过上面这样的方式进行的，因此这也是为什么配置中默认的layout方式是post的原因。那么接下来我们也说一说，layout 为 draft和page的情况。</p>
+<h4 id="三-layout-为-draft-的情况"><a href="#三-layout-为-draft-的情况" class="headerlink" title="三. layout 为 draft 的情况"></a>三. <code>layout</code> 为 draft 的情况</h4><p>通过以上的学习，我们大概了解了一般情况下生成一篇博客的流程以及各个内容设置对页面效果的影响。那么我们现在学习一下 <code>hexo new draft myDraftBlog</code> 的情况。在没有执行这个命令之前，你可以去看下你的source文件夹，如果你是按照我之前的文章一步步进行的话，你会发现其中只有_post一个文件夹。</p>
+<p>当我们执行上面的命令之后，类似post一样，我们同样会发现在根目录下source/_drafts文件夹中会出现一个myDraftBlog.md的文件。也就是说，_draft文件夹和里面的内容是你执行上述命令之后生成的。同样的，你开始编辑myDraftBlog.md文件，然后保存。</p>
+<p>以此执行<code>hexo g</code> 和 <code>hexo s</code> 命令，打开4000端口之后你会发现，你完全看不到你刚才编辑的myDraftBlog这篇博客。这是为什么呢？因为layout 为 draft的时候，其实这个md文件是草稿状态，也就是说，这篇文章仅仅是作为你的草稿而不是正式稿，所以不会发表在博客主页上。草稿就是需要你不断完善的文章，知道有一天你觉得这篇文章可以正式发表了，那么如何才能将草稿发表成为正式稿件呢？官方文档其实有非常<a href="https://hexo.io/docs/writing.html#Drafts" target="_blank" rel="external">详细的说明</a>：</p>
+<p><img src="./1462185994268.png" alt="关于draft的说明"></p>
+<p>上面的官方文档会告诉你，通过publish命令可以将draft移动到_post文件夹下，形成正式的博客。也就是说，当你认为你的草稿已经完善到可以发表的状态时，执行<code>hexo publish draft myDraftBlog.md</code>，你就会发现，source/_draft文件夹下的myDraftBlog.md文件消失了，而在_post文件夹下你会找到myDraftBlog.md文件。这个时候再按照生成post文件的方式，依次执行<code>hexo g</code> <code>hexo d</code> 就可以将这篇草稿正式转为发表在网上的博客了。</p>
+<p>因此，draft都是草稿，需要和publish命令配合使用。</p>
+<p>当然，根据上面的官网说明，如果我们一定要查看我们的草稿，我们可以使用<code>hexo g --draft</code>， <code>hexo s --draft</code>命令来在本地预览我们的草稿效果。</p>
+<h4 id="四-layout-为-page-的情况"><a href="#四-layout-为-page-的情况" class="headerlink" title="四. layout 为 page 的情况"></a>四. <code>layout</code> 为 page 的情况</h4><p>通过对上面layout 情况为 post和 draft的阐释，大家应该会对layout大概会有个了解了。那么layout为page的时候到底会发生什么呢？我们尝试一下下面这个命令<code>hexo new page &quot;about&quot;</code>，这个时候你打开source文件夹你会发现一个about的文件夹，里面会有一个index.md的文件。编辑index.md文件，像之前post和draft的情况一样，我们在其中输入一些测试的内容，然后依次执行<code>hexo g</code>，运行<code>hexo s</code>。打开4000端口之后，你会发现你依然看不到你刚才编辑的index.md的内容。那么这部分的内容到底在哪里呢？如何才能看到呢？我们将url增加‘/about’的内容，也就是说把url改为’<a href="http://localhost:4000/about&#39;，然后回车。这个时候你就会发现你刚才编辑的index.md的内容就会出现在这里。其实，在你执行`hexo" target="_blank" rel="external">http://localhost:4000/about&#39;，然后回车。这个时候你就会发现你刚才编辑的index.md的内容就会出现在这里。其实，在你执行`hexo</a> g<code>命令的时候，已经将index.md文件的内容生成在了public文件夹下面，你去public文件夹中寻找，会发现一个about文件夹，这个about文件夹下有一个index.html文件。一般情况下，如果一个page下面没有输入具体的文件名的话，就会打开这个文件夹下的index.html文件。那么也就是是说，这个时候你去source/about文件夹下再去新建一个myPageIntroduction.md的文件，编辑完之后执行</code>hexo g<code>和</code>hexo s`,然后在地址栏输入url的内容为’<a href="http://localhost:4000/about/myPageIntroduction.html&#39;就会看到你刚才编辑的myPageIntroduction.md的内容。这就是layout" target="_blank" rel="external">http://localhost:4000/about/myPageIntroduction.html&#39;就会看到你刚才编辑的myPageIntroduction.md的内容。这就是layout</a> 为 page的时候的作用。其实就是相当于生成一个新的路径，也就是我们说的url的path，或者也可以称作路由。通过这种方式，我们可以把我们的博客再进行细分各个内容版块，更有条理的组织我们的博客。</p>
+<p>关于layout为page的情况，官网似乎没有详细说明。所以上述关于page的内容是我自己的一个总结，这个似乎不能完全解释page的作用，但是仅仅从组织博客内容的版块来看，是可以应用和解释的。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/hexo/">hexo</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2016/05/02/hexo-如何生成一篇新的post/" data-title="[hexo]如何生成一篇新的post | Steam" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/04/30/hexo-如何更换主题、删除文章/"  title="[hexo]如何更换主题、删除文章">
+ <strong>Old:</strong><br/> 
+ <span>[hexo]如何更换主题、删除文章
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	
+	<div class="ds-thread" data-title="[hexo]如何生成一篇新的post" data-thread-key="hexo-如何生成一篇新的post" data-author-key="Steam" data-url="http://yoursite.com/post/hexo-如何生成一篇新的post"></div>
+	
+</section>
+
+
+</div>  
+    </div>
+    <footer><div id="footer" >
+	<div class="copyright">
+		<span>Powered by <a href="https://github.com/hexojs/hexo">Hexo</a> and theme by 
+		<a href="https://github.com/levonlin/Tinnypp">Tinnypp</a>.</span>
+		
+			<span>© Steam</span>
+		
+	<div>
+</div></footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  //back to top
+  function backToTop(){
+    var buttonHTML = $("<a href=\"#top\" id=\"back-top\">" + "<span>Back to Top</span></a>");
+    buttonHTML.appendTo($("body"));
+    var buttonToTop = $("#back-top");
+    // hide #back-top first
+    buttonToTop.hide();
+
+    // fade in #back-top
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                buttonToTop.fadeIn();
+            } else {
+                buttonToTop.fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        buttonToTop.click(function() {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+  }
+  backToTop();
+
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      ta = $('#toc.toc-aside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+        
+    }
+  });
+
+  var show = true;
+  c.click(function(){
+    if(show == true){
+        a.addClass('fadeOut').css('display', 'none');
+        ta.css('display', 'block').addClass('fadeIn');
+        m.addClass('moveMain');  
+    }else{
+        a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');     
+        ta.css('display', 'none'); 
+        m.removeClass('moveMain');
+        $('#toc.toc-aside').css('display', 'none');
+    }
+    show = !show;
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,240-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"tinnypp"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';    //change to ds.src = '/js/embed.js'; to add useragent for duoshuo
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+<script type="text/javascript">
+  function footerPosition() {
+    var contentHeight = document.documentElement.scrollHeight,
+        winHeight = window.innerHeight;
+    if(contentHeight <= winHeight) {
+      $('footer').addClass('fixed-bottom');
+    } else {
+      $('footer').removeClass('fixed-bottom');
+    }
+  }
+  footerPosition();
+  $(window).resize(footerPosition);
+</script>
+
+
+  </body>
+</html>
