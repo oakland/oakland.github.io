@@ -113,7 +113,7 @@ var _hmt = _hmt || [];
 		</div>
 		
 		<p>根据前面的攻略，我们目前已经有自己的博客了——可以更换主题、删除文章、写一篇文章，或者创建自己的页面了。但是有时候当我们打开自己博客，不小心在url中输入了错误的路径或者地址时，尽管子域名是正确的，但是却显示一个github默认的404页面，如下图：</p>
-<p><img src="./GithubPages404.png" alt="GithubPages404"></p>
+<p><img src="./GitHubPages404.png" alt="GithubPages404"></p>
 <p>错误的路径就是，假如你的博客下有about路径，下面有一个index.html页面，那么你的url输入 <a href="http://username.github.io/about" target="_blank" rel="external">http://username.github.io/about</a> 是可以看到这个路径下的index.html，但是如果你在地址栏输入 <a href="http://username.github.io/about2,那么你就会看到这个github404页面。" target="_blank" rel="external">http://username.github.io/about2,那么你就会看到这个github404页面。</a></p>
 <p>那么如何才能让这个404页面变成自己个性化的404页面呢？其实非常简单，就是直接直接在source文件夹下创建一个404.html页面，然后通过<code>hexo g -d</code>直接生成自己的404页面。</p>
 <p>这里需要注意的是，404页面的名字必须叫404.html，而不能是别的名字。其次，在本地打开4000端口是无法查看404页面效果的，也就是说你通过<code>hexo g</code>命令在public文件夹中生成404.html之后，再执行<code>hexo s</code>想在本地预览这个404页面的时候，其实是无法查看的。必须部署到github之后才可以查看404页面的效果。</p>
