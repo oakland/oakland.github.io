@@ -1,0 +1,945 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>[React]Tutorial译文 | Steam</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Steam">
+    
+    <meta name="description" content="本文完全由博主自己翻译，几乎没有借助其他任何文章，仅仅作为自己入门React的切入点和学习的手段，有些内容的翻译可能会比较别扭，敬请原谅。后续还会继续调整部分翻译内容，以使得本文更加通顺
+我们将构建一个由Disqus、LiveFyre或者Facebook Comment提供的，可以将之放入一个博客之">
+    
+    
+    
+    
+    <link rel="alternative" href="/Tinnypp/atom.xml## RSS address." title="Steam" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/Tinny.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/Tinny.jpg">
+    
+
+  
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    
+  
+  <link href="http://cdn.bootcss.com/highlight.js/8.2/styles/railscasts.min.css" rel="stylesheet">
+  <script src="http://cdn.bootcss.com/highlight.js/8.2/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?d182ed77fc48758bf45a33835ee35745";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+      <script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v1/st.js','_st');
+
+  _st('install','.............Add your swiftype userID...............');
+</script>
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Steam">Steam</a></h1>
+				<h2 class="blog-motto">DREAM makes you different</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+                    <ul>
+					 
+						<li><a href="/Tinnypp">首页</a></li>
+					
+						<li><a href="/Tinnypp/archives">归档</a></li>
+					
+					<li>
+					
+						<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="st-search-inpu" maxlength="20" placeholder="Search" />
+						</form>
+					
+					</li>
+                <!--<li><div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div></li>-->
+
+				</ul>
+			</nav>	
+</div>
+    </header>
+    <div id="container" class="clearfix">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/05/06/React-Tutorial译文/" title="[React]Tutorial译文" itemprop="url">[React]Tutorial译文</a>
+  </h1>
+  <p class="article-time">
+    <time datetime="2016-05-06T09:38:37.000Z" itemprop="datePublished">2016-05-06</time>
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title"></strong>
+		<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#想要跳过这些直接看源码？"><span class="toc-number">1.</span> <span class="toc-text">想要跳过这些直接看源码？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#启动服务器"><span class="toc-number">2.</span> <span class="toc-text">启动服务器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#开始学习"><span class="toc-number">3.</span> <span class="toc-text">开始学习</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#你的第一个组件"><span class="toc-number">4.</span> <span class="toc-text">你的第一个组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JSX语法"><span class="toc-number">5.</span> <span class="toc-text">JSX语法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#发生了什么"><span class="toc-number">5.1.</span> <span class="toc-text">发生了什么</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#组装组件"><span class="toc-number">6.</span> <span class="toc-text">组装组件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用props"><span class="toc-number">7.</span> <span class="toc-text">使用props</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#组件属性"><span class="toc-number">8.</span> <span class="toc-text">组件属性</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#添加Markdown"><span class="toc-number">9.</span> <span class="toc-text">添加Markdown</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#与数据模型挂钩"><span class="toc-number">10.</span> <span class="toc-text">与数据模型挂钩</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#从服务器获取数据"><span class="toc-number">11.</span> <span class="toc-text">从服务器获取数据</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#响应状态"><span class="toc-number">12.</span> <span class="toc-text">响应状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#更新状态"><span class="toc-number">13.</span> <span class="toc-text">更新状态</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#添加新的评论"><span class="toc-number">14.</span> <span class="toc-text">添加新的评论</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#控制组件"><span class="toc-number">14.1.</span> <span class="toc-text">控制组件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#事件"><span class="toc-number">14.2.</span> <span class="toc-text">事件</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#提交表单"><span class="toc-number">14.2.1.</span> <span class="toc-text">提交表单</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#作为属性的回调函数"><span class="toc-number">14.3.</span> <span class="toc-text">作为属性的回调函数</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#优化：优化更新"><span class="toc-number">15.</span> <span class="toc-text">优化：优化更新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#恭喜！"><span class="toc-number">16.</span> <span class="toc-text">恭喜！</span></a></li></ol>
+		</div>
+		
+		<p><em>本文完全由博主自己翻译，几乎没有借助其他任何文章，仅仅作为自己入门React的切入点和学习的手段，有些内容的翻译可能会比较别扭，敬请原谅。后续还会继续调整部分翻译内容，以使得本文更加通顺</em></p>
+<p>我们将构建一个由Disqus、LiveFyre或者Facebook Comment提供的，可以将之放入一个博客之中的，简单而真实的评论框。</p>
+<p>我们将提供以下功能：</p>
+<ul>
+<li>所有评论的展示</li>
+<li>可以提交评论的表格</li>
+<li>为你提供自定义后端的钩子（Hooks）</li>
+</ul>
+<p>同时还具有一些其他的优良特性：</p>
+<ul>
+<li>及时评论：在评论被保存到服务器之前就会展现在评论列表中，这样看起来更加快捷</li>
+<li>随时更新：其他用户的评论会及时进入评论</li>
+<li>Markdown格式化：用户可以使用Markdown来格式化他们的文字</li>
+</ul>
+<h4 id="想要跳过这些直接看源码？"><a href="#想要跳过这些直接看源码？" class="headerlink" title="想要跳过这些直接看源码？"></a>想要跳过这些直接看源码？</h4><p><a href="https://github.com/reactjs/react-tutorial" target="_blank" rel="external">查看Github上所有源码。</a></p>
+<h4 id="启动服务器"><a href="#启动服务器" class="headerlink" title="启动服务器"></a>启动服务器</h4><p>为了能够开始学习此教程，我们需要启动一个服务器。启动服务器单纯地当做一个API的终端，我们将会使用这个终端来获取或者保存数据。为了让这个过程变得尽量简单，我们已经用多种语言建好了一个简单的服务器，做了我们需要他们所做的事情。你可以查看源码或者下载包含启动学习所需一切的压缩文件。</p>
+<p>简单起见，服务器将会使用JSON文件作为数据库。在实际产品中不应当使用JSON文件，但是这可以轻松地模拟当你对接某个API时你所做的事情。启动服务器之后，就会支持我们的API终端，并且可以服务我们所需的静态文件。</p>
+<h4 id="开始学习"><a href="#开始学习" class="headerlink" title="开始学习"></a>开始学习</h4><p>在这篇教程中，我们会尽可能的使其简化。我们上面讨论的服务包中有一个HTML文件，我们将会在这个文件中工作。用你喜欢的编辑器打开<code>public/index.html</code>文件，内容如下：</p>
+<pre><code>&lt;!-- index.html --&gt;
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;utf-8&quot; /&gt;
+    &lt;title&gt;React Tutorial&lt;/title&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/react/15.0.2/react.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/react/15.0.2/react-dom.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.5/marked.min.js&quot;&gt;&lt;/script&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id=&quot;content&quot;&gt;&lt;/div&gt;
+    &lt;script type=&quot;text/babel&quot; src=&quot;scripts/example.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/babel&quot;&gt;
+        // To get started with this tutorial running your own code, simply remove
+        // the script tag loading scripts/example.js and start writing code here.
+    &lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>此教程接下来的部分中，我们将会在此script标签中写我们的JavaScript代码。我们没有什么高级的实时重载工具，所以保存文件之后，你需要刷新浏览器来查看更新内容。启动服务器后，在浏览器中打开<code>http://localhost:3000</code>以开始你的进程。在没有任何更改的情况下，首次打开时，你将会看到我们即将制作的完成后产品的。当你已经准备好开始工作时，就删掉前一个<code>script</code>标签然后再开始。</p>
+<blockquote>
+<p>注意：<br>这里，我们引入了JQuery是因为我们为了简化我们的ajax调用代码，但是对于React的工作而言，这并非必须的。</p>
+</blockquote>
+<h4 id="你的第一个组件"><a href="#你的第一个组件" class="headerlink" title="你的第一个组件"></a>你的第一个组件</h4><p>React其实就是完全关于组件的，可组装的组件。例如，我们的评论框，将会拥有如下的组件结构：</p>
+<pre><code>- CommentBox
+  - CommentList
+  - Comment
+- CommentForm
+</code></pre><p>我们来创建CommentBox组件，仅仅是个简单的<code>&lt;div&gt;</code>：</p>
+<pre><code>//tutorial1.js
+var CommentBox = React.createClass({
+  render: function() {
+    return (
+      &lt;div&gt;
+        Hello, world! I am a CommentBox.
+      &lt;/div&gt;
+    );
+  }
+});
+React.render(
+  &lt;CommentBox /&gt;,
+  document.getElementById(&apos;content&apos;)
+);
+</code></pre><p>注意，原生的HTML元素名称都是以小写字母开头，而自定义的React class名字都是以大写字母开头。</p>
+<h4 id="JSX语法"><a href="#JSX语法" class="headerlink" title="JSX语法"></a>JSX语法</h4><p>你注意到的第一件事情就是在JavaScript中的XML风格的语法。我们有一个简单的预编译器，它会将语法糖翻译成原始的JavaScript代码。</p>
+<pre><code>// tutorial1-raw.js
+var CommentBox = React.createClass({displayName: &apos;CommentBox&apos;,
+   render: function() {
+  return (
+      React.createElement(&apos;div&apos;, {className: &quot;commentBox&quot;},
+        &quot;Hello, world! I am a CommentBox.&quot;
+      )
+  );
+   }
+});
+ReactDOM.render(
+    React.createElement(CommentBox, null),
+    document.getElementById(&apos;content&apos;)
+);
+</code></pre><p>JSX的使用是可选项，但是我们认为JSX语法较原生JavaScrip语法而言，使用起来更加容易。阅读更多关于JSX语法的文章。</p>
+<h5 id="发生了什么"><a href="#发生了什么" class="headerlink" title="发生了什么"></a>发生了什么</h5><p>我们将一个JavaScript对象中的一些方法传入到了React.createClass()中，生成了一个新的React组件。这些方法中最重要的就是render方法，render方法返回了一个组件树，这个组件树最终将被渲染成为HTML。</p>
+<p>上文中的<code>&lt;div&gt;</code>标签并非真实的DOM节点；他们只是React的<code>&lt;div&gt;</code>组件的实例。你可以认为他们是标记物或者，认为是React知道如何处理的数据碎片。React是安全的。我们并非生成HTML字符串所以XSS保护是默认的。</p>
+<p>你无须返回基本的HTML。你可以返回你（或者别人）创建的组件树。这是使得React可组合的根本：可维护性前端的关键信条。</p>
+<p>ReactDOM.render()将根组件实例化，启动框架，在原生DOM元素中植入标记物，这个原生DOM元素就是第二个参数。</p>
+<p>ReactDOM模块暴露了DOM相关的方法，而React模块拥有着React在不同平台所共享的核心工具（例如，React Native）。</p>
+<p>在这篇教程中，ReactDOM.render需要保留在script标签的底部，这一点非常重要.ReactDOM.render只能在可分解组件被定义之后调用。</p>
+<h4 id="组装组件"><a href="#组装组件" class="headerlink" title="组装组件"></a>组装组件</h4><p>我们来创建CommentList和CommentForm的构架，他们也是简单的<code>&lt;div&gt;</code>组件。将这两个组件添加到你的文件当中，保留已经声明好的CommentBox组件和ReactDOM.render函数的调用：</p>
+<pre><code>//tutorial2.js
+var CommentList = React.createClass({
+  render: function() {
+    return (
+      &lt;div classNam=&quot;commentList&quot;&gt;
+      Hello, world! I am a CommentList.
+      &lt;/div&gt;
+    );
+  }
+});
+
+var CommentForm = React.createClass({
+  render: function() {
+    return (
+      &lt;div classNam=&quot;commentForm&quot;&gt;
+      Hello, world! I am a CommentForm.
+      &lt;/div&gt;
+    );
+  }
+});
+</code></pre><p>接着，使用这两个新的组件更新CommentBox组件：</p>
+<pre><code>//tutorial3.js
+var CommentBox = React.createClass({
+  render: function() {
+    return (
+      &lt;div className=&quot;commentBox&quot;&gt;
+        &lt;h1&gt;Comments&lt;/h1&gt;
+        &lt;CommentList /&gt;
+        &lt;CommentForm /&gt;
+      &lt;/div&gt;
+    );
+  }
+});
+</code></pre><p>重点看一下我们是如何将HTML标签与我们创建的组件混合在一起的。HTML组件，就像你所定义的那些一样，是正常的React组件，但只有一点不同。JSX编译器将会自动重写HTML标签到React.createElement(tagName)表达式，其他的都是一样的。这样做的目的是防止全局命名空间被污染。</p>
+<h4 id="使用props"><a href="#使用props" class="headerlink" title="使用props"></a>使用props</h4><p>我们来建立Comment组件，这个组件依赖于传入其父元素的数据。从父级组件传入的数据，通过子组件的属性可以获得。这些属性可以通过this.props来获得。使用props，我们将获取从CommentList传入到Comment中的数据，并且渲染一些标记：</p>
+<pre><code>//tutorial4.js
+var Comment = React.createClass({
+  render: function() {
+    return (
+      &lt;div className=&quot;comment&quot;&gt;
+        &lt;h2 className=&quot;commentAuthor&quot;&gt;
+          {this.props.author}
+        &lt;/h2&gt;
+        {this.props.children}            
+      &lt;/div&gt;
+    );
+  }
+});
+</code></pre><p>在JSX中，通过将JavaScript表达式包裹在大括号中的方法，你可以将text或者React组件拖入树中。XXXXX</p>
+<h4 id="组件属性"><a href="#组件属性" class="headerlink" title="组件属性"></a>组件属性</h4><p>现在，我们已经定义好了Comment组件，我们希望给其传入作者名字和评论语言。这使得我们为每一个独立的comment复用同样的代码。现在我们在CommentList中添加一些评论：</p>
+<pre><code>//tutorial5.js
+var CommentList = React.createClass({
+  render: function() {
+    return (
+      &lt;div className=&quot;commentList&quot;&gt;
+        &lt;Comment author=&quot;Pete Hunt&quot;&gt;This is one comment&lt;/Comment&gt;
+        &lt;Comment autho=&quot;Jordan Walke&quot;&gt;This is *another* comment&lt;/Comment&gt;
+      &lt;/div&gt;
+    );
+  }
+});
+</code></pre><p>注意，我们在父级组件CommentList中向子组件Comment传入了一些数据。例如，我们给第一个Comment组件传入了Pete Hunt（通过一个属性的方式）和This is one comment（通过一个像XML一样的子节点）。正如前面强调的，Comment组件将会通过this.props.author和this.props.children来获取这些属性。</p>
+<h4 id="添加Markdown"><a href="#添加Markdown" class="headerlink" title="添加Markdown"></a>添加Markdown</h4><p>Markdown是一种格式化文字的简单的方法。例如，用星号来包裹文字会强调文字。</p>
+<p>本篇教程中，我们将使用一个第三方的库marked，接受Markdown文字并将其转换为原生的HTML。我们已经将引入到了原始的标记中，便于我们直接使用。让我们将评论文字转化为Markdown并输出：</p>
+<pre><code>//tutorial6.js
+var Comment = React.createClass({
+  render: function() {
+    return (
+      &lt;div className=&quot;comment&quot;&gt;
+        &lt;h2 className=&quot;commentAuthor&quot;&gt;
+          {this.props.author}
+        &lt;/h2&gt;
+        {marked(this.props.children.toString())}
+      &lt;/div&gt;
+    );
+  }
+});
+</code></pre><p>我们在这一步所做的仅仅是调用marked库。我们需要将this.props.children从React包裹的文字转化为原始的marked所理解的字符串，所以我们特意调用了toString()方法。</p>
+<p>但是这里有一个问题！我们在浏览器中渲染出来的评论是这个样子的：“</p><p>This is <em>another</em> comment</p>”。我们希望这些标签真实地渲染成HTML。<p></p>
+<p>这是因为React为了避免你受到XSS攻击。有一种方式可以迂回的解决它，但是框架警告你不要使用它：</p>
+<pre><code>//tutorial7.js
+var Comment = React.createClass({
+  rawMarkUp: function() {
+      var rawMarkUp = marked(this.props.children.toString(), {sanitize: true});
+      return {__html: rawMarkUp};
+    },
+  render: function() {
+    return (
+      &lt;div className=&quot;comment&quot;&gt;
+        &lt;h2 className=&quot;commentAuthor&quot;&gt;
+          {this.props.author}
+        &lt;/h2&gt;
+        &lt;span dangerouselySetInnerHTML={this.rawMarkUp()} /&gt;
+      &lt;/div&gt;
+    );
+  }
+});
+</code></pre><p>这是一个特殊的API，故意使得插入原始的HTML变得困难，但是对于marked而言，我们正好利用了这个后门。</p>
+<p>记住：通过你使用这个特点，你要确保依赖于marked。在这个例子中，我们将{sanitize: true}传入，以便于marked逃脱任何HTML标记而并非……</p>
+<h4 id="与数据模型挂钩"><a href="#与数据模型挂钩" class="headerlink" title="与数据模型挂钩"></a>与数据模型挂钩</h4><p>目前为止，我们直接将comment插入到源码中。相反，我们需要需要渲染一个JSON数据到commentlist中。这个数据最终来源于服务器，但是现在，直接在你的代码中书写：</p>
+<pre><code>//tutorial8.js
+var data = [
+ {id: 1, author: &quot;Pete Hunt&quot;, text: &quot;This is one comment&quot;},
+ {id: 2, author: &quot;Jordan Walke&quot;}, text=&quot;This is *another* comment&quot;}
+]
+</code></pre><p>我们需要将这些数据以模块的方式传入到CommentList中。修改CommentBox和ReactDOM.render函数，通过props的方法来将数据传入到CommentList中：</p>
+<pre><code>//tutorial9.js
+var CommentBox = React.createClass({
+  render: function() {
+    return (
+            &lt;div className=&quot;commentBox&quot;&gt;
+        &lt;h1&gt;Comments&lt;/h1&gt;
+        &lt;CommentList data={this.props.data} /&gt;
+            &lt;CommentForm /&gt;
+        &lt;/div&gt;
+          );
+   }
+});
+ReactDOM.render(
+  &lt;CommentBox data={data} /&gt;,
+  document.getElementById(&apos;content&apos;)
+);
+</code></pre><p>现在，数据在CommetList中就可以获取到了，我们来动态的渲染评论：</p>
+<pre><code>//tutorial10.js
+var CommentList = React.createClass({
+  render: function() {
+    var commentNodes = this.props.data.map(funciton(comment) {
+      return (
+        &lt;Comment author=comment.author key=comment.id &gt;
+        {comment.text}
+        &lt;/Comment&gt;
+      );
+    });
+    return (
+      &lt;div className=&quot;commentList&quot;&gt;
+        {commentNodes}
+      &lt;/div&gt;
+    );
+  }
+});
+</code></pre><p>就是这样！</p>
+<h4 id="从服务器获取数据"><a href="#从服务器获取数据" class="headerlink" title="从服务器获取数据"></a>从服务器获取数据</h4><p>接下来，我们将使用来自服务器的动态数据来替换手写代码方式的数据。我们将会删除数据这个属性，而使用URL来获取数据：</p>
+<pre><code>//tutotial11.js
+ReactDOM.render(
+  &lt;CommentBox url=&quot;/api/comments&quot; /&gt;,
+  document.getElementById(&apos;content&apos;)
+);
+</code></pre><p>这个组件之所以与之前的组件不同是因为，它必须重新渲染自己。在从服务器返回请求之前，组件将不会拥有任何数据，只有当服务器返回数据的时候，组件才需要渲染一些新的评论。</p>
+<p>注意：这一步代码将不会产生效果。</p>
+<h4 id="响应状态"><a href="#响应状态" class="headerlink" title="响应状态"></a>响应状态</h4><p>目前，依赖于其属性，每个组件都自我渲染了一次。props是不可改变的：他们由父级组件传入，并且“属于”父级组件。为了实现交互，我们将会在组件中引入可变化的state。this.state是组件私有的，并且可以通过调用this.setState()方法来进行改变。当state更新时，组件就会自我渲染。</p>
+<p>render()方法….。框架确保了用户界面永远与输入一致。</p>
+<p>当服务器返回数据时，我们就会改变我们的评论数据。我们来添加一个评论数据的数组到CommentBox中，作为其状态：</p>
+<pre><code>//tutorial12.js
+var CommentBox = React.createClass({
+  getInitialState: function() {
+    return {data: []};
+  },
+  render: function() {
+    return (
+      &lt;div className=&quot;commentBox&quot;&gt;
+        &lt;CommentList data={this.state.data} /&gt;
+        &lt;CommentForm /&gt;
+      &lt;/div&gt;
+    );
+  }
+});
+</code></pre><p>getInitialState()方法仅仅在组件的生命周期中执行一次，并且设置了组件的初始状态。</p>
+<h4 id="更新状态"><a href="#更新状态" class="headerlink" title="更新状态"></a>更新状态</h4><p>当组件第一次创建出来时，我们希望能够从服务器获得一些JSON，并且更新状态并反映最新的数据。我们将会使用JQuery来从服务器获取异步请求。数据已经包含在你之前启动的服务器中了（基于comments.js文件），所以一旦数据返回，this.state.data就会是如下的样子：</p>
+<pre><code>[
+  {&quot;id&quot;:&quot;1&quot;, &quot;author&quot;:&quot;Pete Hunt&quot;, &quot;text&quot;:&quot;This is a comment&quot;},
+  {&quot;id&quot;:&quot;2&quot;, &quot;author&quot;:&quot;Jordan Walke&quot;, &quot;text&quot;:&quot;This is *another* comment&quot;}
+]
+
+//tutorial13.js
+var CommentBox = React.createClass({
+  getInitialState: function() {
+    return {data: []};
+  },
+  componentDidMount: function() {
+    $.ajax({
+      url: this.props.url,
+      dataType: &apos;json&apos;,
+      cache: false,
+      success: function(data) {
+        this.setState({data: data});
+      }.bind(this),
+      error: function(xhr, status, err){
+        console.log(this.props.url, status, err.toString())
+      }.bind(this)
+    });
+  },
+  render: function() {
+    return (
+      &lt;div className=&quot;commentBox&quot;&gt;
+        &lt;h1&gt;Comments&lt;/h1&gt;
+        &lt;CommentList data={this.data} /&gt;
+        &lt;CommentForm /&gt;
+      &lt;/div&gt;
+    );
+  }
+});
+</code></pre><p>这里，componentDidMount是一个会被React自动调用的方法，当组件首次渲染的时候。动态更新的关键就是this.setState()的调用。我们用来自服务器的新的评论数组来替换旧的数组，UI就会自动更新。由于这样的更新，添加实时更新就会是一个非常小的变化了。这里，我们将会采用简单的轮询，但是你可以使用WebSockets或者其他的技术来轻松地改变它。</p>
+<pre><code>//tutorial14.js
+var CommentBox = React.createClass({
+  loadCommentsFromServer: function() {
+    $.ajax({
+      url: this.props.url,
+      dataType: &apos;json&apos;,
+      cache: false,
+      success: function(data) {
+        this.setState({data: data});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.log(this.props.url, status, err.toString())
+      }.bind(this)
+    });
+  },
+  getInitialState: function() {
+    return {data: []};
+  },
+  componentDidMount: function() {
+    this.loadCommentsFromServer();
+    setInterval(this.loadCommentsFromServer, this.props.pollInterval);
+  },
+  render: function() {
+    return (
+      &lt;div className=&quot;commentBox&quot;&gt;
+        &lt;h1&quot;&gt;Comments&lt;/h1&gt;
+        &lt;CommentList data={this.state.data} /&gt;
+        &lt;CommentForm /&gt;
+      &lt;/div&gt;
+    );
+  }
+});
+
+ReactDOM.render(
+  &lt;CommentBox url=&quot;/api/comments&quot; pollInterval={2000}&gt;,
+  document.getElementById(&apos;content&apos;)
+);
+</code></pre><p>我们在这里所做的仅仅就是，将AJAX请求分离出来成为一个单独的方法，当组件首次载入的时候调用，并且之后每2秒钟调用一次。试着在你的浏览器中运行这段代码，然后改变comments.json文件（和你的服务器在同一个目录下）；2秒之内，变化就会展示出来。</p>
+<h4 id="添加新的评论"><a href="#添加新的评论" class="headerlink" title="添加新的评论"></a>添加新的评论</h4><p>现在，是时候构建表单了。我们的CommentForm组件应当询问用户的用户名和评论信息，并且向服务器发送一个请求以保存评论。</p>
+<pre><code>//tutorial15.js
+var CommentForm = React.createClass({
+  render: function() {
+    return (
+      &lt;form className=&quot;commentForm&quot;&gt;
+        &lt;input type=&quot;text&quot; placeholder=&quot;Your name&quot; /&gt;
+        &lt;input type=&quot;text&quot; placeholder=&quot;Say something...&quot; /&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;post&quot; /&gt;
+      &lt;/form&gt;
+    );
+  }
+});
+</code></pre><h5 id="控制组件"><a href="#控制组件" class="headerlink" title="控制组件"></a>控制组件</h5><p>对于传统DOM而言，input元素会被渲染并且由浏览器来管理其状态（它的渲染值）。其结果就是真实DOM的状态和组件的状态不同。由于展示出来的状态和组件的状态不同，这并不是完美的。在React中，组件应当总是代表着界面的状态，而并非初始化时候的状态。</p>
+<p>因此，我们将使用this.state来保存用户的输入值。我们定义一个拥有author和text两个属性的初始state，然后将其设置为空字符串。在我们的input元素中，我们设置value属性来反映组件的状态，并且添加onChange句柄给它。这些拥有value的input元素集合就被成为控制组件。阅读更多关于控制组件的内容请查看<a href="https://facebook.github.io/react/docs/forms.html#controlled-components" target="_blank" rel="external">表单文章</a>。</p>
+<pre><code>//tutorial16.js
+var CommentForm = React.createClass({
+  getInitialState: function() {
+    return {author: &apos;&apos;, text: &apos;&apos;};
+  },
+  handleAuthorChange: function(e) {
+    this.setState({author: e.target.value});
+  },
+  handleTextChange: function(e) {
+    this.setState({text: e.target.value});
+  },
+  render: function() {
+    return (
+      &lt;Form className=&quot;commentForm&quot;&gt;
+        &lt;input
+          type=&quot;text&quot;
+          placeholder=&quot;Your name&quot;
+          value={this.state.author}
+          onChange={this.handleAuthorChange} 
+        /&gt;
+        &lt;input
+          type=&quot;text&quot;
+          placeholder=&quot;Say something...&quot;
+          value={this.state.text}
+          onChange={this.handleTextChange}
+        /&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;post&quot; /&gt;
+      &lt;/form&gt;
+    );
+  }
+});
+</code></pre><h5 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h5><p>React通过传统的驼峰命名方式来给组件添加事件处理器。我们给两个input元素都添加了onChange处理器。现在只要用户在input区域中输入文字，添加在input上的onChange回调函数就会被触发，进而，组件的state就会被修改。紧接着，input元素的渲染值就会被更新以反映当前组件的state。</p>
+<h6 id="提交表单"><a href="#提交表单" class="headerlink" title="提交表单"></a>提交表单</h6><p>让我们一起让表单产生交互。当用户提交表单时，我们会清空表单，给服务器提交一个请求，刷新评论列表。首先，我们需要监听表单的提交事件并清空表单。</p>
+<pre><code>//tutorial17.js
+var CommentForm = React.createClass({
+  getInitialState: function() {
+    return {author: &apos;&apos;, text: &apos;&apos;};
+  },
+  handleAuthorChange: function(e) {
+    this.setState({author: e.target.value});
+  },
+  handleTextChange: function(e) {
+    this.setState({text: e.target.value});
+  },
+  handleSubmit: function(e) {
+    e.preventDefault();
+    var author = this.state.author.trim();
+    var text = this.state.text.trim();
+    if(!author || !text) {
+      return;
+    }
+    //TODO: send request to the server
+    this.setState({author: &apos;&apos;, text: &apos;&apos;});
+  },
+  render: function() {
+    return (
+      &lt;form className=&quot;commentForm&quot; onSubmit={this.handleSubmit}&gt;
+        &lt;input
+          type=&quot;text&quot;
+          placeholder=&quot;Your name&quot;
+          value={this.state.author}
+          onChange={this.handleAuthorChange}
+        /&gt;
+        &lt;input
+          type=&quot;text&quot;
+          placeholder=&quot;Say something...&quot;
+          value={this.state.text}
+          onChange={this.handleTextChange}              
+        /&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;post&quot;&gt;
+      &lt;/form&gt;
+    );
+  }
+});
+</code></pre><p>我们给表格添加了一个onSubmit的处理器，当表单提交有效输入内容时，处理器会清空表单。</p>
+<p>在onSubmit事件中调用preventDefault()是为了阻止表单提交时浏览器的默认行为。</p>
+<h5 id="作为属性的回调函数"><a href="#作为属性的回调函数" class="headerlink" title="作为属性的回调函数"></a>作为属性的回调函数</h5><p>当用户提交一个评论时，我们需要刷新评论列表来将其包含在内。在CommentBox中来处理这些逻辑是讲得通的，因为CommentBox拥有代表这些评论列表的state。</p>
+<p>我们需要从子组件中返回数据给父级组件。我们通过在父级组件的render方法中传入一个新的回调函数（handleCommentSubmit）到子组件，在子组件中的onCommentSubmit事件构建这件事请的方式，来处理这件事情，不论什么时候，当事件触发时，回调函数就会执行：</p>
+<pre><code>//tutorial18.js
+var CommentBox = React.createClass({
+  loadCommentsFromServer: function() {
+    $.ajax({
+      url: this.props.url,
+      dataType: &apos;json&apos;,
+      cache: false,
+      success: function(data) {
+        this.setState({data: data});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.log(this.props.url, status, err.toString())
+      }.bind(this)
+    });
+  },
+  handleCommentSubmit: function(comment) {
+    //TODO: submit to the server and refresh the list
+  },
+  getInitialState: function() {
+    return {data: []};
+  },
+  componentDidMount: function() {
+    this.loadCommentsFromServer();
+    setInterval(this.loadCommentsFromServer, this.props.pollInterval);
+  },
+  render: function() {
+    return (
+      &lt;div className=&quot;commentBox&quot;&gt;
+        &lt;h1&gt;Comments&lt;/h1&gt;
+        &lt;CommentList data={this.state.data} /&gt;
+        &lt;CommentForm onCommentSubmit={this.handleCommentSubmit}/&gt;
+      &lt;/div&gt;
+    );
+  }
+});
+</code></pre><p>现在，通过onCommentSubmit方法，CommentBox使得回调函数对于CommentForm是可见的，当用户提交表单时，CommentForm可以调用回调函数：</p>
+<pre><code>//tutorial19.js
+var CommentForm = React.createClass({
+  getInitialState: function(e) {
+    return {author: &apos;&apos;, text: &apos;&apos;};
+  },
+  handleAuthorChange: function(e) {
+    this.setState({author: e.target.value});
+  },
+  handleTextChange: function(e) {
+    this.setState({text: e.target.value});
+  },
+  handleSubmit: function(e) {
+    e.preventDefault();
+    var author = this.state.author.trim();
+    var text = this.state.text.trim();
+    if (!author || !text) {
+      return;
+    }
+    this.props.onCommentSubmit({author: author, text: text});
+    this.setState({author: &apos;&apos;, text: &apos;&apos;});
+  },
+  render: function() {
+    return (
+      &lt;form className=&quot;commentForm&quot; onSubmit={this.handleSubmit}&gt;
+        &lt;input
+            type=&quot;text&quot;
+          placeholder=&quot;Your name&quot;
+          value={this.state.author}
+          onChange={this.handleAuthorChange}
+        /&gt;
+        &lt;input
+          type=&quot;text&quot;
+          placeholder=&quot;Say something...&quot;
+          value={this.state.text}
+          onChange={this.handleTextChange}
+        /&gt;
+        &lt;input type=&quot;submit&quot; value=&quot;Post&quot; /&gt;
+  &lt;/form&gt;
+    );
+  }
+});
+</code></pre><p>现在，回调函数已经就位，我们需要做的就仅仅是提交给服务器并且刷新评论列表：</p>
+<pre><code>//tutorial20.js
+var CommentBox = React.createClass({
+loadCommentsFromServer: function() {
+  $.ajax({
+    url: this.props.url,
+    dataType: &apos;json&apos;,
+    cache: false,
+    success: function(data) {
+      this.setState({data: data});
+    }.bind(this),
+    error: function(xhr, status, err) {
+      console.error(this.props.url, status, err.toString());
+    }.bind(this)
+  });
+},
+handleCommentSubmit: function(comment) {
+  $.ajax({
+    url: this.props.url,
+    dataType: &apos;json&apos;,
+    type: &apos;POST&apos;,
+    data: comment,
+    success: function(data) {
+      this.setState({data: data});
+    }.bind(this),
+    error: function(xhr, status, err) {
+      console.error(this.props.url, status, err.toString());
+    }.bind(this)
+  });
+},
+getInitialState: function() {
+  return {data: []};
+},
+componentDidMount: function() {
+  this.loadCommentsFromServer();
+  setInterval(this.loadCommentsFromServer, this.props.pollInterval);
+},
+render: function() {
+  return (
+    &lt;div className=&quot;commentBox&quot;&gt;
+      &lt;h1&gt;Comments&lt;/h1&gt;
+      &lt;CommentList data={this.state.data} /&gt;
+      &lt;CommentForm onCommentSubmit={this.handleCommentSubmit} /&gt;
+    &lt;/div&gt;
+  );
+ }
+});
+</code></pre><h4 id="优化：优化更新"><a href="#优化：优化更新" class="headerlink" title="优化：优化更新"></a>优化：优化更新</h4><p>我们的应用目前功能已经完成了，但是在你的评论出现在列表之前，你必须等待请求完成，这似乎有点慢。我们可以自信地将评论添加到列表中，以使得应用看起来更快。</p>
+<pre><code>//tutorial21.js
+var CommentBox = React.createClass({
+loadCommentsFromServer: function() {
+  $.ajax({
+    url: this.props.url,
+    dataType: &apos;json&apos;,
+    cache: false,
+    success: function(data) {
+      this.setState({data: data});
+    }.bind(this),
+    error: function(xhr, status, err) {
+      console.error(this.props.url, status, err.toString());
+    }.bind(this)
+  });
+},
+handleCommentSubmit: function(comment) {
+  var comments = this.state.data;
+  // Optimistically set an id on the new comment. It will be replaced by an
+  // id generated by the server. In a production application you would likely
+  // not use Date.now() for this and would have a more robust system in place.
+  comment.id = Date.now();
+  var newComments = comments.concat([comment]);
+  this.setState({data: newComments});
+  $.ajax({
+    url: this.props.url,
+    dataType: &apos;json&apos;,
+    type: &apos;POST&apos;,
+    data: comment,
+    success: function(data) {
+      this.setState({data: data});
+    }.bind(this),
+    error: function(xhr, status, err) {
+      console.error(this.props.url, status, err.toString());
+    }.bind(this)
+  });
+},
+getInitialState: function() {
+  return {data: []};
+},
+componentDidMount: function() {
+  this.loadCommentsFromServer();
+  setInterval(this.loadCommentsFromServer, this.props.pollInterval);
+},
+render: function() {
+  return (
+    &lt;div className=&quot;commentBox&quot;&gt;
+      &lt;h1&gt;Comments&lt;/h1&gt;
+      &lt;CommentList data={this.state.data} /&gt;
+      &lt;CommentForm onCommentSubmit={this.handleCommentSubmit} /&gt;
+    &lt;/div&gt;
+  );
+ }
+});
+</code></pre><h4 id="恭喜！"><a href="#恭喜！" class="headerlink" title="恭喜！"></a>恭喜！</h4><p>刚才你通过几个步骤就建立了一个评论框。了解更多关于<a href="https://facebook.github.io/react/docs/why-react.html" target="_blank" rel="external">为什么使用React</a>，或者直接一头扎入<a href="https://facebook.github.io/react/docs/top-level-api.html" target="_blank" rel="external">API 参考</a>开始hacking！祝你幸运！</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/react/">react</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2016/05/06/React-Tutorial译文/" data-title="[React]Tutorial译文 | Steam" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/05/06/React首页译文/"  title="[React]React首页译文">
+ <strong>舊一篇:</strong><br/> 
+ <span>[React]React首页译文
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	
+	<div class="ds-thread" data-title="[React]Tutorial译文" data-thread-key="React-Tutorial译文" data-author-key="Steam" data-url="http://yoursite.com/post/React-Tutorial译文"></div>
+	
+</section>
+
+
+</div>  
+    </div>
+    <footer><div id="footer" >
+	<div class="copyright">
+		<span>Powered by <a href="https://github.com/hexojs/hexo">Hexo</a> and theme by 
+		<a href="https://github.com/levonlin/Tinnypp">Tinnypp</a>.</span>
+		
+			<span>© Levon</span>
+		
+	<div>
+</div></footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  //back to top
+  function backToTop(){
+    var buttonHTML = $("<a href=\"#top\" id=\"back-top\">" + "<span>Back to Top</span></a>");
+    buttonHTML.appendTo($("body"));
+    var buttonToTop = $("#back-top");
+    // hide #back-top first
+    buttonToTop.hide();
+
+    // fade in #back-top
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                buttonToTop.fadeIn();
+            } else {
+                buttonToTop.fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        buttonToTop.click(function() {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+  }
+  backToTop();
+
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      ta = $('#toc.toc-aside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+        
+    }
+  });
+
+  var show = true;
+  c.click(function(){
+    if(show == true){
+        a.addClass('fadeOut').css('display', 'none');
+        ta.css('display', 'block').addClass('fadeIn');
+        m.addClass('moveMain');  
+    }else{
+        a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');     
+        ta.css('display', 'none'); 
+        m.removeClass('moveMain');
+        $('#toc.toc-aside').css('display', 'none');
+    }
+    show = !show;
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,240-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"tinnypp"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';    //change to ds.src = '/js/embed.js'; to add useragent for duoshuo
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+<script type="text/javascript">
+  function footerPosition() {
+    var contentHeight = document.documentElement.scrollHeight,
+        winHeight = window.innerHeight;
+    if(contentHeight <= winHeight) {
+      $('footer').addClass('fixed-bottom');
+    } else {
+      $('footer').removeClass('fixed-bottom');
+    }
+  }
+  footerPosition();
+  $(window).resize(footerPosition);
+</script>
+
+
+  </body>
+</html>
