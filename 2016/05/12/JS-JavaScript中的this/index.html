@@ -1,0 +1,440 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>[JS]JavaScript中的this | Steam</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Steam">
+    
+    <meta name="description" content="前言在学习JavaScript的过程中，我们会遇到很多经典的学习的问题，比如闭包，面向对象等等，当然还有一个比较经典的问题就是this的指向，以及函数默认的call和apply方法。这些问题，从我们开始接触JavaScript开始就会有看到很多专门的文章讨论这些问题，目前为止，关于闭包和面向对象，我">
+    
+    
+    
+    
+    <link rel="alternative" href="/Tinnypp/atom.xml## RSS address." title="Steam" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/Tinny.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/Tinny.jpg">
+    
+
+  
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    
+  
+  <link href="http://cdn.bootcss.com/highlight.js/8.2/styles/railscasts.min.css" rel="stylesheet">
+  <script src="http://cdn.bootcss.com/highlight.js/8.2/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?d182ed77fc48758bf45a33835ee35745";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+      <script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v1/st.js','_st');
+
+  _st('install','.............Add your swiftype userID...............');
+</script>
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Steam">Steam</a></h1>
+				<h2 class="blog-motto">DREAM makes you different</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+                    <ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+					
+						<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="st-search-inpu" maxlength="20" placeholder="Search" />
+						</form>
+					
+					</li>
+                <!--<li><div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div></li>-->
+
+				</ul>
+			</nav>	
+</div>
+    </header>
+    <div id="container" class="clearfix">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/05/12/JS-JavaScript中的this/" title="[JS]JavaScript中的this" itemprop="url">[JS]JavaScript中的this</a>
+  </h1>
+  <p class="article-time">
+    <time datetime="2016-05-12T01:14:05.000Z" itemprop="datePublished">2016-05-12</time>
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title"></strong>
+		<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#关于this的参考资料"><span class="toc-number">2.</span> <span class="toc-text">关于this的参考资料</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Professional-JavaScript-for-Web-Developers-3rd-edition"><span class="toc-number">3.</span> <span class="toc-text">Professional JavaScript for Web Developers(3rd edition)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Chapter-5-Reference-Type-The-Function-Type-Function-Internals-P142"><span class="toc-number">3.1.</span> <span class="toc-text">Chapter 5: Reference Type / The Function Type / Function Internals, P142</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Chapter-7-Function-Expressions-Closure-The-this-Object-P225"><span class="toc-number">3.2.</span> <span class="toc-text">Chapter 7: Function Expressions / Closure / The this Object, P225</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#JS设计模式与实践，第一部分-第2章-2-1-this-P24"><span class="toc-number">4.</span> <span class="toc-text">JS设计模式与实践，第一部分 / 第2章 / 2.1 this, P24</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#steam的总结"><span class="toc-number">5.</span> <span class="toc-text">steam的总结</span></a></li></ol>
+		</div>
+		
+		<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>在学习JavaScript的过程中，我们会遇到很多经典的学习的问题，比如闭包，面向对象等等，当然还有一个比较经典的问题就是this的指向，以及函数默认的call和apply方法。这些问题，从我们开始接触JavaScript开始就会有看到很多专门的文章讨论这些问题，目前为止，关于闭包和面向对象，我还需要再收集一些素材做完整的总结，而关于this方面的文章已经看了很多了，基本对于this的常见情况已经能够掌握了，所以这里先就JavaScript中的this做一个简单的总结。</p>
+<h4 id="关于this的参考资料"><a href="#关于this的参考资料" class="headerlink" title="关于this的参考资料"></a>关于this的参考资料</h4><p>在写这篇文章之前，其实会有很多的文章或者视频教程专门讲解this，我也是通过这些资料逐渐对this建立起这个系统的认识的。因此，先将这些文章罗列在这里，然后再具体讲解我对于this的理解。这样的话，大家如果对于我的说法有不理解或者感觉不是很清楚的可以直接参考我的思考的来源，便于大家更深刻地理解this。</p>
+<ul>
+<li>《JavaScript设计模式与开发实践》（曾探），P24~P28。</li>
+<li>慕课网视频，<a href="http://www.imooc.com/video/6430" target="_blank" rel="external">JavaScript深入浅出</a>，第6章，第3节</li>
+<li><a href="http://www.imooc.com/video/9820" target="_blank" rel="external">http://www.imooc.com/video/9820</a>, 第11分钟的时候会对this的一种情况作了详细说明，尤其是调用setTimeout的时候使用的是window.setTimeout这种写法。</li>
+<li>“Professional JavaScript for Web Developers(3rd edition)”<ul>
+<li>Chapter 5: Reference Type / The Function Type / Function Internals, P142。</li>
+<li>Chapter 7: Function Expressions / Closure / The this Object, P225。</li>
+</ul>
+</li>
+</ul>
+<p>其实还会有很多文章探讨this，但是基本上认真阅读上面几篇文章几乎就可以对this有一个比较深刻而且全面的理解了。后续我找到相关的文章还会继续添加到上面的列表中。</p>
+<h4 id="Professional-JavaScript-for-Web-Developers-3rd-edition"><a href="#Professional-JavaScript-for-Web-Developers-3rd-edition" class="headerlink" title="Professional JavaScript for Web Developers(3rd edition)"></a>Professional JavaScript for Web Developers(3rd edition)</h4><ul>
+<li><h5 id="Chapter-5-Reference-Type-The-Function-Type-Function-Internals-P142"><a href="#Chapter-5-Reference-Type-The-Function-Type-Function-Internals-P142" class="headerlink" title="Chapter 5: Reference Type / The Function Type / Function Internals, P142"></a>Chapter 5: Reference Type / The Function Type / Function Internals, P142</h5></li>
+</ul>
+<p><img src="./professionalJS_this_1.png" alt="professionalJS_this_1"></p>
+<p>上面这段话其实点明了this的本质就是，指向函数执行时候的作用域对象，翻译一下：</p>
+<blockquote>
+<p>另外一个特殊的对象就是this，它和Java、C#中的this类似，但是并不完全相同。this指向函数执行时候的上下文对象——通常也被称作this值（当一个函数在网页的全局作用域中被调用时，this指向window）。思考一下下面这段代码：</p>
+</blockquote>
+<pre><code>window.color = &quot;red&quot;;
+var o = {color: &quot;blue&quot;};
+
+function sayColor(){
+  alert(this.color)
+}
+
+sayColor();        //red
+
+o.sayColor = sayColor();
+o.sayColor();     //blue
+</code></pre><blockquote>
+<p>sayColor函数在全局中被定义，但是引用了this对象。在函数被调用前，this的值是无法决定的，所以this<br>的值在整个代码运行的过程中并不会完全保持一致。当sayColor()在全局作用域中被调用的时候，它输<br>出”red”，因为this指向了window，这意味着this.color就等于window.color。通过把函数指定给对象<br>o，然后再调用sayColor()，this对象就会指向o，所以this.color等于o.color，显示的就是”blue”。</p>
+<p>记住，函数名称仅仅是包涵指针的变量，所以全局sayColor()函数和o.sayColor()函数指向的是同一个函数，即使他们在不同的上下文中执行的。</p>
+</blockquote>
+<ul>
+<li><h5 id="Chapter-7-Function-Expressions-Closure-The-this-Object-P225"><a href="#Chapter-7-Function-Expressions-Closure-The-this-Object-P225" class="headerlink" title="Chapter 7: Function Expressions / Closure / The this Object, P225"></a>Chapter 7: Function Expressions / Closure / The this Object, P225</h5></li>
+</ul>
+<p><img src="./professionalJS_this_2.png" alt="professionalJS_this_2"><br><img src="./professionalJS_this_3.png" alt="professionalJS_this_3"><br><img src="./professionalJS_this_4.png" alt="professionalJS_this_4"><br><img src="./professionalJS_this_5.png" alt="professionalJS_this_5"></p>
+<p>上面这段话主要说明了当this处于闭包中，这个特殊状态时候的具体情况：</p>
+<blockquote>
+<p>在闭包中使用this对象，将会导致一些复杂的问题。XXXXX：当在全局函数中被使用时，非严格模式下，this等于window；而严格模式下，this为undefined，因此当函数被当做对象方法调用时，this等于该对象。在这种上下文中，匿名函数不属于任何一个对象，意味着this对象指向window，除非在严格模式下执行（这种情况下this就是undefined）。然而，由于闭包的特殊写法，真相并非那么明显。思考一下下面这段代码：</p>
+</blockquote>
+<pre><code>var name = &quot;The Window&quot;;
+
+var object = {
+  name: &quot;My Object&quot;,
+  getNameFunc: function(){
+    return function() {
+      return this.name;
+    };
+  }
+};
+
+alert(object.getNameFunc()());    //&quot;The Window&quot;(in no-strict mode)
+</code></pre><p>这里，一个名为name的全局变量，和一个包含name属性的对象同时在全局中被创建出来。这个对象包含一个方法，getNameFunc()，这个方法返回一个匿名函数，这个匿名函数返回this.name。由于getNameFunc()返回一个函数，因此执行object.getNameFunc()()将会立即调用返回的函数，这个函数返回一个字符串。然后，在这种情况下，它返回的会”The Window”，全局变量name的值。为什么匿名函数没有选择包含它的作用域的this对象呢？</p>
+<p>记住，每个函数只有当被调用的时候才会自动获得两个特殊的变量：this和arguments。<strong>内部函数用于无法直接从外部函数获取这两个特殊变量。</strong>通过把外部函数的this对象存储到一个闭包可以访问到的变量中，进而允许变量访问this对象的方式是可行的，就像这个例子中一样：</p>
+<pre><code>var name = &quot;The Window&quot;;
+var object = {
+  name: &quot;My Object&quot;,
+  getNameFunc: function() {
+    var that = this;
+    return function() {
+      return that.name;
+    };
+  }
+};
+
+alert(object.getNameFunc()()); //&quot;My Object&quot;
+</code></pre><p>被强调的两行代码展示了本例和上一个例子的不同之处。在匿名函数被定义之前，一个名为that的变量被指定等于外部函数的this对象。当闭包被定义时，它能够访问到that，因为它是外部函数的一个独特的命名对象。即使函数被返回之后，that依然指向object，所以调用object.getNameFunc()()返回“My Object”。</p>
+<blockquote>
+<p>this和arguments都以这种方式行动。如果你希望访问到外部函数作用域的arguments对象，你需要将指针保存一个闭包可以访问的到的其他的变量中。</p>
+</blockquote>
+<p>还有一些情况下，this也许并不会按照你所期望的那样出现。思考一下下面这段对上面例子的修改：</p>
+<pre><code>var name = &quot;The Window&quot;;
+var object = {
+  name: &quot;My Object&quot;,
+  getName: function() {
+    return this.name;
+  }
+};
+</code></pre><p>getName()方法只是返回了this.name的值，下面是不同的调用getName()的方式以及调用后产生的结果：</p>
+<pre><code>object.getName(); //&quot;My Object&quot;
+(object.getName)();  //&quot;My Object&quot;
+(object.getName = object.getName)();  //&quot;The Window&quot; 在非严格模式下
+</code></pre><p>第一行以常见的方式调用object.getName()，所以它返回的是“My Object”，因为this.name就等于object.name。第二行在调用object.getName()之前将其放入一对括号中。这似乎仅仅看上去像是对函数的引用，因此，this值被保留，因为object.getName和(object.getName)的定义是一样的。第三行执行了一次指认，然后调用结果。因为指认表达式的值就是函数自己，所以this值被保留，返回的就是“The Window”。</p>
+<p>特意去使用第二行或者第三行的代码的情况似乎很少出现，但是这对于，当语法发生变化时，this的值可能会按照预想不到的方式变化的理解很有帮助。</p>
+<ul>
+<li><h4 id="JS设计模式与实践，第一部分-第2章-2-1-this-P24"><a href="#JS设计模式与实践，第一部分-第2章-2-1-this-P24" class="headerlink" title="JS设计模式与实践，第一部分 / 第2章 / 2.1 this, P24"></a>JS设计模式与实践，第一部分 / 第2章 / 2.1 this, P24</h4></li>
+</ul>
+<p><img src="./JS设计模式与实践截图1.png" alt="JS设计模式与实践截图1.png"><br><img src="./JS设计模式与实践截图2.png" alt="JS设计模式与实践截图2.png"><br><img src="./JS设计模式与实践截图3.png" alt="JS设计模式与实践截图3.png"><br><img src="./JS设计模式与实践截图4.png" alt="JS设计模式与实践截图4.png"><br><img src="./JS设计模式与实践截图5.png" alt="JS设计模式与实践截图5.png"><br><img src="./JS设计模式与实践截图6.png" alt="JS设计模式与实践截图6.png"><br><img src="./JS设计模式与实践截图7.png" alt="JS设计模式与实践截图7.png"><br><img src="./JS设计模式与实践截图8.png" alt="JS设计模式与实践截图8.png"><br><img src="./JS设计模式与实践截图9.png" alt="JS设计模式与实践截图9.png"></p>
+<p>设计模式这本书中主要指明了this在实际中可能会应用到的4种方式，以及在实际中容易出现问题的地方。</p>
+<h4 id="steam的总结"><a href="#steam的总结" class="headerlink" title="steam的总结"></a>steam的总结</h4><p>其实this主要的问题就是当有=号的时候，也就是出现异步情况的时候。调用函数的对象会发生变化，这个是导致出现this理解错误的主要问题。主要注意的就是当出现等号的时候，或者是函数包含函数的时候，上一级的this会在函数执行结束之后就被销毁，所以要获取上一级函数的this，只能通过bind(this)的方式或者通过var that = this的方式来将上一级函数的this缓存下来。</p>
+<p>只要是异步的情况，都会导致this的变化，也就是说this仅仅指的是函数执行时候产生的，函数调用结束之后自动会将this销毁，这个时候再获得的this已经不再是原来的那个this。这个异步的情况在ajax请求success回调函数中展示的很明显，这就是为什么会经常用success:function(){}.bind(this)的原因。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/JS/">JS</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2016/05/12/JS-JavaScript中的this/" data-title="[JS]JavaScript中的this | Steam" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/05/11/css-transition详述/"  title="[css]transition详述">
+ <strong>Old:</strong><br/> 
+ <span>[css]transition详述
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	
+	<div class="ds-thread" data-title="[JS]JavaScript中的this" data-thread-key="JS-JavaScript中的this" data-author-key="Steam" data-url="http://yoursite.com/post/JS-JavaScript中的this"></div>
+	
+</section>
+
+
+</div>  
+    </div>
+    <footer><div id="footer" >
+	<div class="copyright">
+		<span>Powered by <a href="https://github.com/hexojs/hexo">Hexo</a> and theme by 
+		<a href="https://github.com/levonlin/Tinnypp">Tinnypp</a>.</span>
+		
+			<span>© Steam</span>
+		
+	<div>
+</div></footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  //back to top
+  function backToTop(){
+    var buttonHTML = $("<a href=\"#top\" id=\"back-top\">" + "<span>Back to Top</span></a>");
+    buttonHTML.appendTo($("body"));
+    var buttonToTop = $("#back-top");
+    // hide #back-top first
+    buttonToTop.hide();
+
+    // fade in #back-top
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                buttonToTop.fadeIn();
+            } else {
+                buttonToTop.fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        buttonToTop.click(function() {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+  }
+  backToTop();
+
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      ta = $('#toc.toc-aside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+        
+    }
+  });
+
+  var show = true;
+  c.click(function(){
+    if(show == true){
+        a.addClass('fadeOut').css('display', 'none');
+        ta.css('display', 'block').addClass('fadeIn');
+        m.addClass('moveMain');  
+    }else{
+        a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');     
+        ta.css('display', 'none'); 
+        m.removeClass('moveMain');
+        $('#toc.toc-aside').css('display', 'none');
+    }
+    show = !show;
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,240-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"tinnypp"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';    //change to ds.src = '/js/embed.js'; to add useragent for duoshuo
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+<script type="text/javascript">
+  function footerPosition() {
+    var contentHeight = document.documentElement.scrollHeight,
+        winHeight = window.innerHeight;
+    if(contentHeight <= winHeight) {
+      $('footer').addClass('fixed-bottom');
+    } else {
+      $('footer').removeClass('fixed-bottom');
+    }
+  }
+  footerPosition();
+  $(window).resize(footerPosition);
+</script>
+
+
+  </body>
+</html>
