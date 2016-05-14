@@ -1,0 +1,352 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>[总结]听VUE2.0和WEEX联合发布直播 | Steam</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Steam">
+    
+    <meta name="description" content="前言从最开始了解到前端，第一次接触html到现在已经有一年多的时间了。这期间得到了很多人和很多社区团体的帮助，首先谢谢每一位朋友和每一个社区对我的帮助。开源的精神是伟大的，是让人着迷的，我也会希望自己是具有开源精神的极客！对于我这个完全非计算机专业的人来说，写代码然后展示出来是一件非常神奇的事情，我">
+    
+    
+    
+    
+    <link rel="alternative" href="/Tinnypp/atom.xml## RSS address." title="Steam" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/Tinny.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/Tinny.jpg">
+    
+
+  
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    
+  
+  <link href="http://cdn.bootcss.com/highlight.js/8.2/styles/railscasts.min.css" rel="stylesheet">
+  <script src="http://cdn.bootcss.com/highlight.js/8.2/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?d182ed77fc48758bf45a33835ee35745";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+      <script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v1/st.js','_st');
+
+  _st('install','.............Add your swiftype userID...............');
+</script>
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Steam">Steam</a></h1>
+				<h2 class="blog-motto">DREAM makes you different</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+                    <ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+					
+						<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="st-search-inpu" maxlength="20" placeholder="Search" />
+						</form>
+					
+					</li>
+                <!--<li><div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div></li>-->
+
+				</ul>
+			</nav>	
+</div>
+    </header>
+    <div id="container" class="clearfix">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/05/14/总结-听VUE2-0和WEEX联合发布直播/" title="[总结]听VUE2.0和WEEX联合发布直播" itemprop="url">[总结]听VUE2.0和WEEX联合发布直播</a>
+  </h1>
+  <p class="article-time">
+    <time datetime="2016-05-14T00:22:51.000Z" itemprop="datePublished">2016-05-14</time>
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title"></strong>
+		<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vue-js-2-0-amp-weex联合发布直播回顾"><span class="toc-number">2.</span> <span class="toc-text">vue.js 2.0 & weex联合发布直播回顾</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#接下来的方向和重点"><span class="toc-number">3.</span> <span class="toc-text">接下来的方向和重点</span></a></li></ol>
+		</div>
+		
+		<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>从最开始了解到前端，第一次接触html到现在已经有一年多的时间了。这期间得到了很多人和很多社区团体的帮助，首先谢谢每一位朋友和每一个社区对我的帮助。开源的精神是伟大的，是让人着迷的，我也会希望自己是具有开源精神的极客！<br>对于我这个完全非计算机专业的人来说，写代码然后展示出来是一件非常神奇的事情，我还记得写下第一句hello world时候我的那种兴奋感是多么强烈！晚上上床了还抱着电脑跟LP说，我会写代码了……你看，我给你展示在浏览器上显示一个hello world，而且你想让它展示成什么文字都可以……现在想想也是无奈了。不过就是这么一点点过来的，才会有不断进步的自己。后来有C总的帮助开始自学，再后来C总介绍，见到了Y老师开始跟着学。后来就自己开始摸索一些内容，在知乎上学习的过程中看到了豪情的群，就加进去了。也很感谢豪情的群管理，收获了很多的知识和资源，而且不同的群会有不同的大牛，因此每个阶段或者每个环境中你都可以学到对应的知识，了解到对应的资源，这当然离不开群管理者和组织者的付出，所以感谢豪情和背后所有的朋友。<br>再后来群里有人说VUE2.0会有发布会，然后就加到了微信群里，然后果然在2016.5.13晚上9点，准时开始看到了尤小右和勾三股四联合直播vue.js 2.0和weex联合发布。说实话，在直播开始前，我不知道尤小右和勾三股四都是谁，也不知道他们说的阿当叔又是谁，更不知道他们说的这些梗是什么意思，感觉完全就是一个脱节的状态。然后也没用过vue.js，只是知道有这么个框架而已。我只是告诉自己，必须要了解这个时代的新的知识，跟上这个步伐，尽管可能自己的知识还是浅薄到无法理解这些内容但是你要去听，所以我就上线听了，结果从9点开始一直听到了11点半，根本停不下来。感触很深也很多，因此写一篇博客纪念一下，总结一下前段时间的学习，也明确一下后面这段时间学习的方向和重点。好，言归正正，我先回顾一下昨天晚上直播中我的记录和感受。</p>
+<h4 id="vue-js-2-0-amp-weex联合发布直播回顾"><a href="#vue-js-2-0-amp-weex联合发布直播回顾" class="headerlink" title="vue.js 2.0 &amp; weex联合发布直播回顾"></a>vue.js 2.0 &amp; weex联合发布直播回顾</h4><p>晚上九点准时开始，先是嘉宾自我介绍，除了主播之外就是尤小右和勾三股四，都是业界大牛，但是自己却完全不知道，所以说自己的步伐还是没有跟上，需要多多去听类似的这种直播或者讲座，多多关注业界的动态。<br>尤小右最开始在Google后来不知道，反正介绍的时候没有做太多的说明，然后勾股原来在遨游浏览器，现在在淘宝。他们的微博都很活跃，我找到了他们的微博，本来我都已经有一年多不用微博了，现在因为这两位大牛的原因，不得不再开始用我的微博，以便于能实时跟上他们的步伐和节奏。<br>然后就是vue.js 2.0发布说明，有尤小右来主要介绍，勾股做补充说明。主要是说了一些vue从开始到现在2.0的一个历程：最开始，尤小右在google的时候，完全自己手写js代码，大概是2013年的样子？写了这么多代码，踩了这么多坑之后，尤小右就感觉有很多东西可以复用，没有必要每次都重新开始，所以想整理一套东西出来。当时已经有angular了，抱着了解和学习的心态，尤小右看了angular的源码，但是觉得很多东西比较繁琐，没有必要，而且整个框架很重，不是很适合初学者上手，框架本身的学习就是一个比较痛苦的过程。所以就想开发一套自己的框架或者说库，让框架尽可能的轻，而且对于初学者更加友好，然后就开始了vue之旅。其实最开始vue不叫vue，叫seed，后来自己写的这个seed还是不错，就发布到github上开源了，结果一下子就有人开始关注，然后就慢慢壮大起来了，其中当然有勾股的参与，还有很多行业内的大牛小牛都参与进来。然后觉得seed不够霸气和高大上，名字要改，就改成了vue。然后现在也没有正式的和专门的人专门运营这个库，但是很多志愿者和朋友们都在贡献代码。逐渐壮大起来之后，尤小右就在1.0的基础上，对vue进行了一次比较大的整理，出了现在的2.0版本。vue2.0更轻，然后使用起来更加容易入手，而且摒弃了一些1.0中比较少用的和不是很实用的内容，更改了一些vue1.0中觉得不合理的地方，简而言之就是说相对来说更改还是比较大的，算是一次全新的开始。而且尤小右收他觉得vue还没有到头，还有很大很大的空间继续发展，所以希望更多人能够参与进来贡献自己的能量。对于vue，主持人做了个比喻，说vue单独自己就可以是一把小刀，非常灵活实用，但是如果你想通过其他的组件再来和vue组合的话，它又可以瞬间变成一把瑞士军刀，可以很大也可以很小，这样的话，灵活性更强，不论是大的项目还是小的项目都可以用vue来开发！而目前市面上或者说实际中，很多框架或者库要么是小刀无法扩展，要么是大刀，小项目无法使用。所以大家才会在不停地纠结，因为很多时候其实你也不知道这个项目到底会多大，到底会不会只是个小项目，结果采用了一个很重的库，这样的话其实很辛苦。而也许，项目刚开始很小，后来越做越大，结果最开始使用的库或者框架又不适合做大项目，就很痛苦。而vue缺非常灵活，可大可小，vue本身其实就很够用了，但是如果你想扩展，还可以做很多的扩展。</p>
+<p>weex主要是淘宝内部使用的，其实主要也是借鉴了vue的一些内容，然后做了适应性调整。现在也就公布出来，让大家一起参与进来，共同维护。</p>
+<p>然后关于现在前端到底应该学什么框架什么库的问题，尤小右认为现在学什么库和框架其实没有太大的意义，因为这些库或者框架的出现是为了解决你当时写原生代码时候的一些代码复用和模式的问题，是提高你写原生代码效率的工具，因此如果你对原生代码不是很熟悉的话，其实你掌握了这些框架或者库没有太大意义，一旦流行的趋势发生了变化，你还是要学新的内容，你完全掌握不到这些框架或者库的根本所在。所以最终还是应该多去看看JS原生的内容，看看计算机根本和基础的内容，比如数据结构和算法这些！</p>
+<p>然后关于JS的未来发展趋势，尤小右认为，现在尽管JS可以做的事情很多，而且越来越多了，从前端扩展到了后端，甚至可以和硬件结合，VR结合，但是其实很多很多JS写后端的事情，根本上来说只是语言是JS，最根本的一些关于后端的思想和内容依然需要你对后端知识很了解，所以走全栈真的很难，不是会一个express koa就算是懂后端了，很多东西往深了研究还是后端的一套东西，只不过语言是JS而已。所以一定要选好自己的路。</p>
+<h4 id="接下来的方向和重点"><a href="#接下来的方向和重点" class="headerlink" title="接下来的方向和重点"></a>接下来的方向和重点</h4><p>首先，我是第一次这么近距离的了解到了vue，而且是由原作者亲自对这个框架做了回顾和说明，让我对这个框架有了比较深刻的背景的理解。而且由于这个框架的开发过程和作者对这个框架目前的火热程度的描述，让我对这个框架充满了好奇和期待，所以非常想一探究竟。正好这段时间刚刚开始学习react，但是总感觉react在实际中的使用好像不是那么容易，所以也一直在犹豫是否要投入这么多的时间和精力。而直播过程中也有vue和react以及angular的对比，所以我还是觉得可以考虑也先了解了解vue再看。<br>关于vue，最吸引我的第一个关键词就是“轻”！压缩完之后只有12k的样子，实在是不可思议！其次就是大家对于这个框架的褒奖，主持人说当他第一次看到vue的时候就被深深地吸引，因为文档实在是太简单太容易上手了，尽可能的不给初级程序员甚至是不懂代码的人设置阅读障碍，我实在很好奇什么样的文档能做到如此接地气而且还能把事情解释的很清楚。还有一点就是，勾股直接评价vue是，他觉得vue基本没什么问题，就是说接近于完美……太夸张了，我也很好奇到底什么样的框架能让一个业界大牛的评价是接近完美，因为不论是哪个框架或者库目前在任何一个社区都会有正面或者负面的评价，还没有一个框架或者说库让某个人评价为完美的，这也是非常吸引我和让我觉得不可思议，想一探就近的。最后就是目前这个社区的热门程度和认可程度，就是这个框架目前通过某种方式获得了一些大家的捐助，大概是每个月有4000美金，而同时还有很多公司希望尤小右可以去给他们做讲座，教他们公司使用这个框架和库，甚至是有公司已经开始使用这个框架了，因此需要尤小右去不断的更新迭代和维护这个框架，所以会捐助一笔钱，让尤小右做下去，所以尤小右目前套现是非常容易的，但是小右会有个更大的野心和梦想，就是希望有一天vue可以达到和react、angular这类的库平起平坐的地步。这也是让我觉得非常难以想象的事情，就我目前看到的情况是，国内的前端水平主要还是以学习国外的内容为主，从博客的质量到社区的情况，到文档的翻译，几乎完全没法看，所以我目前学习前端的主要方式也是主要通过国外的社区和书籍、博客来学习。但是一个国内的框架和库向着世界一流的框架和库前进，这一点太吸引人了。然后尤小右还是勾股在直播的过程中说过一段话：说以前有人说国内和国外的技术水平不同步，大概落后于国外的技术4年左右，而现在国内的发展势头很猛，感觉和国外相差的时间越来越短，大概只有2年左右的时间，甚至1年左右。就是说一个国外流行的框架或者库大概一年到两年左右的时间就会在国内接受并且传播开，而且这个差距会越来越小。这的确是一个让人振奋的消息，我很庆幸自己去年开始接触这个行业和方向，并且能在一年的时间里获得很多朋友的帮助和支持，感谢每一个曾经帮助过我的朋友！</p>
+<p>所以接下来的重点就是开始学习vue还有更基础的计算机知识，比如数据结构和算法，还等什么呢？</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/JS/">JS</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2016/05/14/总结-听VUE2-0和WEEX联合发布直播/" data-title="[总结]听VUE2.0和WEEX联合发布直播 | Steam" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/05/12/JS-JavaScript中的this/"  title="[JS]JavaScript中的this">
+ <strong>Old:</strong><br/> 
+ <span>[JS]JavaScript中的this
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	
+	<div class="ds-thread" data-title="[总结]听VUE2.0和WEEX联合发布直播" data-thread-key="总结-听VUE2-0和WEEX联合发布直播" data-author-key="Steam" data-url="http://yoursite.com/post/总结-听VUE2-0和WEEX联合发布直播"></div>
+	
+</section>
+
+
+</div>  
+    </div>
+    <footer><div id="footer" >
+	<div class="copyright">
+		<span>Powered by <a href="https://github.com/hexojs/hexo">Hexo</a> and theme by 
+		<a href="https://github.com/levonlin/Tinnypp">Tinnypp</a>.</span>
+		
+			<span>© Steam</span>
+		
+	<div>
+</div></footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  //back to top
+  function backToTop(){
+    var buttonHTML = $("<a href=\"#top\" id=\"back-top\">" + "<span>Back to Top</span></a>");
+    buttonHTML.appendTo($("body"));
+    var buttonToTop = $("#back-top");
+    // hide #back-top first
+    buttonToTop.hide();
+
+    // fade in #back-top
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                buttonToTop.fadeIn();
+            } else {
+                buttonToTop.fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        buttonToTop.click(function() {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+  }
+  backToTop();
+
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      ta = $('#toc.toc-aside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+        
+    }
+  });
+
+  var show = true;
+  c.click(function(){
+    if(show == true){
+        a.addClass('fadeOut').css('display', 'none');
+        ta.css('display', 'block').addClass('fadeIn');
+        m.addClass('moveMain');  
+    }else{
+        a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');     
+        ta.css('display', 'none'); 
+        m.removeClass('moveMain');
+        $('#toc.toc-aside').css('display', 'none');
+    }
+    show = !show;
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,240-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"tinnypp"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';    //change to ds.src = '/js/embed.js'; to add useragent for duoshuo
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+<script type="text/javascript">
+  function footerPosition() {
+    var contentHeight = document.documentElement.scrollHeight,
+        winHeight = window.innerHeight;
+    if(contentHeight <= winHeight) {
+      $('footer').addClass('fixed-bottom');
+    } else {
+      $('footer').removeClass('fixed-bottom');
+    }
+  }
+  footerPosition();
+  $(window).resize(footerPosition);
+</script>
+
+
+  </body>
+</html>
