@@ -1,0 +1,371 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>[Design Patterns]MVC维基百科译文 | Steam</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Steam">
+    
+    <meta name="description" content="前言学习前端框架的过程中，比如react或者vue，总是能听到关于MVVM MVC MVP等等这些相关的术语和内容，之前看过阮一峰的博客中一篇关于MVC介绍的文章，也在其博客上看过另外一篇关于MVC MVVM MVP之间区别的介绍的文章。尽管阮一峰一直以一种比较更直白的语言来介绍计算机相关的知识，但">
+    
+    
+    
+    
+    <link rel="alternative" href="/Tinnypp/atom.xml## RSS address." title="Steam" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/Tinny.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/Tinny.jpg">
+    
+
+  
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    
+  
+  <link href="http://cdn.bootcss.com/highlight.js/8.2/styles/railscasts.min.css" rel="stylesheet">
+  <script src="http://cdn.bootcss.com/highlight.js/8.2/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?d182ed77fc48758bf45a33835ee35745";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+      <script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v1/st.js','_st');
+
+  _st('install','.............Add your swiftype userID...............');
+</script>
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Steam">Steam</a></h1>
+				<h2 class="blog-motto">DREAM makes you different</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+                    <ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+					
+						<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="st-search-inpu" maxlength="20" placeholder="Search" />
+						</form>
+					
+					</li>
+                <!--<li><div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div></li>-->
+
+				</ul>
+			</nav>	
+</div>
+    </header>
+    <div id="container" class="clearfix">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/05/15/Design-Patterns-MVC维基百科译文/" title="[Design Patterns]MVC维基百科译文" itemprop="url">[Design Patterns]MVC维基百科译文</a>
+  </h1>
+  <p class="article-time">
+    <time datetime="2016-05-15T00:38:04.000Z" itemprop="datePublished">2016-05-15</time>
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title"></strong>
+		<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#译文"><span class="toc-number">2.</span> <span class="toc-text">译文</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#描述"><span class="toc-number">2.1.</span> <span class="toc-text">描述</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#组件"><span class="toc-number">2.1.1.</span> <span class="toc-text">组件</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#交互"><span class="toc-number">2.1.2.</span> <span class="toc-text">交互</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#历史"><span class="toc-number">2.2.</span> <span class="toc-text">历史</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#网络应用中的使用"><span class="toc-number">2.3.</span> <span class="toc-text">网络应用中的使用</span></a></li></ol></li></ol>
+		</div>
+		
+		<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>学习前端框架的过程中，比如react或者vue，总是能听到关于MVVM MVC MVP等等这些相关的术语和内容，之前看过阮一峰的博客中一篇<a href="http://www.ruanyifeng.com/blog/2007/11/mvc.html" target="_blank" rel="external">关于MVC介绍</a>的文章，也在其博客上看过另外一篇<a href="http://www.ruanyifeng.com/blog/2015/02/mvcmvp_mvvm.html" target="_blank" rel="external">关于MVC MVVM MVP之间区别</a>的介绍的文章。尽管阮一峰一直以一种比较更直白的语言来介绍计算机相关的知识，但是这两篇文章看完，我依然充满了疑惑和不解，完全不能理解这个问题在说什么。我觉得可能这个问题的更多的解答需要我学习一门后端语言之后才能更加深刻地理解，但是目前而言，我只能非常感性的能感觉到MVC是什么意思，而不能从实际中和理性的代码中理解这个到底是什么意思。所以，为了我能更准确和明白的理解这个意思，我查看了Wikipedia的MVC字条的解释，感觉国内很多的博客内容中的图片似乎没有这篇文章中的精确，因此这里将其翻译下来。</p>
+<p>wikipedia 原文： <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller" target="_blank" rel="external">https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller</a><br>我翻译这篇文章的时间是2016.5.15，这个字条也许会发生变化，因此如果后来人看到的翻译和原文相差太大，可能是后期这个字条被编辑过。不过wikipedia做的很好的一点是，每一次的编辑和更改都会记录下来，因此你可以在这个字条的View history中查看我写这篇文章时候的MVC的内容。</p>
+<p>这里就不贴原文了，大家自己打开链接查看即可。</p>
+<h4 id="译文"><a href="#译文" class="headerlink" title="译文"></a>译文</h4><p>Model-View-Controller(MVC)是一种软件构建模式，用于在计算机上执行用户界面。MVC将某一指定的软件应用分为三个相互关联的部分，以便于将内部信息的展示与信息呈现给用户的方式或者来自于用户的信息的呈现方式分开。</p>
+<p>这一构建模式，在传统中被用于桌面图形用户界面，而现在则在设计网络应用中变得非常流行。</p>
+<h5 id="描述"><a href="#描述" class="headerlink" title="描述"></a>描述</h5><p>和其他软件模式类似，MVC展示了问题的核心解决方式，同时允许其被每种系统所适应。具体的MVC构建也许会与这里的传统描述相差巨大。</p>
+<h6 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h6><p>MVC的核心组件，model，在其问题的区域捕获应用的行为，独立于用户界面。</p>
+<ul>
+<li>model直接管理应用的数据，逻辑和规则</li>
+<li>view可以是任何信息展示的输出，例如一张表或者一个图表。可能会有同一信息的不同视图，例如一个用于管理的柱状图或者一个用于账户的列表。</li>
+<li>第三部分，controller，接收输入，然后将其转化为给model或者view的命令。</li>
+</ul>
+<h6 id="交互"><a href="#交互" class="headerlink" title="交互"></a>交互</h6><p>除了将应用分解为3个组件之外，model-view-controller这种设计模式也定了他们三者之间的交互。</p>
+<ul>
+<li>model存储着从controller命令中取回的数据，同时也是在view中展示的数据。</li>
+<li>view根据model的变化，为用户生成新的输出。</li>
+<li>controller给model发布命令以更新model的状态（例如编辑一份文档）。controller也可以向其相关联的视图发布命令，以改变模型的视图展现（例如在文档中滑动(scrolling)）。</li>
+</ul>
+<p><img src="./MVC-Process.svg.png" alt="image"></p>
+<h5 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h5><p>MVC在早期图形用户界面开发中是具有开创性的远见之一，同时也是最先描述和执行软件构建方面的方法之一。</p>
+<p>Trygve Reenskaug introduced MVC into Smalltalk-76 while visiting the Xerox Palo Alto Research Center (PARC) in the 1970s. In the 1980s, Jim Althoff and others implemented a version of MVC for the Smalltalk-80 class library. It was only later, in a 1988 article in The Journal of Object Technology (JOT), that MVC was expressed as a general concept.</p>
+<p>The MVC pattern has subsequently evolved, giving rise to variants such as hierarchical model–view–controller (HMVC), model–view–adapter (MVA), model–view–presenter (MVP), model–view–viewmodel (MVVM), and others that adapted MVC to different contexts.</p>
+<p>The use of the MVC pattern in web applications exploded in popularity after the introduction of Apple’s WebObjects which was originally written in Objective-C (that borrowed heavily from Smalltalk) and helped enforce MVC principles. Later, the MVC pattern became popular with Java developers when WebObjects was ported to Java. Later frameworks for Java such as Spring continued the strong bond between Java and MVC. The introduction of the frameworks Rails (for Ruby) and Django (for Python), both of which had a strong emphasis on rapid deployment, increased MVCs popularity outside the traditional enterprise environment in which it has long been popular. MVC web frameworks now hold large market shares relative to non-MVC web toolkits.</p>
+<p><em>博主注：历史这部分的内容没有太大意义，未做翻译</em></p>
+<h5 id="网络应用中的使用"><a href="#网络应用中的使用" class="headerlink" title="网络应用中的使用"></a>网络应用中的使用</h5><p>尽管最开始从桌面计算发展而来，model-view-controller被广泛的采用为互联网应用的架构。很多商业和非商业的网络框架被创建出来，并且加强了这个模式。这些软件框架在他们的解释中五花八门，主要不同的地方就是MVC在客户端和服务端区分的时候MVC的职责不同。</p>
+<p>早起的网络应用采用的轻巧的客户端方式，这种方式几乎将model / view / controller的逻辑全部放在了服务器中。这种方式在比较流行的几个框架，例如Rails的Ruby，Django，ASP.NET MVC 和 Express中，依然能有所反映。通过这种方式，客户端发送超链接请求或者表单输入给controller，然后从view获取完整的并且最新的网页（或者其他文档）；model完整的存在于服务端。随着客户端技术的成熟，类似于AngularJS， EmberJS, JavaScriptMVC 和 Backbone这类的框架被创造出来，允许MVC组件在客户端执行局部内容（也可以查看Ajax）。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/MVC/">MVC</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2016/05/15/Design-Patterns-MVC维基百科译文/" data-title="[Design Patterns]MVC维基百科译文 | Steam" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/05/14/总结-听VUE2-0和WEEX联合发布直播/"  title="[总结]听VUE2.0和WEEX联合发布直播">
+ <strong>Old:</strong><br/> 
+ <span>[总结]听VUE2.0和WEEX联合发布直播
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	
+	<div class="ds-thread" data-title="[Design Patterns]MVC维基百科译文" data-thread-key="Design-Patterns-MVC维基百科译文" data-author-key="Steam" data-url="http://yoursite.com/post/Design-Patterns-MVC维基百科译文"></div>
+	
+</section>
+
+
+</div>  
+    </div>
+    <footer><div id="footer" >
+	<div class="copyright">
+		<span>Powered by <a href="https://github.com/hexojs/hexo">Hexo</a> and theme by 
+		<a href="https://github.com/levonlin/Tinnypp">Tinnypp</a>.</span>
+		
+			<span>© Steam</span>
+		
+	<div>
+</div></footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  //back to top
+  function backToTop(){
+    var buttonHTML = $("<a href=\"#top\" id=\"back-top\">" + "<span>Back to Top</span></a>");
+    buttonHTML.appendTo($("body"));
+    var buttonToTop = $("#back-top");
+    // hide #back-top first
+    buttonToTop.hide();
+
+    // fade in #back-top
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                buttonToTop.fadeIn();
+            } else {
+                buttonToTop.fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        buttonToTop.click(function() {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+  }
+  backToTop();
+
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      ta = $('#toc.toc-aside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+        
+    }
+  });
+
+  var show = true;
+  c.click(function(){
+    if(show == true){
+        a.addClass('fadeOut').css('display', 'none');
+        ta.css('display', 'block').addClass('fadeIn');
+        m.addClass('moveMain');  
+    }else{
+        a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');     
+        ta.css('display', 'none'); 
+        m.removeClass('moveMain');
+        $('#toc.toc-aside').css('display', 'none');
+    }
+    show = !show;
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,240-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"tinnypp"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';    //change to ds.src = '/js/embed.js'; to add useragent for duoshuo
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+<script type="text/javascript">
+  function footerPosition() {
+    var contentHeight = document.documentElement.scrollHeight,
+        winHeight = window.innerHeight;
+    if(contentHeight <= winHeight) {
+      $('footer').addClass('fixed-bottom');
+    } else {
+      $('footer').removeClass('fixed-bottom');
+    }
+  }
+  footerPosition();
+  $(window).resize(footerPosition);
+</script>
+
+
+  </body>
+</html>
