@@ -4,12 +4,14 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[css]CSS3中transform / transition / animation以及其他的一切高级属性 | Steam</title>
+    <title>[CommonJS]CommonJS维基百科的译文 | Steam</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Steam">
     
-    <meta name="description" content="前言前段时间写一个demo的时候，里面有很多的效果都是用CSS3的一些高级属性写的，并没有用到JS。从实用的角度来看，这是很合理的，没有必要非要用JS去写一些特效和动画，但是正是因为JS才算的是一门真正的计算机语言，而且又有很多坑和难以驾驭的地方，所以我们会更多的重点关注JS，而忽略CSS。正是因为">
+    <meta name="description" content="Wikipedia 原文CommonJS
+本文发布的时间是2016.5.16，后续词条发生变化之后大家可以通过Wikipedia上方导航中的View history查看历史记录。
+译文CommonJS是一个希望在浏览器之外（例如，在服务器端或者原生桌面应用上）为JavaScript指定一个生态系统的">
     
     
     
@@ -92,10 +94,10 @@ var _hmt = _hmt || [];
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/05/15/css-CSS3中transform-transition-animation以及其他的一切高级属性/" title="[css]CSS3中transform / transition / animation以及其他的一切高级属性" itemprop="url">[css]CSS3中transform / transition / animation以及其他的一切高级属性</a>
+      <a href="/2016/05/16/CommonJS-CommonJS维基百科的译文/" title="[CommonJS]CommonJS维基百科的译文" itemprop="url">[CommonJS]CommonJS维基百科的译文</a>
   </h1>
   <p class="article-time">
-    <time datetime="2016-05-15T12:26:53.000Z" itemprop="datePublished">2016-05-15</time>
+    <time datetime="2016-05-15T23:40:35.000Z" itemprop="datePublished">2016-05-16</time>
   </p>
 </header>
 	<div class="article-content">
@@ -103,40 +105,25 @@ var _hmt = _hmt || [];
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title"></strong>
-		<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#w3cplus中CSS3高级属性的系列文章"><span class="toc-number">2.</span> <span class="toc-text">w3cplus中CSS3高级属性的系列文章</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CSS3-Animation"><span class="toc-number">3.</span> <span class="toc-text">CSS3 Animation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#后话"><span class="toc-number">4.</span> <span class="toc-text">后话</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Wikipedia-原文"><span class="toc-number">1.</span> <span class="toc-text">Wikipedia 原文</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#译文"><span class="toc-number">2.</span> <span class="toc-text">译文</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#历史"><span class="toc-number">2.1.</span> <span class="toc-text">历史</span></a></li></ol></li></ol>
 		</div>
 		
-		<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>前段时间写一个demo的时候，里面有很多的效果都是用CSS3的一些高级属性写的，并没有用到JS。从实用的角度来看，这是很合理的，没有必要非要用JS去写一些特效和动画，但是正是因为JS才算的是一门真正的计算机语言，而且又有很多坑和难以驾驭的地方，所以我们会更多的重点关注JS，而忽略CSS。正是因为如此，才导致很久没有关注CSS3，以至于其中很多一些高级的属性都忘记了。例如，在这个demo中会用到CSS的transform属性，所以想专门写一个关于transform的总结。结果在找资料的过程中，找到了<a href="http://www.w3cplus.com/" target="_blank" rel="external">w3cplus</a>中一个关于CSS3高级属性的系列文章。发现里面对transform / transition / animation 以及很多其他的高级属性都做了详细的总结和论述，看完之后实在不知道自己该写什么了。所以就打算把这个系列文章整合到自己的这篇博客中来。</p>
-<p>后来在我的书签中找到了一个关于CSS动画和过渡的效果预览网站，里面有很多内容可以实现在线预览，然后通过这个网站有找到了很多关于CSS方面动画和过渡等的效果的比较好的网站和库，比如Animation.css。所以，这里就把这些资源做一个总结，来把这些零散的CSS知识统一整合到这篇文章中，后期关于CSS的整合文章应该会有，也都是类似的整合贴，会把一些CSS的主要的大块的知识体系搭建起来，这样的话，便于更加熟悉CSS。</p>
-<p>其实掌握CSS的关键就是一个熟练的过程，或者说借助工具可以实现常见的效果，而不是怎么去自己总结，因为CSS中的内容相对来说比较死一些，没有JS那么灵活多变。所以把这些总结性的文章在整合在一起，如果自己以后遇到类似的效果直接来这里能快速的找到自己想要的效果，在这个过程中建立起对CSS的熟悉感，这样基本就算是掌握了。</p>
-<h4 id="w3cplus中CSS3高级属性的系列文章"><a href="#w3cplus中CSS3高级属性的系列文章" class="headerlink" title="w3cplus中CSS3高级属性的系列文章"></a>w3cplus中CSS3高级属性的系列文章</h4><p>第一节：<a href="http://www.w3cplus.com/node/44" target="_blank" rel="external">《CSS3 Gradient》</a></p>
-<p>第二节：<a href="http://www.w3cplus.com/node/45" target="_blank" rel="external">《CSS3 RGBA》</a></p>
-<p>第三节：<a href="http://www.w3cplus.com/node/48" target="_blank" rel="external">《CSS3 Border-radius》</a></p>
-<p>第四节：<a href="http://www.w3cplus.com/node/52" target="_blank" rel="external">《CSS3 Text-shadow》</a></p>
-<p>第五节：<a href="http://www.w3cplus.com/content/css3-box-shadow" target="_blank" rel="external">《CSS3 Box-shadow》</a></p>
-<p>第六节：<a href="http://www.w3cplus.com/content/css3-transform" target="_blank" rel="external">《CSS3 Transform》</a></p>
-<p>第七节：<a href="http://www.w3cplus.com/content/css3-transition" target="_blank" rel="external">《CSS3 Transition》</a></p>
-<p>第八节：<a href="http://www.w3cplus.com/content/css3-animation" target="_blank" rel="external">《CSS3 Animation》</a></p>
-<p><em>以上系列文章来自于w3cplus</em></p>
-<h4 id="CSS3-Animation"><a href="#CSS3-Animation" class="headerlink" title="CSS3 Animation"></a>CSS3 Animation</h4><p>在跟着Y老师学习的过程中，获得了一个比较好的在线预览很多CSS3效果属性的网站：</p>
-<p><a href="http://www.f2e.name/case/css3/tools.html" target="_blank" rel="external">http://www.f2e.name/case/css3/tools.html</a></p>
-<p>这个网站有三个方面的作用：</p>
-<p>第一可以通过调节滑块来实现很多样式，最终找到你想要的样式。</p>
-<p>第二，这个网站中左侧有三个tag，最下面的tag是“动画库”，里面会有很多已经成熟的特效效果，可以直接拿来用的。当然这个网站的很多效果其实也是来自于Animation.css这个库的，链接如下</p>
-<p><a href="http://daneden.github.io/animate.css/" target="_blank" rel="external">Animation</a></p>
-<p>这个库有专门的github说明，里面有具体的使用方法，其实非常简单，基本上和bootstrap一样，只要在具体的html元素中给class就可以了。</p>
-<p>第三，这个网站最上面的导航栏中有一个“案例分享”的导航，打开链接之后会有很多CSS动画特效的展示demo，当然感觉这个网站更新和维护可能会差一些，已经有很多示例的demo链接已经失效了，但是还是会有一些比较不错的示例demo可以参考。通过示例参考的很多网站又可以找到更多关于CSS特效的其他网站。所以说通过这个网站可以找到很多的类似的资源。</p>
-<h4 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h4><p>其实CSS3也可以实现很多的特效，一些简单的效果其实没有必要非得用JS来实现，我们之所以要用JS来实现，只是因为想通过这些代码的书写来提高自己对JS这门语言的掌握而已。最后，贴一个前段时间很火的CSS实现灭绝动物效果的动画网站作为CSS动画的结束。</p>
-<p><a href="http://species-in-pieces.com/" target="_blank" rel="external">http://species-in-pieces.com/</a></p>
-<p>当然我上面贴出的这个是官网，因为是国外的网站，所以打开会比较慢，如果你实在没有耐心的话，国内有翻版，只是将网站上的英文都翻译成了中文，效果没有任何差别：</p>
-<p><a href="http://www.webhek.com/misc/species-in-pieces" target="_blank" rel="external">http://www.webhek.com/misc/species-in-pieces</a></p>
+		<h4 id="Wikipedia-原文"><a href="#Wikipedia-原文" class="headerlink" title="Wikipedia 原文"></a>Wikipedia 原文</h4><p><a href="https://en.wikipedia.org/wiki/CommonJS" target="_blank" rel="external">CommonJS</a></p>
+<p>本文发布的时间是2016.5.16，后续词条发生变化之后大家可以通过Wikipedia上方导航中的View history查看历史记录。</p>
+<h4 id="译文"><a href="#译文" class="headerlink" title="译文"></a>译文</h4><p>CommonJS是一个希望在浏览器之外（例如，在服务器端或者原生桌面应用上）为JavaScript指定一个生态系统的项目。</p>
+<h5 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h5><p>项目由 Mozilla 工程师 Kevin Dangoor 于2009年1月开始，最初名为ServerJS。</p>
+<blockquote>
+<p>我现在描述的并不是一个技术问题。是关于人们集合在一起并且决定向前走，而且开始一起构建更大和更酷的一些东西。<br> –Kevin Dangoor</p>
+</blockquote>
+<p>2009年8月，项目被更名为CommonJS，以展示其更加宽泛的API适用性。标准以一种公开的进程被创立并且通过。一项标准只有当它被多项标准所认可之后才可以成为最终标准。CommonJS并未受到制定ECMAScript规范的Ecma International group TC39的协助，但是T39的一些成员实际上参与到了这个项目中。</p>
+<p>2013年5月，Isaac Z. Schlueter，npm（Node.js Package Manger）的作者，说CommonJS被Nodejs所淘汰，并且被Nodejs核心开发者所避免。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/css/">css</a>
+  <span></span> <a href="/tags/CommonJS/">CommonJS</a>
   </div>
 
 
@@ -144,7 +131,7 @@ var _hmt = _hmt || [];
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2016/05/15/css-CSS3中transform-transition-animation以及其他的一切高级属性/" data-title="[css]CSS3中transform / transition / animation以及其他的一切高级属性 | Steam" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2016/05/16/CommonJS-CommonJS维基百科的译文/" data-title="[CommonJS]CommonJS维基百科的译文 | Steam" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -153,19 +140,11 @@ var _hmt = _hmt || [];
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/05/16/CommonJS-CommonJS维基百科的译文/" title="[CommonJS]CommonJS维基百科的译文">
-  <strong>New:</strong><br/>
-  <span>
-  [CommonJS]CommonJS维基百科的译文</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/05/15/历程-到底应该学更高级的内容还是应该学习更深层次的内容？/"  title="[历程]到底应该学更高级的内容还是应该学习更深层次的内容？">
+<a href="/2016/05/15/css-CSS3中transform-transition-animation以及其他的一切高级属性/"  title="[css]CSS3中transform / transition / animation以及其他的一切高级属性">
  <strong>Old:</strong><br/> 
- <span>[历程]到底应该学更高级的内容还是应该学习更深层次的内容？
+ <span>[css]CSS3中transform / transition / animation以及其他的一切高级属性
 </span>
 </a>
 </div>
@@ -175,7 +154,7 @@ var _hmt = _hmt || [];
 	
 <section class="comment">
 	
-	<div class="ds-thread" data-title="[css]CSS3中transform / transition / animation以及其他的一切高级属性" data-thread-key="css-CSS3中transform-transition-animation以及其他的一切高级属性" data-author-key="Steam" data-url="http://yoursite.com/post/css-CSS3中transform-transition-animation以及其他的一切高级属性"></div>
+	<div class="ds-thread" data-title="[CommonJS]CommonJS维基百科的译文" data-thread-key="CommonJS-CommonJS维基百科的译文" data-author-key="Steam" data-url="http://yoursite.com/post/CommonJS-CommonJS维基百科的译文"></div>
 	
 </section>
 
