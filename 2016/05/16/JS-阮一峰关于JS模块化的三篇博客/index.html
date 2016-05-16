@@ -4,14 +4,18 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[CommonJS]CommonJS维基百科的译文 | Steam</title>
+    <title>[JS]阮一峰关于JS模块化的三篇博客 | Steam</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Steam">
     
-    <meta name="description" content="Wikipedia 原文CommonJS
-本文发布的时间是2016.5.16，后续词条发生变化之后大家可以通过Wikipedia上方导航中的View history查看历史记录。
-译文CommonJS是一个希望在浏览器之外（例如，在服务器端或者原生桌面应用上）为JavaScript指定一个生态系统的">
+    <meta name="description" content="关于JS模块化的内容，最近看到了阮一峰写的三篇文章，解析的听好的，特拿来学习，并写了读书笔记。
+
+Javascript模块化编程（一）：模块的写法
+Javascript模块化编程（二）：AMD规范
+Javascript模块化编程（三）：require.js的用法
+
+在这三篇文章中看到了很多让人觉得恍">
     
     
     
@@ -94,10 +98,10 @@ var _hmt = _hmt || [];
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/05/16/CommonJS-CommonJS维基百科的译文/" title="[CommonJS]CommonJS维基百科的译文" itemprop="url">[CommonJS]CommonJS维基百科的译文</a>
+      <a href="/2016/05/16/JS-阮一峰关于JS模块化的三篇博客/" title="[JS]阮一峰关于JS模块化的三篇博客" itemprop="url">[JS]阮一峰关于JS模块化的三篇博客</a>
   </h1>
   <p class="article-time">
-    <time datetime="2016-05-15T23:40:35.000Z" itemprop="datePublished">2016-05-16</time>
+    <time datetime="2016-05-16T11:37:40.000Z" itemprop="datePublished">2016-05-16</time>
   </p>
 </header>
 	<div class="article-content">
@@ -105,25 +109,30 @@ var _hmt = _hmt || [];
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title"></strong>
-		<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Wikipedia-原文"><span class="toc-number">1.</span> <span class="toc-text">Wikipedia 原文</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#译文"><span class="toc-number">2.</span> <span class="toc-text">译文</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#历史"><span class="toc-number">2.1.</span> <span class="toc-text">历史</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-模块的写法"><span class="toc-number">1.</span> <span class="toc-text">1. 模块的写法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-AMD规范"><span class="toc-number">2.</span> <span class="toc-text">2. AMD规范</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-require-js的用法"><span class="toc-number">3.</span> <span class="toc-text">3. require.js的用法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-疑惑"><span class="toc-number">4.</span> <span class="toc-text">4. 疑惑</span></a></li></ol>
 		</div>
 		
-		<h4 id="Wikipedia-原文"><a href="#Wikipedia-原文" class="headerlink" title="Wikipedia 原文"></a>Wikipedia 原文</h4><p><a href="https://en.wikipedia.org/wiki/CommonJS" target="_blank" rel="external">CommonJS</a></p>
-<p>本文发布的时间是2016.5.16，后续词条发生变化之后大家可以通过Wikipedia上方导航中的View history查看历史记录。</p>
-<h4 id="译文"><a href="#译文" class="headerlink" title="译文"></a>译文</h4><p>CommonJS是一个希望在浏览器之外（例如，在服务器端或者原生桌面应用上）为JavaScript指定一个生态系统的项目。</p>
-<h5 id="历史"><a href="#历史" class="headerlink" title="历史"></a>历史</h5><p>项目由 Mozilla 工程师 Kevin Dangoor 于2009年1月开始，最初名为ServerJS。</p>
-<blockquote>
-<p>我现在描述的并不是一个技术问题。是关于人们集合在一起并且决定向前走，而且开始一起构建更大和更酷的一些东西。<br> –Kevin Dangoor</p>
-</blockquote>
-<p>2009年8月，项目被更名为CommonJS，以展示其更加宽泛的API适用性。标准以一种公开的进程被创立并且通过。一项标准只有当它被多项标准所认可之后才可以成为最终标准。CommonJS并未受到制定ECMAScript规范的Ecma International group TC39的协助，但是T39的一些成员实际上参与到了这个项目中。</p>
-<p>2013年5月，Isaac Z. Schlueter，npm（Node.js Package Manger）的作者，说CommonJS被Nodejs所淘汰，并且被Nodejs核心开发者所避免。</p>
+		<p>关于JS模块化的内容，最近看到了阮一峰写的三篇文章，解析的听好的，特拿来学习，并写了读书笔记。</p>
+<ul>
+<li><a href="http://www.ruanyifeng.com/blog/2012/10/javascript_module.html" target="_blank" rel="external">Javascript模块化编程（一）：模块的写法</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2012/10/asynchronous_module_definition.html" target="_blank" rel="external">Javascript模块化编程（二）：AMD规范</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2012/11/require_js.html" target="_blank" rel="external">Javascript模块化编程（三）：require.js的用法</a></li>
+</ul>
+<p>在这三篇文章中看到了很多让人觉得恍然大悟的说明，特摘录下来。</p>
+<h4 id="1-模块的写法"><a href="#1-模块的写法" class="headerlink" title="1. 模块的写法"></a>1. 模块的写法</h4><p>…理想情况下，开发者只需要实现核心的业务逻辑，其他都可以加载别人已经写好的模块。…</p>
+<h4 id="2-AMD规范"><a href="#2-AMD规范" class="headerlink" title="2. AMD规范"></a>2. AMD规范</h4><p>…老实说，在浏览器环境下，没有模块也不是特别大的问题，毕竟网页程序的复杂性有限；但是在服务器端，一定要有模块，与操作系统和其他应用程序互动，否则根本没法编程。</p>
+<p>…node.js的模块系统，就是参照CommonJS规范实现的。在CommonJS中，有一个全局性方法require()，用于加载模块。</p>
+<p>…<img src="./JS模块化2.1png" alt="AMD出现的背景"></p>
+<p><img src="./JS模块化2.2.png" alt="AMD的用法"></p>
+<h4 id="3-require-js的用法"><a href="#3-require-js的用法" class="headerlink" title="3. require.js的用法"></a>3. require.js的用法</h4><p>…<img src="./JS模块化3.1.png" alt="requirejs的作用"></p>
+<h4 id="4-疑惑"><a href="#4-疑惑" class="headerlink" title="4. 疑惑"></a>4. 疑惑</h4><p>关于CommonJS / AMD / CMD / require.js / sea.js这些之间的关系是什么还没有特别搞清楚，这个还需要写一篇专门的总结文章。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/CommonJS/">CommonJS</a>
+  <span></span> <a href="/tags/JS/">JS</a>
   </div>
 
 
@@ -131,7 +140,7 @@ var _hmt = _hmt || [];
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2016/05/16/CommonJS-CommonJS维基百科的译文/" data-title="[CommonJS]CommonJS维基百科的译文 | Steam" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2016/05/16/JS-阮一峰关于JS模块化的三篇博客/" data-title="[JS]阮一峰关于JS模块化的三篇博客 | Steam" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -140,19 +149,11 @@ var _hmt = _hmt || [];
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/05/16/JS-阮一峰关于JS模块化的三篇博客/" title="[JS]阮一峰关于JS模块化的三篇博客">
-  <strong>New:</strong><br/>
-  <span>
-  [JS]阮一峰关于JS模块化的三篇博客</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/05/15/css-CSS3中transform-transition-animation以及其他的一切高级属性/"  title="[css]CSS3中transform / transition / animation以及其他的一切高级属性">
+<a href="/2016/05/16/CommonJS-CommonJS维基百科的译文/"  title="[CommonJS]CommonJS维基百科的译文">
  <strong>Old:</strong><br/> 
- <span>[css]CSS3中transform / transition / animation以及其他的一切高级属性
+ <span>[CommonJS]CommonJS维基百科的译文
 </span>
 </a>
 </div>
@@ -162,7 +163,7 @@ var _hmt = _hmt || [];
 	
 <section class="comment">
 	
-	<div class="ds-thread" data-title="[CommonJS]CommonJS维基百科的译文" data-thread-key="CommonJS-CommonJS维基百科的译文" data-author-key="Steam" data-url="http://yoursite.com/post/CommonJS-CommonJS维基百科的译文"></div>
+	<div class="ds-thread" data-title="[JS]阮一峰关于JS模块化的三篇博客" data-thread-key="JS-阮一峰关于JS模块化的三篇博客" data-author-key="Steam" data-url="http://yoursite.com/post/JS-阮一峰关于JS模块化的三篇博客"></div>
 	
 </section>
 
