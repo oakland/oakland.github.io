@@ -103,14 +103,69 @@ var _hmt = _hmt || [];
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title"></strong>
-		<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#部分译文"><span class="toc-number">2.</span> <span class="toc-text">部分译文</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#DOM"><span class="toc-number">2.1.</span> <span class="toc-text">DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#repaint-and-reflow（重绘与重流）"><span class="toc-number">2.1.1.</span> <span class="toc-text">repaint and reflow（重绘与重流）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Document-tree-modification（修改-DOM-树）"><span class="toc-number">2.1.2.</span> <span class="toc-text">Document tree modification（修改 DOM 树）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Modifying-an-invisible-element（修改一个不可见的元素）"><span class="toc-number">2.1.3.</span> <span class="toc-text">Modifying an invisible element（修改一个不可见的元素）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Taking-measurements（测量）"><span class="toc-number">2.1.4.</span> <span class="toc-text">Taking measurements（测量）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Making-several-style-changes-at-once（一次执行多次样式改变）"><span class="toc-number">2.1.5.</span> <span class="toc-text">Making several style changes at once（一次执行多次样式改变）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Trading-smoothness-for-speed（牺牲流畅来换取速度）"><span class="toc-number">2.1.6.</span> <span class="toc-text">Trading smoothness for speed（牺牲流畅来换取速度）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Avoid-inspecting-large-numbers-of-nodes（避免检查大量的节点）"><span class="toc-number">2.1.7.</span> <span class="toc-text">Avoid inspecting large numbers of nodes（避免检查大量的节点）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Improve-speed-with-XPath（用-XPath-提高速度）"><span class="toc-number">2.1.8.</span> <span class="toc-text">Improve speed with XPath（用 XPath 提高速度）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Avoid-modifications-while-traversing-the-DOM（遍历-DOM-的时候避免修改）"><span class="toc-number">2.1.9.</span> <span class="toc-text">Avoid modifications while traversing the DOM（遍历 DOM 的时候避免修改）</span></a></li></ol></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#部分译文"><span class="toc-number">2.</span> <span class="toc-text">部分译文</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#ECMAScript"><span class="toc-number">2.1.</span> <span class="toc-text">ECMAScript</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Avoid-using-eval-or-the-Function-constructor（避免使用-eval-和-Function-构造器）"><span class="toc-number">2.1.1.</span> <span class="toc-text">Avoid using eval or the Function constructor（避免使用 eval 和 Function 构造器）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Rewrite-that-eval（改写-eval）"><span class="toc-number">2.1.2.</span> <span class="toc-text">Rewrite that eval（改写 eval）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Avoid-using-with（避免使用-with）"><span class="toc-number">2.1.3.</span> <span class="toc-text">Avoid using with（避免使用 with）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Don’t-use-try-catch-finally-inside-performance-critical-functions"><span class="toc-number">2.1.4.</span> <span class="toc-text">Don’t use try-catch-finally inside performance-critical functions</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#（在对性能要求比较高的函数中尽量不要使用-try-catch-finally）"><span class="toc-number">2.1.5.</span> <span class="toc-text">（在对性能要求比较高的函数中尽量不要使用 try-catch-finally）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Isolate-uses-of-eval-and-with（）"><span class="toc-number">2.1.6.</span> <span class="toc-text">Isolate uses of eval and with（）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Avoid-using-global-variables（避免使用全局变量）"><span class="toc-number">2.1.7.</span> <span class="toc-text">Avoid using global variables（避免使用全局变量）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Beware-of-implicit-object-conversion（注意隐形对象转化）"><span class="toc-number">2.1.8.</span> <span class="toc-text">Beware of implicit object conversion（注意隐形对象转化）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Avoid-for-in-in-performance-critical-functions（在对性能要求较高的函数中避免使用-for-in）"><span class="toc-number">2.1.9.</span> <span class="toc-text">Avoid for-in in performance-critical functions（在对性能要求较高的函数中避免使用 for-in）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Use-strings-accumulator-style（使用字符串相加样式）"><span class="toc-number">2.1.10.</span> <span class="toc-text">Use strings accumulator-style（使用字符串相加样式）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Primitive-operations-can-be-faster-than-function-calls（）"><span class="toc-number">2.1.11.</span> <span class="toc-text">Primitive operations can be faster than function calls（）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Pass-functions-not-strings-to-setTimeout-and-setInterval-（）"><span class="toc-number">2.1.12.</span> <span class="toc-text">Pass functions, not strings, to setTimeout() and setInterval()（）</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#DOM"><span class="toc-number">2.2.</span> <span class="toc-text">DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#repaint-and-reflow（重绘与重流）"><span class="toc-number">2.2.1.</span> <span class="toc-text">repaint and reflow（重绘与重流）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Document-tree-modification（修改-DOM-树）"><span class="toc-number">2.2.2.</span> <span class="toc-text">Document tree modification（修改 DOM 树）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Modifying-an-invisible-element（修改一个不可见的元素）"><span class="toc-number">2.2.3.</span> <span class="toc-text">Modifying an invisible element（修改一个不可见的元素）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Taking-measurements（测量）"><span class="toc-number">2.2.4.</span> <span class="toc-text">Taking measurements（测量）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Making-several-style-changes-at-once（一次执行多次样式改变）"><span class="toc-number">2.2.5.</span> <span class="toc-text">Making several style changes at once（一次执行多次样式改变）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Trading-smoothness-for-speed（牺牲流畅来换取速度）"><span class="toc-number">2.2.6.</span> <span class="toc-text">Trading smoothness for speed（牺牲流畅来换取速度）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Avoid-inspecting-large-numbers-of-nodes（避免检查大量的节点）"><span class="toc-number">2.2.7.</span> <span class="toc-text">Avoid inspecting large numbers of nodes（避免检查大量的节点）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Improve-speed-with-XPath（用-XPath-提高速度）"><span class="toc-number">2.2.8.</span> <span class="toc-text">Improve speed with XPath（用 XPath 提高速度）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Avoid-modifications-while-traversing-the-DOM（遍历-DOM-的时候避免修改）"><span class="toc-number">2.2.9.</span> <span class="toc-text">Avoid modifications while traversing the DOM（遍历 DOM 的时候避免修改）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Cache-DOM-values-in-script-variables（在脚本变量中缓存-DOM-值）"><span class="toc-number">2.2.10.</span> <span class="toc-text">Cache DOM values in script variables（在脚本变量中缓存 DOM 值）</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Document-loading-文档载入"><span class="toc-number">2.3.</span> <span class="toc-text">Document loading(文档载入)</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Avoid-keeping-alive-references-from-one-document-to-another（）"><span class="toc-number">2.3.1.</span> <span class="toc-text">Avoid keeping alive references from one document to another（）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Fast-history-navigation（）"><span class="toc-number">2.3.2.</span> <span class="toc-text">Fast history navigation（）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Use-XMLHttpRequest（）"><span class="toc-number">2.3.3.</span> <span class="toc-text">Use XMLHttpRequest（）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Create-elements-dynamically（动态创建-script-标签）"><span class="toc-number">2.3.4.</span> <span class="toc-text">Create \ elements dynamically（动态创建 script 标签）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#location-replace-keeps-the-history-under-control（）"><span class="toc-number">2.3.5.</span> <span class="toc-text">location.replace() keeps the history under control（）</span></a></li></ol></li></ol></li></ol>
 		</div>
 		
 		<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>一直打算手写一个轮播焦点图，但是发现在动画效果选择的方面有很多种方式可供选择：可以通过调整 margin-left 值，也可以通过 position: absolute, left: ..px 的方式，还可以通过 transform: translate(-..px, 0px)的方式来实现。网上也有各种各样的方式，都可以实现轮播的效果，但是到底哪一种是最优的方式呢？我问了一些人也看了一些博客，最后的结论是在不考虑兼容性问题的情况下， transform: translate() 的方式是性能最佳的，因为 transform: translate()不会导致重流。</p>
 <p>在探索最佳方式的过程中，找到了一篇 <a href="https://segmentfault.com/q/" target="_blank" rel="external">segment 的问答</a>，回复中有一个 id 为 bf 的作者提到了 <a href="https://dev.opera.com/articles/efficient-javascript/?page=3#reflow" target="_blank" rel="external">efficient JavaScript</a> 这篇文章。看了下这篇文章，是 2006.11.02 发表的，虽然有些古老，但是依然有很多内容非常有参考价值。</p>
 <p>这里就挑一部分比较有参考价值的内容进行翻译。</p>
 <p>原文地址：<a href="https://dev.opera.com/articles/efficient-javascript/?page=3#reflow" target="_blank" rel="external">https://dev.opera.com/articles/efficient-javascript/?page=3#reflow</a></p>
-<h4 id="部分译文"><a href="#部分译文" class="headerlink" title="部分译文"></a>部分译文</h4><h5 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h5><h6 id="repaint-and-reflow（重绘与重流）"><a href="#repaint-and-reflow（重绘与重流）" class="headerlink" title="repaint and reflow（重绘与重流）"></a>repaint and reflow（重绘与重流）</h6><p>重绘（repaint）——也叫重画（redraw）——就是，当之前没有显示的内容被显示出来的时候会发生，重绘并不会改变文档布局。例如，添加一个元素的轮廓线，改变背景色，或者改变 visibility 样式。重绘在性能方面是非常昂贵的，因为它需要引擎去挨个搜索一遍所有的元素，来决定什么是可见的（visible），而什么是要被展示的（display）。</p>
+<h4 id="部分译文"><a href="#部分译文" class="headerlink" title="部分译文"></a>部分译文</h4><h5 id="ECMAScript"><a href="#ECMAScript" class="headerlink" title="ECMAScript"></a>ECMAScript</h5><h6 id="Avoid-using-eval-or-the-Function-constructor（避免使用-eval-和-Function-构造器）"><a href="#Avoid-using-eval-or-the-Function-constructor（避免使用-eval-和-Function-构造器）" class="headerlink" title="Avoid using eval or the Function constructor（避免使用 eval 和 Function 构造器）"></a>Avoid using eval or the Function constructor（避免使用 eval 和 Function 构造器）</h6><p>每次在一个代表源代码的字符串上调用 eval 或者 Function 构造器的时候，脚本引擎就会启动一个将源码转化成可执行代码的机器。这对于性能而言是非常昂贵的——例如，很容易就比普通函数的调用昂贵上百倍。</p>
+<p>eval 函数尤其糟糕，传入 eval 的字符串内容无法提前预知。…</p>
+<p>Function 构造器没有 eval 那么糟糕，…，但是运行起来也很慢。</p>
+<h6 id="Rewrite-that-eval（改写-eval）"><a href="#Rewrite-that-eval（改写-eval）" class="headerlink" title="Rewrite that eval（改写 eval）"></a>Rewrite that eval（改写 eval）</h6><p>…</p>
+<h6 id="Avoid-using-with（避免使用-with）"><a href="#Avoid-using-with（避免使用-with）" class="headerlink" title="Avoid using with（避免使用 with）"></a>Avoid using with（避免使用 with）</h6><p>…</p>
+<h6 id="Don’t-use-try-catch-finally-inside-performance-critical-functions"><a href="#Don’t-use-try-catch-finally-inside-performance-critical-functions" class="headerlink" title="Don’t use try-catch-finally inside performance-critical functions"></a>Don’t use try-catch-finally inside performance-critical functions</h6><h6 id="（在对性能要求比较高的函数中尽量不要使用-try-catch-finally）"><a href="#（在对性能要求比较高的函数中尽量不要使用-try-catch-finally）" class="headerlink" title="（在对性能要求比较高的函数中尽量不要使用 try-catch-finally）"></a>（在对性能要求比较高的函数中尽量不要使用 try-catch-finally）</h6><p>…</p>
+<h6 id="Isolate-uses-of-eval-and-with（）"><a href="#Isolate-uses-of-eval-and-with（）" class="headerlink" title="Isolate uses of eval and with（）"></a>Isolate uses of eval and with（）</h6><p>…</p>
+<h6 id="Avoid-using-global-variables（避免使用全局变量）"><a href="#Avoid-using-global-variables（避免使用全局变量）" class="headerlink" title="Avoid using global variables（避免使用全局变量）"></a>Avoid using global variables（避免使用全局变量）</h6><p>在全局中创建变量是非常诱人的，仅仅因为这样做很简单。然而，这样可以让脚本运行更加缓慢。</p>
+<p>首先，如果某个函数或者另外一个作用域中的代码引用了这个变量，脚本引擎必须依次进入到作用域链中的每个作用域中，直到到达全局作用域。本地作用域中的变量可以更加迅速的被找到。</p>
+<p>全局变量也会在脚本的生命周期中一直存在。在局部作用域，当局部作用域丢失的时候，局部变量就会被摧毁。变量所使用的内存就会被垃圾回收器释放。</p>
+<p>最后，全局作用域被 window 对象共享，也就意味着它实际上处于两个作用域中，而不仅仅是一个。在全局作用域中，变量总是可以通过他们的名字被定位，而不是像在局部作用域中一样，使用一个优化的预定义索引。最终结果就是，全局变量需要脚本引擎花费更多的时间去寻找。</p>
+<p>函数也会经常在全局作用域中被创建。这就意味着调用其他函数的函数，以及这些函数再去调用其他函数，就会增加脚本引擎必须去遍历到全局作用域中定位这些全局函数的次数。</p>
+<p>看看下面这个简单的例子，例子中 i 和 s 处于全局作用域中，函数使用了这两个全局变量：</p>
+<pre><code>var i, s = &apos;&apos;;
+function testfunction() {
+    for(i = 0; i &lt; 20; i++) {
+        s += i;
+    }
+}
+testfunction();
+</code></pre><p>这个代替版本会执行的更加迅速。在大多数的现代浏览器中，包括 Opera 9 和最新版本的 IE ，FF，Konqueror and Safari，执行速度都会比前面的代码快 30%。</p>
+<h6 id="Beware-of-implicit-object-conversion（注意隐形对象转化）"><a href="#Beware-of-implicit-object-conversion（注意隐形对象转化）" class="headerlink" title="Beware of implicit object conversion（注意隐形对象转化）"></a>Beware of implicit object conversion（注意隐形对象转化）</h6><p>字面量，比如 字符串，数字，布尔值等，在 ECMAScript 中都有两个代表。每种类型都可以或者通过值的形式或者通过对象的形式创建。例如，一个字符串值可以仅仅通过 var oString = ‘some content’; 的方式创建，而另外一种同样等价的字符串对象也可以通过 var oString = new String(‘some content’); 的方式创建。</p>
+<p>任何属性和方法都是定义在字符串对象上的，而不是字符串值上。当你引用一个字符串值得属性或者方法时，在正式运行方法之前，ECMAScript引擎必须隐形地创建一个和你的字符串值有相同值的字符串对象。这个对象仅仅因为这一个请求而被使用，而当你下次要使用这个字符串值的方法的时候还要被创建。</p>
+<p>这个例子让脚本引擎创建了 21 个新的字符串对象，每次获取长度属性的时候都会创建，每次调用 charAt 方法的时候也会创建：</p>
+<pre><code>var s = &quot;0123456789&quot;;
+for (var i = 0; i &lt; s.length; i++) {
+    s.charAt(i);
+}
+</code></pre><p>下面的例子可以实现同样的效果，但是只创建了一个对象，性能结果会更好一些：</p>
+<pre><code>var s = new String(&quot;0123456789&quot;);
+for(var i = 0; i &lt; s.length; i++) {
+    s.charAt(i);
+}
+</code></pre><p>如果你的代码需要经常调用字面量值的方法，你可以考虑像前面这个例子一样将其转化成对象。</p>
+<p>注意，尽管这篇文章中的大多数观点都和所有的浏览器相关，但是这些观点主要是针对于 Opera 的优化。It may also affect some other browsers, but can be a little slower in Internet Explorer and Firefox.</p>
+<h6 id="Avoid-for-in-in-performance-critical-functions（在对性能要求较高的函数中避免使用-for-in）"><a href="#Avoid-for-in-in-performance-critical-functions（在对性能要求较高的函数中避免使用-for-in）" class="headerlink" title="Avoid for-in in performance-critical functions（在对性能要求较高的函数中避免使用 for-in）"></a>Avoid for-in in performance-critical functions（在对性能要求较高的函数中避免使用 for-in）</h6><p>for-in 循环有其独特的作用，但是经常被误用在一些 for 循环更合适的场景中。for-in 循环要求脚本引擎建立一个所有可列举属性的列表，在可以开始列举之前，在列表中会复制。？？</p>
+<p>很多时候，脚本自己已经知道了什么属性必须被列举。在很多情况下，一个简单的 for 循环可以用来遍历这些属性，尤其是如果属性是按照数字顺序命名的时候，比如数组，还有很多类似数组的对象（DOM 创建的 NodeList 对象就是一个很好的例子）。</p>
+<p>下例是一个没有正确使用 for-in 循环的例子：</p>
+<pre><code>var oSum = 0;
+for(var i in oArray) {
+    oSum += oArray[i];
+}
+</code></pre><p>for 循环会更有效率：</p>
+<pre><code>var oSum = 0;
+var oLength = oArray.length;
+for(var i = 0; i &lt; oLength; i++) {
+    oSum += oArray[i];
+}
+</code></pre><h6 id="Use-strings-accumulator-style（使用字符串相加样式）"><a href="#Use-strings-accumulator-style（使用字符串相加样式）" class="headerlink" title="Use strings accumulator-style（使用字符串相加样式）"></a>Use strings accumulator-style（使用字符串相加样式）</h6><p>字符串相连可能会是一个非常昂贵的过程。使用 + 操作符不会等待结果指定给变量。而是，在内存中创建一个新的字符串，将结果指定给那个字符串，是由这个新的字符串可能会赋值给一个变量。下面的代码展示了一个通常赋值一个字符串连接的方式：</p>
+<pre><code>a += &apos;x&apos; + &apos;y&apos;;
+</code></pre><p>That code would be evaluated by firstly creating a temporary string in memory, assigning the concatenated value of xy, then concatenating that with the current value of a, and finally assigning the resulting value of that to a. The following code uses two separate commands, but because it assigns directly to a each time, the temporary string is not used. The resulting code is around 20% faster in many current browsers, and potentially requires less memory, as it does not need to temporarily store the concatenated string:</p>
+<pre><code>a += &apos;x&apos;;
+a += &apos;y&apos;;
+</code></pre><h6 id="Primitive-operations-can-be-faster-than-function-calls（）"><a href="#Primitive-operations-can-be-faster-than-function-calls（）" class="headerlink" title="Primitive operations can be faster than function calls（）"></a>Primitive operations can be faster than function calls（）</h6><p>…</p>
+<h6 id="Pass-functions-not-strings-to-setTimeout-and-setInterval-（）"><a href="#Pass-functions-not-strings-to-setTimeout-and-setInterval-（）" class="headerlink" title="Pass functions, not strings, to setTimeout() and setInterval()（）"></a>Pass functions, not strings, to setTimeout() and setInterval()（）</h6><p>…</p>
+<h5 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h5><h6 id="repaint-and-reflow（重绘与重流）"><a href="#repaint-and-reflow（重绘与重流）" class="headerlink" title="repaint and reflow（重绘与重流）"></a>repaint and reflow（重绘与重流）</h6><p>重绘（repaint）——也叫重画（redraw）——就是，当之前没有显示的内容被显示出来的时候会发生，重绘并不会改变文档布局。例如，添加一个元素的轮廓线，改变背景色，或者改变 visibility 样式。重绘在性能方面是非常昂贵的，因为它需要引擎去挨个搜索一遍所有的元素，来决定什么是可见的（visible），而什么是要被展示的（display）。</p>
 <p>而重流（reflow）则是一种更为明显的变化。当 DOM 树被操作的时候，或者影响布局的某个样式被改变的时候，或者某个元素的 className 属性发生变化的时候，再或者当浏览器窗口的尺寸变化的时候，都会发生重流。这种情况下，引擎必须重流相关元素，以便于了解重流的部分应当被展示在哪里。子元素也将会重流以便于将父元素的新布局也考虑进去。重流元素后面的元素也需要重流，以计算其新的布局，祖先元素也会重流，最终所有的元素都会被重绘（repaint）。</p>
 <p>重流在性能方面是非常昂贵的，也是导致 DOM 脚本变慢的一个主要原因，尤其是在那些处理能力较弱的设备上，比如手机。在很多时候，这几乎等同于重新布局整个页面。</p>
 <p><strong>尽量减少重流</strong></p>
@@ -208,7 +263,7 @@ for(var i = 0; i &lt; allChildren.length; i++) {
 }
 </code></pre><p>根本目的就是尽可能地去避免一步一步遍历整个 DOM。在不同的情况下，DOM 有很多执行更快的可替代方式，例如 DOM 2 Traversal TreeWalker, 而不是一步步递归去遍历 childNodes collections。</p>
 <h6 id="Improve-speed-with-XPath（用-XPath-提高速度）"><a href="#Improve-speed-with-XPath（用-XPath-提高速度）" class="headerlink" title="Improve speed with XPath（用 XPath 提高速度）"></a>Improve speed with XPath（用 XPath 提高速度）</h6><p>一个简单的例子就是，基于 H2-H4 元素，在 HTML 文档中回执表格内容。在 HTML 中，在很多地方都可能出现，不需要什么合适的层级关系，所以一个递归函数可以用来以正确的顺序获取这些元素。传统的 DOM 会采用类似下面所示的方式：</p>
-<pre><code>var allElements = document.getElementByTagName(&quot;*&quot;);
+<pre><code>var allElements = document.getElementsByTagName(&quot;*&quot;);
 for(var i = 0; i &lt; allElements.length; i++) {
     if(allElements[i].tagName.match(/^h[2-4]$/i)) {
         // …
@@ -217,7 +272,38 @@ for(var i = 0; i &lt; allElements.length; i++) {
 </code></pre><p>在一个可能拥有 2000 个元素的文档中，这可能会导致非常严重的迟缓，因为每一个都要分开检查。XPath，当被原生支持的时候，因为 XPath 查询引擎可以被优化，比解释后的 JS 更有效率。在某些情况下，……</p>
 <h6 id="Avoid-modifications-while-traversing-the-DOM（遍历-DOM-的时候避免修改）"><a href="#Avoid-modifications-while-traversing-the-DOM（遍历-DOM-的时候避免修改）" class="headerlink" title="Avoid modifications while traversing the DOM（遍历 DOM 的时候避免修改）"></a>Avoid modifications while traversing the DOM（遍历 DOM 的时候避免修改）</h6><p>某些 DOM 集合是实时更新的，这就意味着，如果当你的脚本查看集合的时候，相关元素会发生变化，不等你的脚本运行结束，集合就会发生改变。这包括 childNodes 集合和由 getElementsByTagName 返回的节点集合。</p>
 <p>如果脚本正在遍历上述类似集合，并且同时，还会给它添加元素，你很可能冒着进入无限循环的风险，在这种情况下，在你到达终点之前，你会不断地添加入口。然而，这并不是唯一的问题。这些集合在表现方面可以优化。他们可以记住长度，你的脚本引用的最后一个索引，以便于当你递增索引的时候，他们可以快速的引用下一个节点。</p>
-<p>如果你修改了 DOM 树中的任何一部分，即使它并没有包含在集合中，…</p>
+<p>如果你修改了 DOM 树中的任何一部分，即使它并没有包含在集合中，集合也必须被重新测试寻找新的入口。这样的话，它就无法记住最后的索引和长度，因为他们可能会发生变化，优化就会失效：</p>
+<pre><code>var allPara = document.getElementsByTagName(&apos;p&apos;);
+for (var i = 0; i &lt; allPara.length; i++) {
+    allPara[i].appendChild(document.createTextNode(i));
+}
+</code></pre><p>在 Opera 和一些其他现代浏览器中，下面这段同样功能的代码是上面代码的 10 倍。它通过首先建立一个要修改的静态元素列表，接着通过依次遍历静态列表来执行修改，而不是通过遍历 getElementByTagName 返回的节点列表，实现功能：</p>
+<pre><code>var allPara = document.getElementsByTagName(&apos;p&apos;);
+var collectTemp = [];
+for (var i = 0; i &lt; allPara.length; i++) {
+    collectTemp[collectTemp.length] = allPara[i];
+}
+for (var i = 0; i &lt; collectTemp.length; i++) {
+    collectTemp[i].appendChild(document.createTextNode(i));
+}
+collectTemp = null
+</code></pre><h6 id="Cache-DOM-values-in-script-variables（在脚本变量中缓存-DOM-值）"><a href="#Cache-DOM-values-in-script-variables（在脚本变量中缓存-DOM-值）" class="headerlink" title="Cache DOM values in script variables（在脚本变量中缓存 DOM 值）"></a>Cache DOM values in script variables（在脚本变量中缓存 DOM 值）</h6><p>一些 DOM 的缓存值是无法缓存的，每次被调用时都会重新评估。getElementById 方法就是一个例子。下面就是一个非常浪费的代码的例子：</p>
+<pre><code>document.getElementById(&apos;test&apos;).property1 = &apos;value1&apos;;
+document.getElementById(&apos;test&apos;).property2 = &apos;value2&apos;;
+document.getElementById(&apos;test&apos;).property3 = &apos;value3&apos;;
+document.getElementById(&apos;test&apos;).property4 = &apos;value4&apos;;
+</code></pre><p>上述代码在定位同一个对象时执行了 4 次请求。下面的代码只执行一次请求然后将其存起来，对于这一次请求而言，速度几乎是相同的，在执行赋值的时候可能会有一点点慢。但是，之后每一次缓存值被使用的时候，在大多数浏览器中，执行速度会是上面例子中代码执行速度的 5-10 倍。</p>
+<pre><code>var sample = document.getElementById(&apos;test&apos;);
+sample.property1 = &apos;value1&apos;;
+sample.property2 = &apos;value2&apos;;
+sample.property3 = &apos;value3&apos;;
+sample.property4 = &apos;value4&apos;;
+</code></pre><h5 id="Document-loading-文档载入"><a href="#Document-loading-文档载入" class="headerlink" title="Document loading(文档载入)"></a>Document loading(文档载入)</h5><h6 id="Avoid-keeping-alive-references-from-one-document-to-another（）"><a href="#Avoid-keeping-alive-references-from-one-document-to-another（）" class="headerlink" title="Avoid keeping alive references from one document to another（）"></a>Avoid keeping alive references from one document to another（）</h6><p>…</p>
+<h6 id="Fast-history-navigation（）"><a href="#Fast-history-navigation（）" class="headerlink" title="Fast history navigation（）"></a>Fast history navigation（）</h6><p>…</p>
+<h6 id="Use-XMLHttpRequest（）"><a href="#Use-XMLHttpRequest（）" class="headerlink" title="Use XMLHttpRequest（）"></a>Use XMLHttpRequest（）</h6><p>…</p>
+<h6 id="Create-elements-dynamically（动态创建-script-标签）"><a href="#Create-elements-dynamically（动态创建-script-标签）" class="headerlink" title="Create \ elements dynamically（动态创建 script 标签）"></a>Create \<script\> elements dynamically（动态创建 script 标签）</script\></h6><p>载入和处理脚本需要花费时间，但是有些时候，某个载入的脚本可能从来不会被使用到。载入这样的脚本只会浪费时间和资源，并且拖延当前脚本的运行，这种情况下，如果不会被使用的话，最好根本就不要载入它。通过一个简单的载入脚本就可以实现这样的功能，这个载入脚本可以检查其他脚本是否需要，只会创建那些真的会被使用到的脚本元素。</p>
+<p>理论上来讲，其余的脚本可能通过创建 SCRIPT 标签的方式在页面载入之后被添加。当前所有的主流浏览器都可以实现这个效果，但是…另外，也许有些脚本在页面在入职前就会需要，所以最好在页面载入的时候进行检查，</p>
+<h6 id="location-replace-keeps-the-history-under-control（）"><a href="#location-replace-keeps-the-history-under-control（）" class="headerlink" title="location.replace() keeps the history under control（）"></a>location.replace() keeps the history under control（）</h6><p>…</p>
   
 	</div>
 		<footer class="article-footer clearfix">
