@@ -1,0 +1,457 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>[JS]Efficient JavaScript 译文 | Steam</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Steam">
+    
+    <meta name="description" content="前言一直打算手写一个轮播焦点图，但是发现在动画效果选择的方面有很多种方式可供选择：可以通过调整 margin-left 值，也可以通过 position: absolute, left: ..px 的方式，还可以通过 transform: translate(-..px, 0px)的方式来实现。网上">
+    
+    
+    
+    
+    <link rel="alternative" href="/Tinnypp/atom.xml## RSS address." title="Steam" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/Tinny.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/Tinny.jpg">
+    
+
+  
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    
+  
+  <link href="http://cdn.bootcss.com/highlight.js/8.2/styles/railscasts.min.css" rel="stylesheet">
+  <script src="http://cdn.bootcss.com/highlight.js/8.2/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?d182ed77fc48758bf45a33835ee35745";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+      <script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v1/st.js','_st');
+
+  _st('install','.............Add your swiftype userID...............');
+</script>
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Steam">Steam</a></h1>
+				<h2 class="blog-motto">DREAM makes you different</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+                    <ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+					
+						<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="st-search-inpu" maxlength="20" placeholder="Search" />
+						</form>
+					
+					</li>
+                <!--<li><div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div></li>-->
+
+				</ul>
+			</nav>	
+</div>
+    </header>
+    <div id="container" class="clearfix">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2016/06/06/JS-Efficient-JavaScript-译文/" title="[JS]Efficient JavaScript 译文" itemprop="url">[JS]Efficient JavaScript 译文</a>
+  </h1>
+  <p class="article-time">
+    <time datetime="2016-06-06T02:14:33.000Z" itemprop="datePublished">2016-06-06</time>
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title"></strong>
+		<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#部分译文"><span class="toc-number">2.</span> <span class="toc-text">部分译文</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#DOM"><span class="toc-number">2.1.</span> <span class="toc-text">DOM</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#repaint-and-reflow（重绘与重流）"><span class="toc-number">2.1.1.</span> <span class="toc-text">repaint and reflow（重绘与重流）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Document-tree-modification（修改-DOM-树）"><span class="toc-number">2.1.2.</span> <span class="toc-text">Document tree modification（修改 DOM 树）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Modifying-an-invisible-element（修改一个不可见的元素）"><span class="toc-number">2.1.3.</span> <span class="toc-text">Modifying an invisible element（修改一个不可见的元素）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Taking-measurements（测量）"><span class="toc-number">2.1.4.</span> <span class="toc-text">Taking measurements（测量）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Making-several-style-changes-at-once（一次执行多次样式改变）"><span class="toc-number">2.1.5.</span> <span class="toc-text">Making several style changes at once（一次执行多次样式改变）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Trading-smoothness-for-speed（牺牲流畅来换取速度）"><span class="toc-number">2.1.6.</span> <span class="toc-text">Trading smoothness for speed（牺牲流畅来换取速度）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Avoid-inspecting-large-numbers-of-nodes（避免检查大量的节点）"><span class="toc-number">2.1.7.</span> <span class="toc-text">Avoid inspecting large numbers of nodes（避免检查大量的节点）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Improve-speed-with-XPath（用-XPath-提高速度）"><span class="toc-number">2.1.8.</span> <span class="toc-text">Improve speed with XPath（用 XPath 提高速度）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#Avoid-modifications-while-traversing-the-DOM（遍历-DOM-的时候避免修改）"><span class="toc-number">2.1.9.</span> <span class="toc-text">Avoid modifications while traversing the DOM（遍历 DOM 的时候避免修改）</span></a></li></ol></li></ol></li></ol>
+		</div>
+		
+		<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>一直打算手写一个轮播焦点图，但是发现在动画效果选择的方面有很多种方式可供选择：可以通过调整 margin-left 值，也可以通过 position: absolute, left: ..px 的方式，还可以通过 transform: translate(-..px, 0px)的方式来实现。网上也有各种各样的方式，都可以实现轮播的效果，但是到底哪一种是最优的方式呢？我问了一些人也看了一些博客，最后的结论是在不考虑兼容性问题的情况下， transform: translate() 的方式是性能最佳的，因为 transform: translate()不会导致重流。</p>
+<p>在探索最佳方式的过程中，找到了一篇 <a href="https://segmentfault.com/q/" target="_blank" rel="external">segment 的问答</a>，回复中有一个 id 为 bf 的作者提到了 <a href="https://dev.opera.com/articles/efficient-javascript/?page=3#reflow" target="_blank" rel="external">efficient JavaScript</a> 这篇文章。看了下这篇文章，是 2006.11.02 发表的，虽然有些古老，但是依然有很多内容非常有参考价值。</p>
+<p>这里就挑一部分比较有参考价值的内容进行翻译。</p>
+<p>原文地址：<a href="https://dev.opera.com/articles/efficient-javascript/?page=3#reflow" target="_blank" rel="external">https://dev.opera.com/articles/efficient-javascript/?page=3#reflow</a></p>
+<h4 id="部分译文"><a href="#部分译文" class="headerlink" title="部分译文"></a>部分译文</h4><h5 id="DOM"><a href="#DOM" class="headerlink" title="DOM"></a>DOM</h5><h6 id="repaint-and-reflow（重绘与重流）"><a href="#repaint-and-reflow（重绘与重流）" class="headerlink" title="repaint and reflow（重绘与重流）"></a>repaint and reflow（重绘与重流）</h6><p>重绘（repaint）——也叫重画（redraw）——就是，当之前没有显示的内容被显示出来的时候会发生，重绘并不会改变文档布局。例如，添加一个元素的轮廓线，改变背景色，或者改变 visibility 样式。重绘在性能方面是非常昂贵的，因为它需要引擎去挨个搜索一遍所有的元素，来决定什么是可见的（visible），而什么是要被展示的（display）。</p>
+<p>而重流（reflow）则是一种更为明显的变化。当 DOM 树被操作的时候，或者影响布局的某个样式被改变的时候，或者某个元素的 className 属性发生变化的时候，再或者当浏览器窗口的尺寸变化的时候，都会发生重流。这种情况下，引擎必须重流相关元素，以便于了解重流的部分应当被展示在哪里。子元素也将会重流以便于将父元素的新布局也考虑进去。重流元素后面的元素也需要重流，以计算其新的布局，祖先元素也会重流，最终所有的元素都会被重绘（repaint）。</p>
+<p>重流在性能方面是非常昂贵的，也是导致 DOM 脚本变慢的一个主要原因，尤其是在那些处理能力较弱的设备上，比如手机。在很多时候，这几乎等同于重新布局整个页面。</p>
+<p><strong>尽量减少重流</strong></p>
+<p>很多时候，我们的脚本都需要触发一个重绘或者重流。动画就是基于重流的，但是我们依然渴望动画。所以，重流是网页开发的一个要素，为了让脚本能够运行的更快，他们需要在保证整体效果的情况下，尽量减少。</p>
+<p>浏览器会一直等待脚本线程结束，然后再进行重流来展示变化。…</p>
+<h6 id="Document-tree-modification（修改-DOM-树）"><a href="#Document-tree-modification（修改-DOM-树）" class="headerlink" title="Document tree modification（修改 DOM 树）"></a>Document tree modification（修改 DOM 树）</h6><p>DOM 树的修改将会触发重流。给 DOM 添加新的元素，改变文本节点的值，或者修改元素的一些属性都足以导致一次重流的发生。一次又一次的制造变化，会导致不只一次的重流，所以通常来讲，最好以不会被显示的 DOM 树碎片来执行变化。然后将这些变化一次性地通过操作添加到真实的文档 DOM 中：</p>
+<pre><code>var docFrag = document.createDocumentFragment();
+var elem, contents;
+for (var i = 0; i &lt; textlist.length; i++) {
+    elem = document.createElement(&apos;p&apos;);
+    content = document.createTextNode(textlist[i]);
+    elem.appendChild(content);
+    docFrag.appendChild(elem);
+}
+document.body.appendChild(docFrag);
+</code></pre><p>DOM 树的修改也可以通过元素克隆来完成，当修改完成后再移除原来的真实元素，这样只会导致一次重流。如果元素包含任何表格控件的时候，不能使用这种方法，因为任何用户对这些控件值的修改都不会反映在主要的 DOM 树中。如果你需要依赖元素或者其子元素的事件处理器时，也不能使用这种方法，因为理论上事件处理器是无法被克隆的。</p>
+<pre><code>var original = document.getElementById(&apos;container&apos;);
+var cloned = original.cloneNode(true);
+var elem, contents;
+for (var i = 0; i &lt; textlist.length; i++) {
+    elem = document.createElement(&apos;p&apos;);
+    contents = document.createTextNode(textlist[i]);
+    elem.appendChild(contens);
+    cloned.appendChild(elem);
+}
+original.parentNode.replaceChild(cloned, original);
+</code></pre><h6 id="Modifying-an-invisible-element（修改一个不可见的元素）"><a href="#Modifying-an-invisible-element（修改一个不可见的元素）" class="headerlink" title="Modifying an invisible element（修改一个不可见的元素）"></a>Modifying an invisible element（修改一个不可见的元素）</h6><p>当一个元素的 display 样式设置为 none 的时候，它无需重绘，即使它的内容发生了改变，因为这些改变都不会被显示出来。我们可以利用这个特点。如果某个元素或者其内容需要发生多次改变，并且这些改变无法结合成为一次重绘时，就可以先将元素设置为 display:none，然后执行这些改变（多次改变），最后再将这个元素的 display 设置回原来的值。</p>
+<p>这会导致两次额外的重流，第一次是当元素被隐藏的时候，另一次当它再次重新显示的时候，但是总的效果可能会非常快。如果元素自己影响了滚动偏移的话，这也可能会出现我们不希望出现的滚动条的跳跃。但是，对于一个已经定好位置的元素而言，这非常容易应用，而且不会导致不好的视觉效果。</p>
+<pre><code>var posElem = document.getElementById(&apos;animation&apos;);
+posElem.style.display = &apos;none&apos;;
+posElem.appendChild(newNodes);
+posElem.style.width = &apos;10em&apos;;
+//other changes...
+posElme.style.display = &apos;block&apos;;
+</code></pre><h6 id="Taking-measurements（测量）"><a href="#Taking-measurements（测量）" class="headerlink" title="Taking measurements（测量）"></a>Taking measurements（测量）</h6><p>如前所述，浏览器也许会为你缓存一些变化，当这些变化都发生的时候，就会重绘一次。但是要注意，测量元素的大小会进行强制重流，以保证测量结果的准确性。变化也是是一次很明显的重绘，也许不是，但是在后台重流依然一定会被触发。</p>
+<p>当使用诸如 offsetWidth 这样的属性进行测量，或者 getComputedStyle 这样的方法进行测量时，就会导致上面所说的效果。即使没有使用测量数据，而尽管浏览器也在缓存变化，使用上述方法中的任意一种也足以触发一次隐形的重流。如果这些测量会不断地发生，你就应当考虑将这些测量合成一次，并将结果保存起来，用于后续的使用。</p>
+<pre><code>var posElem = document.getElementById(&apos;animation&apos;);
+var calcWidth = posElem.offsetWidth;
+posElem.style.fontSize = (calcWidth/10) + &apos;px&apos;;
+posElem.firstChildNode.style.marginLeft = (calcWidth/20) + &apos;px&apos;;
+posElem.style.left = ((-1*calcWidth)/2) + &apos;px&apos;;
+//other changes
+</code></pre><h6 id="Making-several-style-changes-at-once（一次执行多次样式改变）"><a href="#Making-several-style-changes-at-once（一次执行多次样式改变）" class="headerlink" title="Making several style changes at once（一次执行多次样式改变）"></a>Making several style changes at once（一次执行多次样式改变）</h6><p>和 DOM 树修改一样，为了减少重绘或者重流的次数，可以一次修改多个样式的变化，一般情况下我们都会一次修改一个样式：</p>
+<pre><code>var toChange = document.getElementById(&apos;mainelement&apos;);
+toChange.style.backgroud = &apos;#333&apos;;
+toChange.style.color = &apos;#fff&apos;;
+toChange.style.border = &apos;1px solid #00f&apos;;
+</code></pre><p>上述方法意味着多次的重绘和重流。有两种主要的方式来更好的处理上述情况。如果元素自身需要采用多次样式变化，而这些样式的值又都可以提前知道，那么可以通过改变元素的 class 来进行。它就会采用这个 class 的新样式：</p>
+<pre><code>div {
+    background: #ddd;
+    color: #000;
+    border: 1px solid #000;
+}
+div.highlight {
+    background: #333;
+    color: #fff;
+    border: 1px solid #00f;
+}
+…
+document.getElementById(&apos;mainelement&apos;).className = &apos;highlight&apos;;
+</code></pre><p>第二种方式则是为元素定义一个新的样式属性，而不是一个接一个的指定样式。大多数情况下，这种方式适合动画类的动态改变，这种情况下新的样式是无法预知的。通过样式对象（style object） 的 cssText property，或者使用 setAttribute 方法都可以实现。 IE 不支持第二种方式，而只能采用第一种方式。一些更老的浏览器，包括 opera 8 ，只能采用第二种方式，而不支持第一种方式。所以，最佳的方法就是检测第一个版本是否支持，如果支持就使用第一个版本，如果不支持就使用第二个版本。</p>
+<pre><code>var posElem = document.getElmentById(&apos;mainelement&apos;);
+var newStyle = &quot;backgroud: &quot; + newBack + &quot;;&quot; +
+                &quot;color: &quot; + newColor + &quot;;&quot; +
+                &quot;border: &quot; + newBorder + &quot;;&quot;;
+if (typeof(posElem.style.cssText) != &apos;undefied&apos;) {
+    posElem.style.cssText = newStyle;
+} else {
+    posElem.setAttribute(&apos;style&apos;, newStyle);
+}
+</code></pre><h6 id="Trading-smoothness-for-speed（牺牲流畅来换取速度）"><a href="#Trading-smoothness-for-speed（牺牲流畅来换取速度）" class="headerlink" title="Trading smoothness for speed（牺牲流畅来换取速度）"></a>Trading smoothness for speed（牺牲流畅来换取速度）</h6><p>作为一个开发者，通过使用更短的延迟，更细小的变化，让动画尽可能的精细是一件非常有诱惑力的事情。例如，动画效果可以使用 10ms 的间隔，每次移动 1 像素来实现。如此快速运转的动画在一些 PC 或者浏览器上运转会非常流畅。然而，10ms 几乎是浏览器不使用100% 的 CPU 来获得的最短间隔。一些浏览器甚至无法执行这样的效果——要求每秒执行 100 次重流，对于大多数浏览器而言是非常难的。低能力的电脑，或者设备浏览器，完全无法执行这样的速度，动画就会看起来很慢而且很卡顿。</p>
+<p>这会吞噬开发者的信心，我么可以考虑牺牲一些动画的顺畅换来速度的提升。将时间间隔改为 50ms ，动画移动改为 5像素，就会需要更少的处理能力，并且可以让动画在低能力处理器上运行地更快。</p>
+<h6 id="Avoid-inspecting-large-numbers-of-nodes（避免检查大量的节点）"><a href="#Avoid-inspecting-large-numbers-of-nodes（避免检查大量的节点）" class="headerlink" title="Avoid inspecting large numbers of nodes（避免检查大量的节点）"></a>Avoid inspecting large numbers of nodes（避免检查大量的节点）</h6><p>当尝试去定位某个节点或者某个子节点时，尽量使用内置的方法和 DOM 集合来收缩节点的搜索范围。例如，如果你需要定位一个文档中未知的元素，它拥有某个属性，你也许可以这样：</p>
+<pre><code>var allElements = document.getElementsByTagName(&quot;*&quot;);
+for(var i = 0; i &lt; allElements.length; i++) {
+    if(allElements[i].hasAttribute(&quot;someAttr&quot;)) {
+        //...
+    }
+}
+</code></pre><p>即使我们忽略类似 XPath 这样的高级技术，上面的例子依然有两个问题导致运行缓慢。第一，它搜索了所有的元素，而完全没有尝试去缩小搜索范围。第二，当它找到想要找的元素之后依然在搜索。例如，假设，我们要找的这个未知元素在 id 为 inhere 的一个 div 中，修改后的代码可以执行的更快：</p>
+<pre><code>var allElements = document.getElementById(&apos;inhere&apos;).getElementsByTagName(&apos;*&apos;);
+for(var i = 0; i &lt; allElements.length; i++) {
+    if(allElements[i].hasAttribute(&apos;someattr&apos;)) {
+        // …
+        break;
+    }
+}
+</code></pre><p>如果这个位置的元素是某个 div 的直接子元素，这个方法就会比上述方法还要快，速度取决于 div 的后代元素的数量，和子元素集合的长度比较：</p>
+<pre><code>var allChildren = document.getElementById(&apos;inhere&apos;)h3 id=h3 id=.childNodes;
+for(var i = 0; i &lt; allChildren.length; i++) {
+    if(allChildren[i].nodeType == 1 &amp;&amp; allChildren[i].hasAttribute(&apos;someattr&apos;))         {
+        // …
+        break;
+    }
+}
+</code></pre><p>根本目的就是尽可能地去避免一步一步遍历整个 DOM。在不同的情况下，DOM 有很多执行更快的可替代方式，例如 DOM 2 Traversal TreeWalker, 而不是一步步递归去遍历 childNodes collections。</p>
+<h6 id="Improve-speed-with-XPath（用-XPath-提高速度）"><a href="#Improve-speed-with-XPath（用-XPath-提高速度）" class="headerlink" title="Improve speed with XPath（用 XPath 提高速度）"></a>Improve speed with XPath（用 XPath 提高速度）</h6><p>一个简单的例子就是，基于 H2-H4 元素，在 HTML 文档中回执表格内容。在 HTML 中，在很多地方都可能出现，不需要什么合适的层级关系，所以一个递归函数可以用来以正确的顺序获取这些元素。传统的 DOM 会采用类似下面所示的方式：</p>
+<pre><code>var allElements = document.getElementByTagName(&quot;*&quot;);
+for(var i = 0; i &lt; allElements.length; i++) {
+    if(allElements[i].tagName.match(/^h[2-4]$/i)) {
+        // …
+    }
+}
+</code></pre><p>在一个可能拥有 2000 个元素的文档中，这可能会导致非常严重的迟缓，因为每一个都要分开检查。XPath，当被原生支持的时候，因为 XPath 查询引擎可以被优化，比解释后的 JS 更有效率。在某些情况下，……</p>
+<h6 id="Avoid-modifications-while-traversing-the-DOM（遍历-DOM-的时候避免修改）"><a href="#Avoid-modifications-while-traversing-the-DOM（遍历-DOM-的时候避免修改）" class="headerlink" title="Avoid modifications while traversing the DOM（遍历 DOM 的时候避免修改）"></a>Avoid modifications while traversing the DOM（遍历 DOM 的时候避免修改）</h6><p>某些 DOM 集合是实时更新的，这就意味着，如果当你的脚本查看集合的时候，相关元素会发生变化，不等你的脚本运行结束，集合就会发生改变。这包括 childNodes 集合和由 getElementsByTagName 返回的节点集合。</p>
+<p>如果脚本正在遍历上述类似集合，并且同时，还会给它添加元素，你很可能冒着进入无限循环的风险，在这种情况下，在你到达终点之前，你会不断地添加入口。然而，这并不是唯一的问题。这些集合在表现方面可以优化。他们可以记住长度，你的脚本引用的最后一个索引，以便于当你递增索引的时候，他们可以快速的引用下一个节点。</p>
+<p>如果你修改了 DOM 树中的任何一部分，即使它并没有包含在集合中，…</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/JS/">JS</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2016/06/06/JS-Efficient-JavaScript-译文/" data-title="[JS]Efficient JavaScript 译文 | Steam" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/05/16/JS-阮一峰关于JS模块化的三篇博客/"  title="[JS]阮一峰关于JS模块化的三篇博客">
+ <strong>Old:</strong><br/> 
+ <span>[JS]阮一峰关于JS模块化的三篇博客
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	
+	<div class="ds-thread" data-title="[JS]Efficient JavaScript 译文" data-thread-key="JS-Efficient-JavaScript-译文" data-author-key="Steam" data-url="http://yoursite.com/post/JS-Efficient-JavaScript-译文"></div>
+	
+</section>
+
+
+</div>  
+    </div>
+    <footer><div id="footer" >
+	<div class="copyright">
+		<span>Powered by <a href="https://github.com/hexojs/hexo">Hexo</a> and theme by 
+		<a href="https://github.com/levonlin/Tinnypp">Tinnypp</a>.</span>
+		
+			<span>© Steam</span>
+		
+	<div>
+</div></footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  //back to top
+  function backToTop(){
+    var buttonHTML = $("<a href=\"#top\" id=\"back-top\">" + "<span>Back to Top</span></a>");
+    buttonHTML.appendTo($("body"));
+    var buttonToTop = $("#back-top");
+    // hide #back-top first
+    buttonToTop.hide();
+
+    // fade in #back-top
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                buttonToTop.fadeIn();
+            } else {
+                buttonToTop.fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        buttonToTop.click(function() {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+  }
+  backToTop();
+
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      ta = $('#toc.toc-aside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+        
+    }
+  });
+
+  var show = true;
+  c.click(function(){
+    if(show == true){
+        a.addClass('fadeOut').css('display', 'none');
+        ta.css('display', 'block').addClass('fadeIn');
+        m.addClass('moveMain');  
+    }else{
+        a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');     
+        ta.css('display', 'none'); 
+        m.removeClass('moveMain');
+        $('#toc.toc-aside').css('display', 'none');
+    }
+    show = !show;
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,240-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"tinnypp"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';    //change to ds.src = '/js/embed.js'; to add useragent for duoshuo
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+<script type="text/javascript">
+  function footerPosition() {
+    var contentHeight = document.documentElement.scrollHeight,
+        winHeight = window.innerHeight;
+    if(contentHeight <= winHeight) {
+      $('footer').addClass('fixed-bottom');
+    } else {
+      $('footer').removeClass('fixed-bottom');
+    }
+  }
+  footerPosition();
+  $(window).resize(footerPosition);
+</script>
+
+
+  </body>
+</html>
