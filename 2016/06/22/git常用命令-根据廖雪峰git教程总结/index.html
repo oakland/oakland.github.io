@@ -4,10 +4,14 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[css]transition详述 | Steam</title>
+    <title>git常用命令-根据廖雪峰git教程总结 | Steam</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Steam">
+    
+    <meta name="description" content="git常用命令记录
+git init
+git add &amp;lt;file&amp;gt;，例如 git add readme.txt。使用git add .或者git add -A表示把整个工作区中的文件都添加到暂存区中，但是有时我们不想让某些固定格式或者名字的文件添加到暂存区，这个时候就需要用到gitign">
     
     
     
@@ -90,10 +94,10 @@ var _hmt = _hmt || [];
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/05/11/css-transition详述/" title="[css]transition详述" itemprop="url">[css]transition详述</a>
+      <a href="/2016/06/22/git常用命令-根据廖雪峰git教程总结/" title="git常用命令-根据廖雪峰git教程总结" itemprop="url">git常用命令-根据廖雪峰git教程总结</a>
   </h1>
   <p class="article-time">
-    <time datetime="2016-05-11T05:47:21.000Z" itemprop="datePublished">2016-05-11</time>
+    <time datetime="2016-06-22T15:16:55.000Z" itemprop="datePublished">2016-06-22</time>
   </p>
 </header>
 	<div class="article-content">
@@ -101,19 +105,50 @@ var _hmt = _hmt || [];
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title"></strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#git常用命令记录"><span class="toc-number">1.</span> <span class="toc-text">git常用命令记录</span></a></li></ol>
 		</div>
 		
-		  
+		<h4 id="git常用命令记录"><a href="#git常用命令记录" class="headerlink" title="git常用命令记录"></a>git常用命令记录</h4><ul>
+<li><code>git init</code></li>
+<li><code>git add &lt;file&gt;</code>，例如 git add readme.txt。使用<code>git add .</code>或者<code>git add -A</code>表示把整个工作区中的文件都添加到暂存区中，但是有时我们不想让某些固定格式或者名字的文件添加到暂存区，这个时候就需要用到gitignore文件，关于gitignore的用法如下所示。</li>
+<li><p><code>gitignore</code><br>第一步，创建.gitignore文件<br><img src="./1461453839082.png" alt="gitignore 第一步">；<br>第二步，编辑.gitignore文件，把要排除掉的文件纳入到gitignore系统里。<br><img src="./1461454234279.png" alt="gitignore 第二步"><br>第三步，把.gitignore文件添加到我们的仓库当中，用于整个仓库的共享。<br><img src="./1461454486633.png" alt="gitignore 第二步"></p>
+</li>
+<li><p><code>git commit -m &quot;some info about this commit&quot;</code>，例如git commit -m “initial commit on master”</p>
+</li>
+<li><code>git status</code>，显示当前暂存区的状态</li>
+<li><code>git diff &lt;file&gt;</code>，显示某文件在工作区中的内容变化情况，只能对比当前状态和上一次提交前的对比，而不能对比工作区和暂存区甚至是仓库之间的文件内容。如果只输入<code>git diff</code>的话，显示的就是工作区和暂存区之间的差异，如果输入<code>git diff --cached</code>显示的是暂存区和历史记录之间的差异。就是可以各种比较，还可以输入两个commit对象，来对比两个commit之间的差异。例如<code>git diff HEAD HEAD^2</code>就是对比了当前的commit和上两个commit之间的差异。</li>
+<li><code>git log</code>，命令显示从最近到最远的提交日志。只可以显示git commit提交后的日志，而无法显示git add后的变化日志。还可以通过在末尾添加<code>--pretty=oneline</code>让日志以单行的形式显示。</li>
+<li><code>git reset --hard commit_id</code>，可以将head指针指向对应的commit_id，进而变化为某一个阶段的状态。也可以是<code>git reset --hard HEAD^</code>回退到上一个commit，或者<code>git reset --hard HEAD^^</code>回退到上上个commit，甚至<code>git reset --hard HEAD~100</code>回退到前100个commit的状态。</li>
+<li><code>git reflog</code>，用来记录你的每一次命令commit和reset的命令，用于查找找不到的commit状态。</li>
+<li><code>git reset</code>命令既可以回退版本，也可以把暂存区的修改回退到工作区。当我们用HEAD时，表示最新的版本。例如，<code>git reset HEAD readme.txt</code>表示将暂存区的修改回退到工作区，这样的话暂存区就没有任何提交了，可以再使用<code>git checkout -- readme.txt</code>把还与回最初的状态。</li>
+<li>git checkout – readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：<br>一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；<br>一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。<br>总之，就是让这个文件回到最近一次git commit或git add时的状态。</li>
+<li><code>git config</code>相关的增删改查。首先git config 有三个层次，–system / –global / –local。1.增：直接用键值对的形式增加即可，例如<code>git config --global user.name jikexueyuan</code> 或者 <code>git config --global --add user.name eoe</code>。可以同时有两个一样的键，就像刚下的那样，有两个user.name的键值对。2.查：用的是–get命令，例如<code>git config --get user.name</code>，或者 <code>git config --list --global</code>都可以看到上面添加的两个user.name的键值对。3.改：直接用键值对的形式修改就可以了，例如<code>git config --global user.name test</code>直接可以将上面的user.name修改为test。4.删：用的是–unset的命令，例如<code>git config --global --unset user.name eoe</code>就可以将eoe的键值对删掉只保留最开始的jikexueyuan的键值对。<code>git config</code>还有个重要的作用就是修改命令的快捷键，例如<code>git config --global alias.co checkout</code>，这个命令可以把平时常用的<code>git checkout</code>改为<code>git co</code>。</li>
+<li><code>git rm</code>，用来删除暂存区中的内容。<code>git rm a</code>会同时把工作区里的a和暂存区里的a引用删除掉，如果想只删除暂存区的a而不想删除工作目录里的a的话，就使用<code>git rm --cached a</code>。</li>
+<li><code>git mv</code>，工作区中重命名文件或者移动文件。</li>
+<li><code>gitignore</code>，用于把工作区中一些不想被添加到暂存区和历史记录里面的文件忽略掉。</li>
+<li>有颜色显示的情况下，红色表示在暂存区中的内容被修改了（增删改查都算），而绿色表示在暂存区中有内容可以commit到历史记录里。</li>
+</ul>
+<p><img src="./1461454924242.png" alt="git checkout切换分支"><br><img src="./1461455135439.png" alt="git tag相关"><br><img src="./1461455171955.png" alt="tag -a情况下要输入一些tag的注解信息"><br><img src="./1461455339090.png" alt="查看tag"><br><img src="./1461455505718.png" alt="查看tag内容1"><br><img src="./1461455569713.png" alt="查看tag内容2"><br><img src="./1461455711530.png" alt="切换回某个tag，并且在这个tag上重新建立分支并修复某些bug"><br><img src="./1461455977975.png" alt="git stash"><br><img src="./1461456211696.png" alt="stash pop的副作用">，注意这里stash pop后面有个–index参数，表示还要还原暂存区。<br><img src="./1461456474154.png" alt="stash apply和stash drop">切换回stash的前提是回到这个分支，而且想清理多个stash的事情可以使用<code>git stash clear</code>命令，一次将分支上的stash全部清理掉。<br><img src="./1461456828516.png" alt="git merge第一步，创建新分支并且在分支上做改动"><br><img src="./1461457028378.png" alt="git merge 第二步"><br><img src="./1461457303193.png" alt="git merge 出现冲突怎么解决"><br><img src="./1461457367799.png" alt="打开git merge 出现冲突时的文件"><br><img src="./1461457561059.png" alt="处理完出现冲突的文件之后再add commit会就形成了正式的commit，合并完成"></p>
+<ul>
+<li><code>git show</code>可以显示某个git对象的详细信息，例如<code>git show a42f886</code>这样一个commit的详细信息，也可以通过<code>git show master</code>或者<code>git show master^2</code>这类语句类显示master分支上的第一副提交或者第二副提交等等。git show还可以显示一个tag对象，一个tree对象，一个blob对象。</li>
+<li><code>git checkout</code>，<code>git checkout -- master.txt</code>表示抛弃所做的修改，其实本质是用暂存区的内容覆盖工作区的内容，其实也就是让工作区的修改被抛弃掉。<code>git reset</code>其实相当于是历史区还原暂存区。</li>
+<li><code>git pull</code>其实是<code>git fetch</code>和<code>git merge</code>的一个组合操作。</li>
+</ul>
+  
 	</div>
 		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/git/">git</a>
+  </div>
 
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2016/05/11/css-transition详述/" data-title="[css]transition详述 | Steam" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2016/06/22/git常用命令-根据廖雪峰git教程总结/" data-title="git常用命令-根据廖雪峰git教程总结 | Steam" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -122,19 +157,11 @@ var _hmt = _hmt || [];
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/05/12/JS-JavaScript中的this/" title="[JS]JavaScript中的this">
-  <strong>新一篇:</strong><br/>
-  <span>
-  [JS]JavaScript中的this</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/05/06/React-Tutorial译文/"  title="[React]Tutorial译文">
+<a href="/2016/06/14/JS-正则表达式译文/"  title="JS-正则表达式译文">
  <strong>舊一篇:</strong><br/> 
- <span>[React]Tutorial译文
+ <span>JS-正则表达式译文
 </span>
 </a>
 </div>
@@ -144,7 +171,7 @@ var _hmt = _hmt || [];
 	
 <section class="comment">
 	
-	<div class="ds-thread" data-title="[css]transition详述" data-thread-key="css-transition详述" data-author-key="Steam" data-url="http://yoursite.com/post/css-transition详述"></div>
+	<div class="ds-thread" data-title="git常用命令-根据廖雪峰git教程总结" data-thread-key="git常用命令-根据廖雪峰git教程总结" data-author-key="Steam" data-url="http://yoursite.com/post/git常用命令-根据廖雪峰git教程总结"></div>
 	
 </section>
 

@@ -4,10 +4,14 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>[css]transition详述 | Steam</title>
+    <title>JS-正则表达式译文 | Steam</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Steam">
+    
+    <meta name="description" content="原文地址：https://www.sitepoint.com/expressions-javascript
+本文更新于 2016.06.02 ，添加了 CodePen 演示，更新了案例代码，重写了结论并且修改了格式问题。
+如果你曾经用 Perl 编程，或者必须以 Unix 系统管理员身份工作，那么你">
     
     
     
@@ -90,10 +94,10 @@ var _hmt = _hmt || [];
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/05/11/css-transition详述/" title="[css]transition详述" itemprop="url">[css]transition详述</a>
+      <a href="/2016/06/14/JS-正则表达式译文/" title="JS-正则表达式译文" itemprop="url">JS-正则表达式译文</a>
   </h1>
   <p class="article-time">
-    <time datetime="2016-05-11T05:47:21.000Z" itemprop="datePublished">2016-05-11</time>
+    <time datetime="2016-06-14T02:53:58.000Z" itemprop="datePublished">2016-06-14</time>
   </p>
 </header>
 	<div class="article-content">
@@ -101,19 +105,54 @@ var _hmt = _hmt || [];
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title"></strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Basic-Syntax（基本语法）"><span class="toc-number">1.</span> <span class="toc-text">Basic Syntax（基本语法）</span></a></li></ol>
 		</div>
 		
-		  
+		<p>原文地址：<a href="https://www.sitepoint.com/expressions-javascript" target="_blank" rel="external">https://www.sitepoint.com/expressions-javascript</a></p>
+<p>本文更新于 2016.06.02 ，添加了 CodePen 演示，更新了案例代码，重写了结论并且修改了格式问题。</p>
+<p>如果你曾经用 Perl 编程，或者必须以 Unix 系统管理员身份工作，那么你也许早已熟悉正则表达</p>
+<p>本文中，我将讲解到底什么是正则表达式以及正则表达式可以用来干什么。接着我将呈现一个正则表达式常见特点的总体概念（）。最后我将以 JS 中正则表达式如何使用来进行结尾，使用一个或者两个实际例子来帮助理解概念。。。。</p>
+<h4 id="Basic-Syntax（基本语法）"><a href="#Basic-Syntax（基本语法）" class="headerlink" title="Basic Syntax（基本语法）"></a>Basic Syntax（基本语法）</h4><p>首先，上标符 <code>^</code> 用于表明字符串的开始，而美元符 <code>$</code> 用于表明字符串的结尾。</p>
+<pre><code>JavaScript      //Matches &quot;Isn&apos;t JavaScript great?&quot;
+^JavaScript     //Matches &quot;JavaScript rules!&quot;,
+                // not &quot;What is JavaScript?&quot;
+JavaScript$     //Matches &quot;I love JavaScript&quot;,
+                // not &quot;JavaScript is great!&quot;
+^JavaScript$    //Matches &quot;JavaScript&quot;, and nothing else
+</code></pre><p>显然，你有时候会需要使用 <code>^</code> <code>$</code> 或者其他的特殊符号来代表字符串搜索时的特殊字符，而并不是使用正则表达式语法中这些字符的特殊含义。要移除这些字符的特殊含义，可以在前面添加一个反斜杠：</p>
+<pre><code>\$\$\$         //Matches &quot;Show me $$$!&quot;
+</code></pre><p>方括号用于定义符合的字符集。例如，下面的正则表达式将会匹配 1 到 5 的任意数字。</p>
+<pre><code>[12345]        //Matches &quot;1&quot; and &quot;3&quot;, but not &quot;a&quot; or &quot;12&quot;
+</code></pre><p>也可以指定数字或者字母的范围。</p>
+<pre><code>[1-5]         //Same as previous example
+[a-z]         //Matches any lowercase letter (from the English alphabet)
+[0-9a-zA-Z]   //Matches any letter or digit
+</code></pre><p>方括号最前面增加上标符号 <code>^</code>，你可以反转字符集，意味着集合将匹配任何没有被列出的字符：</p>
+<pre><code>[^a-zA-Z]     //Matches anything except a letter
+</code></pre><p><code>?</code> <code>+</code> <code>*</code>也都有一些特殊含义。尤其是 <code>?</code>，表示前面的字符是可选的，<code>+</code>意味着前面的字符可以有一个或者多个，<code>*</code>意味着前面的字符有 0 个或者多个。</p>
+<pre><code>bana?na       //Matches &quot;banana&quot; or &quot;banna&quot;,
+              // but not &quot;banaana&quot;.
+bana+na      //Matches &quot;banana&quot; or &quot;banaana&quot;,
+             // but not &quot;banna&quot;.
+bana*na     //Matches &quot;banna&quot;, &quot;banana&quot; and &quot;banaaana&quot;,
+            // but not &quot;bnana&quot;.
+^[a-zA-Z]+$ //Matches any string of one or more letters and nothing else.
+</code></pre><p>小括号可以用来将字符串组合起来作为一个整体应用 <code>?</code> <code>+</code> <code>*</code></p>
+  
 	</div>
 		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/JS/">JS</a>
+  </div>
 
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2016/05/11/css-transition详述/" data-title="[css]transition详述 | Steam" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2016/06/14/JS-正则表达式译文/" data-title="JS-正则表达式译文 | Steam" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -123,18 +162,18 @@ var _hmt = _hmt || [];
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/05/12/JS-JavaScript中的this/" title="[JS]JavaScript中的this">
+ <a href="/2016/06/22/git常用命令-根据廖雪峰git教程总结/" title="git常用命令-根据廖雪峰git教程总结">
   <strong>新一篇:</strong><br/>
   <span>
-  [JS]JavaScript中的this</span>
+  git常用命令-根据廖雪峰git教程总结</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2016/05/06/React-Tutorial译文/"  title="[React]Tutorial译文">
+<a href="/2016/06/14/JS-事件冒泡、事件捕获和事件代理/"  title="JS-事件冒泡、事件捕获和事件代理">
  <strong>舊一篇:</strong><br/> 
- <span>[React]Tutorial译文
+ <span>JS-事件冒泡、事件捕获和事件代理
 </span>
 </a>
 </div>
@@ -144,7 +183,7 @@ var _hmt = _hmt || [];
 	
 <section class="comment">
 	
-	<div class="ds-thread" data-title="[css]transition详述" data-thread-key="css-transition详述" data-author-key="Steam" data-url="http://yoursite.com/post/css-transition详述"></div>
+	<div class="ds-thread" data-title="JS-正则表达式译文" data-thread-key="JS-正则表达式译文" data-author-key="Steam" data-url="http://yoursite.com/post/JS-正则表达式译文"></div>
 	
 </section>
 
