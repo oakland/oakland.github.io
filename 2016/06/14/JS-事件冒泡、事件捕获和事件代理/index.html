@@ -9,8 +9,8 @@
     
     <meta name="author" content="Steam">
     
-    <meta name="description" content="前言在看高程的过程中就看到过关于事件冒泡和事件捕获，以及不同的添加事件冒泡和事件捕获的方式。当然根据事件冒泡，我们还可设置事件代理，减少事件处理器的数量，提高 JS 脚本的性能。关于这部分的内容，需要再把高程中的一些内容整理到这里。
-不过，最近发现了一篇 segment 的文章，对事件捕获和事件冒泡">
+    <meta name="description" content="前言事件流有事件捕获和事件冒泡两种方式，利用事件流的这个特点我们可以设置事件代理。事件代理可以减少事件处理器的数量，提高 JS 脚本的性能。
+在学习高程的时候，就有这方面的详细介绍，不过最近又看到一篇文章，对事件捕获和事件冒泡做了很详细的解释，也值得一看，所以就把这部分的内容总结一下，形成这篇博客。">
     
     
     
@@ -63,7 +63,7 @@ var _hmt = _hmt || [];
 				<h1 class="site-name"><a href="/" title="Steam">Steam</a></h1>
 				<h2 class="blog-motto">DREAM makes you different</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -81,7 +81,7 @@ var _hmt = _hmt || [];
 						</form>
 					
 					</li>
-                <!--<li><div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div></li>-->
+                <!--<li><div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div></li>-->
 
 				</ul>
 			</nav>	
@@ -104,12 +104,119 @@ var _hmt = _hmt || [];
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title"></strong>
-		<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#事件冒泡、事件捕获基础"><span class="toc-number">2.</span> <span class="toc-text">事件冒泡、事件捕获基础</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#事件冒泡、事件捕获进阶"><span class="toc-number">3.</span> <span class="toc-text">事件冒泡、事件捕获进阶</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#参考文章"><span class="toc-number">4.</span> <span class="toc-text">参考文章</span></a></li></ol>
 		</div>
 		
-		<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>在看高程的过程中就看到过关于事件冒泡和事件捕获，以及不同的添加事件冒泡和事件捕获的方式。当然根据事件冒泡，我们还可设置事件代理，减少事件处理器的数量，提高 JS 脚本的性能。关于这部分的内容，需要再把高程中的一些内容整理到这里。</p>
-<p>不过，最近发现了一篇 segment 的文章，对事件捕获和事件冒泡做了详细的解释，并且有非常好的 demo。</p>
-<p>原文链接： <a href="https://segmentfault.com/a/1190000005654451" target="_blank" rel="external">https://segmentfault.com/a/1190000005654451</a></p>
+		<h4 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h4><p>事件流有事件捕获和事件冒泡两种方式，利用事件流的这个特点我们可以设置事件代理。事件代理可以减少事件处理器的数量，提高 JS 脚本的性能。</p>
+<p>在学习高程的时候，就有这方面的详细介绍，不过最近又看到一篇文章，对事件捕获和事件冒泡做了很详细的解释，也值得一看，所以就把这部分的内容总结一下，形成这篇博客。</p>
+<p>===</p>
+<h4 id="事件冒泡、事件捕获基础"><a href="#事件冒泡、事件捕获基础" class="headerlink" title="事件冒泡、事件捕获基础"></a>事件冒泡、事件捕获基础</h4><p>事件处理器就是当浏览器(BOM)或者 HTML 某个元素(DOM)触发某个事件的时候所执行的函数，事件处理器也叫事件监听器（handler == listener）。常见的事件有 load / click / mouseover / mouseout 等，下面我们都以 click 事件举例。</p>
+<p>HTML 元素是逐层嵌套的，对于这样一个结构，如果父级元素和子级元素同时都有事件处理器，浏览器会如何处理呢？比如点击父级元素的时候 alert(“parentEvent”)，点击子级元素的时候 alert(“childEvent”)。当用户点击子元素的时候，因为子元素嵌套在父级元素内，所以点击子元素也一定会触发父级元素的事件处理器，但是这牵扯到一个触发顺序的问题，到底是先弹出子元素的内容呢还是先弹出父元素的内容呢？这就是事件流所讨论的内容。</p>
+<p>在开发第四代浏览器的时候，IE4 和 Netscape4 给出了两个完全相反的思考方式。IE 支持事件冒泡，而 Netscape 支持事件捕获。那么什么又是事件冒泡，什么又是事件捕获呢？</p>
+<p>事件冒泡：子元素嵌套在父元素内部，点击子元素的时候一定同时表示点击了父元素，这个时候，先触发子元素的事件处理器，然后再触发父元素的事件处理器，如果父元素的父元素还有处理器，就一直向上触发，一直到 body 元素。就像鱼吐泡泡一样，从水下向水面走，每向上走一层就会查看这一层有没有事件处理器，如果有的话就会触发，如果没有的话就继续向上寻找，直到顶层的 body，才结束寻找事件。</p>
+<p>事件捕获则和事件冒泡正好相反，点击的时候从 body 往下找，如果父级元素有事件处理器就先触发父级元素的事件处理器，再向下一层，如果子级元素有的话就触发子级元素的事件处理器，直到这个点击位置的最底层，也就是我们通常所说的 target。事件捕获就好像一块石头从水面向水下沉一样，如果这一层有事件处理器，就触发，没有就继续向下沉，到下层再查看是否有事件处理器，有的话就触发，没有的话继续向下，一直到最底层，这个石头就停止了。</p>
+<p>可以理解，这两种思路都没有问题，只不过是思考方式不同而已。只不过对于大多数人而言，事件冒泡似乎更加容易接受和理解。正是由于有这样的两种事件流处理方式，所以如果你同时在父元素和子元素注册事件的时候，在 IE4 浏览器中会先触发子元素的事件，然后再触发父元素的事件。但是在 Netscape4 浏览器中，则会先触发父元素的事件再触发子元素的事件。</p>
+<p>这样的两种事件流处理方式，也导致了浏览器兼容性的问题，开发者开发的同一个网页，在不同的浏览器上却会产生不同的效果。为了解决这个问题，DOM 2级规范统一了事件流的过程，总共分为三个阶段：事件捕获、在目标元素上，事件冒泡。DOM 2级规范将事件捕获和事件冒泡都收入自己的囊中，所以你可以在一个元素上同时注册事件捕获和事件冒泡，也就是说你可以选择父级元素事件处理器后触发，也可以选择先触发，甚至可以选择先触发父级元素的捕获事件，再触发父级元素的冒泡事件。听上去似乎很复杂，那么 DOM 2 级规范到底如何实现这个效果的呢？</p>
+<p>DOM 2级规范在所有的 HTML 元素上都定义了两个方法： addEventListener() 和 removeEventListener()。这两个方法都接收三个参数：事件名称、事件处理器函数和一个布尔值。前两个参数不作解释，最后一个布尔值则是决定这个事件的事件流处理方式是什么？默认情况下布尔值是 false，表示事件处理器是在冒泡阶段触发。当布尔值为 true 的时候则事件处理器是在捕获阶段触发。</p>
+<pre><code>var outer = document.getElementById(&quot;outer&quot;),
+    inner = document.getElementById(&quot;inner&quot;);
+
+var outHandler = function() {
+    alert(&quot;outer&quot;)
+}
+var innerHandler = function() {
+    alert(&quot;inner&quot;)
+}
+
+//情况一：点击 inner 的时候，会先弹出 inner，后弹出 outer
+outer.addEventListener(&quot;click&quot;,outHandler,false);
+inner.addEventListener(&quot;click&quot;,innerHandler,false);
+
+//情况二：点击 inner 的时候，会先弹出 outer，后弹出 inner
+outer.addEventListener(&quot;click&quot;,outHandler,true);
+inner.addEventListener(&quot;click&quot;,innerHandler,true);
+</code></pre><p>那么有些同学会说，我的事件处理器不是通过 DOM 2 级规范的方式添加的，是通过 DOM 0 级规范添加的，像下面这样：</p>
+<pre><code>var outer = document.getElementById(&quot;outer&quot;),
+    inner = document.getElementById(&quot;inner&quot;);
+
+var outHandler = function() {
+    alert(&quot;outer&quot;)
+}
+var innerHandler = function() {
+    alert(&quot;inner&quot;)
+}
+
+outer.onclick = outHandler;
+inner.onclick = innerHandler;
+</code></pre><p>那这种情况是先弹出 outer 还是先弹出 inner 呢？根据 DOM 0 级规范，这种添加事件处理器的方式会在冒泡阶段触发事件处理器。所以说如果你想控制事件处理器是在冒泡阶段触发还是在捕获阶段触发，只能通过 DOM 2级规范规定的方式来添加事件处理器，如果你很确定自己的事件处理器就是在冒泡阶段才能触发，那么你也可以使用 DOM 0 级规范的方式。</p>
+<h4 id="事件冒泡、事件捕获进阶"><a href="#事件冒泡、事件捕获进阶" class="headerlink" title="事件冒泡、事件捕获进阶"></a>事件冒泡、事件捕获进阶</h4><p>对于大多数情况，一个 HTML 元素只需要注册一个事件，但是有时候，一些 HTML 元素需要注册两个及以上的事件，而且很有可能，一个元素既需要在捕获阶段注册事件，又需要在冒泡阶段注册事件。这种情况又该如何处理呢？</p>
+<p>首先，如果想要在一个 HTML 元素上同时注册两个事件，必须用 DOM 2级规范的方式来进行事件注册，而不能用 DOM 0 级规范的方式，因为 DOM 0 级规范的方式添加两个事件的话，后面的事件处理器会覆盖前面的事件处理器，也就是说 DOM 0级的方式无论怎么处理，都只能触发一个事件处理器。但是 DOM 2级规范的方式则不同，可以在一个元素上添加多个事件处理器，而且这多个事件处理器还可以按照捕获和冒泡不同阶段添加。也就是说可以在捕获阶段添加多个事件处理器，也可以同时在冒泡阶段添加多个事件处理器。那么具体这些添加的事件到底按照什么样的顺序执行呢？</p>
+<p>这个方面的内容，我参考的文章有详细的说明和解释，下面的内容主要就是摘录参考文章中的内容，大家可以一口气看完本文，一气呵成，避免精力分散。看完本文有兴趣再去看参考文章，参考文章在本文的最后给出了链接。</p>
+<p>这里记被点击的DOM节点为target节点</p>
+<ul>
+<li>document 往 target节点，捕获前进，遇到注册的捕获事件立即触发执行</li>
+<li>到达target节点，触发事件（对于target节点上，是先捕获还是先冒泡则捕获事件和冒泡事件的注册顺序，先注册先执行）</li>
+<li>target节点 往 document 方向，冒泡前进，遇到注册的冒泡事件立即触发</li>
+</ul>
+<p>总结下就是:</p>
+<ul>
+<li>对于非target节点则先执行捕获在执行冒泡</li>
+<li><p>对于target节点则是先执行先注册的事件，无论冒泡还是捕获</p>
+<pre><code>&lt;div id=&quot;s1&quot;&gt;s1
+    &lt;div id=&quot;s2&quot;&gt;s2&lt;/div&gt;
+&lt;/div&gt;
+&lt;script&gt;
+s1.addEventListener(&quot;click&quot;,function(e){
+    console.log(&quot;s1 冒泡事件&quot;);         
+},false);
+s2.addEventListener(&quot;click&quot;,function(e){
+    console.log(&quot;s2 冒泡事件&quot;);
+},false);
+
+s1.addEventListener(&quot;click&quot;,function(e){
+    console.log(&quot;s1 捕获事件&quot;);
+},true);
+
+s2.addEventListener(&quot;click&quot;,function(e){
+    console.log(&quot;s2 捕获事件&quot;);
+},true);
+//执行顺序是 &quot;s1 捕获事件&quot; =&gt; &quot;s2 冒泡事件&quot; =&gt; &quot;s2 捕获事件&quot; =&gt; &quot;s1 冒泡事件&quot;
+&lt;/script&gt;
+</code></pre></li>
+</ul>
+<p>写到这里，再顺便把“事件代理”也简单地说明一下。因为事件代理正是利用了事件流的这个特点。</p>
+<pre><code>&lt;ul id=&quot;color-list&quot;&gt;
+    &lt;li&gt;red&lt;/li&gt;
+    &lt;li&gt;yellow&lt;/li&gt;
+    &lt;li&gt;blue&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre><p>如果点击页面中的li元素，然后输出li当中的颜色，我们通常会这样写:</p>
+<pre><code>(function(){
+var color_list = document.getElementById(&apos;color-list&apos;);
+var colors = color_list.getElementsByTagName(&apos;li&apos;);
+for(var i=0;i&lt;colors.length;i++){                          
+    colors[i].addEventListener(&apos;click&apos;,showColor,false);
+};
+function showColor(e){
+    var x = e.target;
+    console.log(&quot;The color is &quot; + x.innerHTML);
+};
+})();
+</code></pre><p>利用事件流的特性，我们只绑定一个事件处理函数也可以完成：</p>
+<pre><code>(function(){
+var color_list = document.getElementById(&apos;color-list&apos;);
+color_list.addEventListener(&apos;click&apos;,showColor,false);
+function showColor(e){
+    var x = e.target;
+    if(x.nodeName.toLowerCase() === &apos;li&apos;){
+        console.log(&apos;The color is &apos; + x.innerHTML);
+    }
+}
+})();
+</code></pre><p>使用事件代理的好处不仅在于将多个事件处理函数减为一个，而且对于不同的元素可以有不同的处理方法。假如上述列表元素当中添加了其他的元素（如：a、span等），我们不必再一次循环给每一个元素绑定事件，直接修改事件代理的事件处理函数即可。</p>
+<h4 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h4><ol>
+<li><a href="https://segmentfault.com/a/1190000005654451" target="_blank" rel="external">JS中事件冒泡与捕获</a></li>
+</ol>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -144,7 +251,7 @@ var _hmt = _hmt || [];
 
 <div class="next">
 <a href="/2016/06/06/JS-Efficient-JavaScript-译文/"  title="[JS]Efficient JavaScript 译文">
- <strong>舊一篇:</strong><br/> 
+ <strong>旧一篇:</strong><br/> 
  <span>[JS]Efficient JavaScript 译文
 </span>
 </a>

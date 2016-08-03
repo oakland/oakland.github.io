@@ -1,15 +1,15 @@
 
-  <!DOCTYPE HTML>
+ <!DOCTYPE HTML>
 <html >
 <head>
   <meta charset="UTF-8">
   
-    <title>标签: git | Steam</title>
+    <title>JS-函数柯里化 | Steam</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Steam">
     
-    <meta name="description" content="description test">
+    <meta name="description" content="####">
     
     
     
@@ -54,9 +54,9 @@ var _hmt = _hmt || [];
 </script>
 </head>
 
-    <body>
-      <header>
-        <div>
+  <body>
+    <header>
+      <div>
 		
 			<div id="textlogo">
 				<h1 class="site-name"><a href="/" title="Steam">Steam</a></h1>
@@ -85,42 +85,72 @@ var _hmt = _hmt || [];
 				</ul>
 			</nav>	
 </div>
-      </header>
-      <div id="container" class="clearfix">
-        
-
-<div class="archive-title" >
-  <h2 class="tag-icon">git</h2>
-  
-</div>
-<div id="main" class="archive-part clearfix">
-  <div id="archive-page">
-
-  <section class="post" itemscope itemprop="blogPost">
-  <article>
-    <h1 itemprop="name">
-      
-        <a href="/2016/06/22/git常用命令-根据廖雪峰git教程总结/" title="git常用命令-根据廖雪峰git教程总结" itemprop="url">
-      
-        git常用命令-根据廖雪峰git教程总结
-      </a>
-    </h1>
+    </header>
+    <div id="container" class="clearfix">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
     
-    <p class="article-more-link">
-      <time datetime="2016-06-22T15:16:55.000Z" itemprop="datePublished">2016-06-22</time>
-      
-          <a href="/2016/06/22/git常用命令-根据廖雪峰git教程总结/">阅读更多&raquo;</a>
-      
-    </p>
+      <a href="/2016/08/02/JS-函数柯里化/" title="JS-函数柯里化" itemprop="url">JS-函数柯里化</a>
+  </h1>
+  <p class="article-time">
+    <time datetime="2016-08-02T05:57:04.000Z" itemprop="datePublished">2016-08-02</time>
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title"></strong>
+		
+		</div>
+		
+		<p>#### </p>
+  
+	</div>
+		<footer class="article-footer clearfix">
 
-  </article>
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/JS/">JS</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2016/08/02/JS-函数柯里化/" data-title="JS-函数柯里化 | Steam" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2016/07/25/JS-JS中的-prototype-和-proto/"  title="[JS]-JS中的 prototype 和 _proto_">
+ <strong>旧一篇:</strong><br/> 
+ <span>[JS]-JS中的 prototype 和 _proto_
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	
+	<div class="ds-thread" data-title="JS-函数柯里化" data-thread-key="JS-函数柯里化" data-author-key="Steam" data-url="http://yoursite.com/post/JS-函数柯里化"></div>
+	
 </section>
 
 
-  </div>
-</div>
-
-      </div>
+</div>  
+    </div>
     <footer><div id="footer" >
 	<div class="copyright">
 		<span>Powered by <a href="https://github.com/hexojs/hexo">Hexo</a> and theme by 
@@ -205,9 +235,97 @@ $(document).ready(function(){
 });
 </script>
 
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,240-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"tinnypp"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';    //change to ds.src = '/js/embed.js'; to add useragent for duoshuo
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
 
 
 
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
 
 <script type="text/javascript">
   function footerPosition() {
@@ -224,5 +342,5 @@ $(document).ready(function(){
 </script>
 
 
-    </body>
-   </html>
+  </body>
+</html>

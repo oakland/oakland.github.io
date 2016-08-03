@@ -1,16 +1,19 @@
 
-  
-    <!DOCTYPE HTML>
+ <!DOCTYPE HTML>
 <html >
 <head>
   <meta charset="UTF-8">
   
-    <title>about | Steam</title>
+    <title>[JS]-JS中的 prototype 和 _proto_ | Steam</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Steam">
     
-    <meta name="description" content="description test">
+    <meta name="description" content="所有的函数都有 prototype 属性
+虽有的对象都有 proto 属性
+prototype 讲的是上一层的关系，也就是原型，而 proto 讲的是下一层的关系，也就是派生或者衍生出的对象所拥有的。
+
+Foo.prototype 是为 Foo 的下一级使用的， 而 Foo.proto 是 Foo ">
     
     
     
@@ -55,9 +58,9 @@ var _hmt = _hmt || [];
 </script>
 </head>
 
-      <body>
-        <header>
-          <div>
+  <body>
+    <header>
+      <div>
 		
 			<div id="textlogo">
 				<h1 class="site-name"><a href="/" title="Steam">Steam</a></h1>
@@ -86,54 +89,90 @@ var _hmt = _hmt || [];
 				</ul>
 			</nav>	
 </div>
-        </header>
-        <div id="container" class="clearfix">
-          <div id="main" class="page" itemscope itemprop="blogPost">
+    </header>
+    <div id="container" class="clearfix">
+      <div id="main" class="post" itemscope itemprop="blogPost">
 	<article itemprop="articleBody"> 
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/about/index.html" title="about" itemprop="url">about</a>
+      <a href="/2016/07/25/JS-JS中的-prototype-和-proto/" title="[JS]-JS中的 prototype 和 _proto_" itemprop="url">[JS]-JS中的 prototype 和 _proto_</a>
   </h1>
   <p class="article-time">
-    <time datetime="2016-05-02T01:58:49.000Z" itemprop="datePublished">2016-05-02</time>
+    <time datetime="2016-07-25T01:40:57.000Z" itemprop="datePublished">2016-07-25</time>
   </p>
 </header>
 	<div class="article-content">
 		
 		
-		<h3 id="Faith-in-Heart"><a href="#Faith-in-Heart" class="headerlink" title="Faith in Heart"></a>Faith in Heart</h3><p>You’ve gotta’ dance like there’s nobody watching, </p>
-<p>Love like you’ll never be hurt,</p>
-<p>Sing like there’s nobody listening,</p>
-<p>And live like it’s heaven on earth.</p>
-<p>And speak from the heart to be heard. </p>
+		<div id="toc" class="toc-article">
+			<strong class="toc-title"></strong>
+		
+		</div>
+		
+		<ul>
+<li>所有的函数都有 prototype 属性</li>
+<li>虽有的对象都有 <em>proto</em> 属性</li>
+<li>prototype 讲的是上一层的关系，也就是原型，而 <em>proto</em> 讲的是下一层的关系，也就是派生或者衍生出的对象所拥有的。</li>
+</ul>
+<p>Foo.prototype 是为 Foo 的下一级使用的， 而 Foo.<em>proto</em> 是 Foo 引用的上一级。 Foo 是谁 new 出来的，谁就是 Foo 的上一级；Foo new 出来谁，谁就是 Foo 的下一级。这就是 Foo.prototype 和 Foo.<em>proto</em> 的区别。</p>
+<ul>
+<li>其他关于二者的区别，还有 Foo.prototype 是显式的属性，而 <em>proto</em> 是隐式的属性。</li>
+<li>所有的 <em>proto</em> 都指向的是 prototype。</li>
+</ul>
   
 	</div>
 		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/JS/">JS</a>
+  </div>
 
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/about/index.html" data-title="about | Steam" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2016/07/25/JS-JS中的-prototype-和-proto/" data-title="[JS]-JS中的 prototype 和 _proto_ | Steam" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
 </footer>   	       
 	</article>
 	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2016/08/02/JS-函数柯里化/" title="JS-函数柯里化">
+  <strong>新一篇:</strong><br/>
+  <span>
+  JS-函数柯里化</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2016/06/22/git常用命令-根据廖雪峰git教程总结/"  title="git常用命令-根据廖雪峰git教程总结">
+ <strong>旧一篇:</strong><br/> 
+ <span>git常用命令-根据廖雪峰git教程总结
+</span>
+</a>
+</div>
+
+</nav>
+
 	
 <section class="comment">
 	
-	<div class="ds-thread"></div>
+	<div class="ds-thread" data-title="[JS]-JS中的 prototype 和 _proto_" data-thread-key="JS-JS中的-prototype-和-proto" data-author-key="Steam" data-url="http://yoursite.com/post/JS-JS中的-prototype-和-proto"></div>
 	
 </section>
 
 
 </div>  
-        </div>
-        <footer><div id="footer" >
+    </div>
+    <footer><div id="footer" >
 	<div class="copyright">
 		<span>Powered by <a href="https://github.com/hexojs/hexo">Hexo</a> and theme by 
 		<a href="https://github.com/levonlin/Tinnypp">Tinnypp</a>.</span>
@@ -142,7 +181,7 @@ var _hmt = _hmt || [];
 		
 	<div>
 </div></footer>
-        <script src="/js/jquery-2.1.0.min.js"></script>
+    <script src="/js/jquery-2.1.0.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){ 
   //back to top
@@ -214,6 +253,33 @@ $(document).ready(function(){
     }
     show = !show;
   });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,240-$(this).scrollTop()));
+    });
+  };
 });
 </script>
 
@@ -297,6 +363,5 @@ $(document).ready(function(){
 </script>
 
 
-      </body>
-     </html>
-     
+  </body>
+</html>
