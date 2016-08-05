@@ -63,7 +63,7 @@ var _hmt = _hmt || [];
 				<h1 class="site-name"><a href="/" title="Steam">Steam</a></h1>
 				<h2 class="blog-motto">DREAM makes you different</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -81,7 +81,7 @@ var _hmt = _hmt || [];
 						</form>
 					
 					</li>
-                <!--<li><div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div></li>-->
+                <!--<li><div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div></li>-->
 
 				</ul>
 			</nav>	
@@ -214,6 +214,21 @@ function showColor(e){
 }
 })();
 </code></pre><p>使用事件代理的好处不仅在于将多个事件处理函数减为一个，而且对于不同的元素可以有不同的处理方法。假如上述列表元素当中添加了其他的元素（如：a、span等），我们不必再一次循环给每一个元素绑定事件，直接修改事件代理的事件处理函数即可。</p>
+<p>在处理事件代理的时候，事件 event 有两个比较特殊的属性，event.target 和 event.currentTarget，这两个属性又有什么区别呢？</p>
+<p>event.target 是触发事件的元素，而 event.currentTarget 是事件绑定的元素。也就是说，大部分情况下，当使用事件代理时，event.target 是子元素，而 event.currentTarget 是父级元素。</p>
+<pre><code>&lt;ul id=&quot;box&quot;&gt;
+    &lt;li id=&quot;red&quot;&gt;red&lt;/li&gt;
+    &lt;li id=&quot;yellow&quot;&gt;yellow&lt;/li&gt;
+    &lt;li id=&quot;blue&quot;&gt;blue&lt;/li&gt;
+&lt;/ul&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+    var box = document.getElementById(&apos;box&apos;);
+    box.addEventListener(&quot;click&quot;, function(event) {
+        alert(event.target.id);
+        alert(event.currentTarget.id); // &quot;box&quot;
+    });
+&lt;/script&gt;
+</code></pre><p>当点击任何一个 li 的时候，首先会弹出目标元素，也就是子元素的 id，然后才会弹出事件绑定元素的 id，也就是父级元素的 id。</p>
 <h4 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h4><ol>
 <li><a href="https://segmentfault.com/a/1190000005654451" target="_blank" rel="external">JS中事件冒泡与捕获</a></li>
 </ol>
@@ -242,7 +257,7 @@ function showColor(e){
  
  <div class="prev" >
  <a href="/2016/06/14/JS-正则表达式译文/" title="JS-正则表达式译文">
-  <strong>新一篇:</strong><br/>
+  <strong>New:</strong><br/>
   <span>
   JS-正则表达式译文</span>
 </a>
@@ -251,7 +266,7 @@ function showColor(e){
 
 <div class="next">
 <a href="/2016/06/06/JS-Efficient-JavaScript-译文/"  title="[JS]Efficient JavaScript 译文">
- <strong>旧一篇:</strong><br/> 
+ <strong>Old:</strong><br/> 
  <span>[JS]Efficient JavaScript 译文
 </span>
 </a>
