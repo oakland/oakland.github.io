@@ -4,15 +4,12 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>SS-bandwagon ss 设置 | Steam</title>
+    <title>Git-.gitignore 文件失效可能的原因 | Steam</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Steam">
     
-    <meta name="description" content="通过购买搬瓦工的 vps，然后安装 ss，可以上 google。
-http://www.tennfy.com/2083.html
-如何购买
-如何切换 ip ，在最下面“小结”之前，一般如果上不去外网的话，可以考虑更换一次 ip 然后再切换回来，就可以了。">
+    <meta name="description" content="有时候我们开发到一定程度，再添加 .gitignore 文件的时候，发现使用 git status 命令时，git 还是会追踪那些我们添加到 .gitignore 中的文件。这是为什么呢？其实这是因为 .gitignore 只会忽略那些还没有被 add 和 commit 的文件，也就是说如果一个文件">
     
     
     
@@ -95,10 +92,10 @@ var _hmt = _hmt || [];
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/08/06/SS-bandwagon-ss-设置/" title="SS-bandwagon ss 设置" itemprop="url">SS-bandwagon ss 设置</a>
+      <a href="/2016/08/07/Git-gitignore-文件失效可能的原因/" title="Git-.gitignore 文件失效可能的原因" itemprop="url">Git-.gitignore 文件失效可能的原因</a>
   </h1>
   <p class="article-time">
-    <time datetime="2016-08-06T13:35:03.000Z" itemprop="datePublished">2016-08-06</time>
+    <time datetime="2016-08-06T23:54:37.000Z" itemprop="datePublished">2016-08-07</time>
   </p>
 </header>
 	<div class="article-content">
@@ -109,17 +106,24 @@ var _hmt = _hmt || [];
 		
 		</div>
 		
-		<p>通过购买搬瓦工的 vps，然后安装 ss，可以上 google。</p>
-<p><a href="http://www.tennfy.com/2083.html" target="_blank" rel="external">http://www.tennfy.com/2083.html</a></p>
-<p>如何购买</p>
-<p><a href="http://www.tennfy.com/2020.html" target="_blank" rel="external">如何切换 ip </a>，在最下面“小结”之前，一般如果上不去外网的话，可以考虑更换一次 ip 然后再切换回来，就可以了。</p>
+		<p>有时候我们开发到一定程度，再添加 .gitignore 文件的时候，发现使用 <code>git status</code> 命令时，git 还是会追踪那些我们添加到 .gitignore 中的文件。这是为什么呢？其实这是因为 .gitignore 只会忽略那些还没有被 add 和 commit 的文件，也就是说如果一个文件已经被 commit 过了，这个时候你添加 .gitignore 忽略这个文件其实是无效的。</p>
+<p>所以，这也是 .gitignore 文件失效时候常见的原因。那应该采用什么样的方法来保证 .gitignore 的正常运行呢？</p>
+<p>根据网上的攻略，我们需要清除缓存，然后再添加 .gitignore 文件，有两种方式：</p>
+<ol>
+<li><p>git rm -r –cached .（这个应该指的是清除所有的文件缓存）</p>
+<p>git add .</p>
+<p>git commit -m “update .gitignore”</p>
+</li>
+<li><p>git rm –cached your_file（这种方式是只清除这个文件的缓存）</p>
+</li>
+</ol>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/SS/">SS</a>
+  <span></span> <a href="/tags/git/">git</a>
   </div>
 
 
@@ -127,7 +131,7 @@ var _hmt = _hmt || [];
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2016/08/06/SS-bandwagon-ss-设置/" data-title="SS-bandwagon ss 设置 | Steam" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2016/08/07/Git-gitignore-文件失效可能的原因/" data-title="Git-.gitignore 文件失效可能的原因 | Steam" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -136,19 +140,11 @@ var _hmt = _hmt || [];
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/08/07/Git-gitignore-文件失效可能的原因/" title="Git-.gitignore 文件失效可能的原因">
-  <strong>新一篇:</strong><br/>
-  <span>
-  Git-.gitignore 文件失效可能的原因</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/08/02/JS-函数柯里化/"  title="JS-函数柯里化">
+<a href="/2016/08/06/SS-bandwagon-ss-设置/"  title="SS-bandwagon ss 设置">
  <strong>旧一篇:</strong><br/> 
- <span>JS-函数柯里化
+ <span>SS-bandwagon ss 设置
 </span>
 </a>
 </div>
@@ -158,7 +154,7 @@ var _hmt = _hmt || [];
 	
 <section class="comment">
 	
-	<div class="ds-thread" data-title="SS-bandwagon ss 设置" data-thread-key="SS-bandwagon-ss-设置" data-author-key="Steam" data-url="http://yoursite.com/post/SS-bandwagon-ss-设置"></div>
+	<div class="ds-thread" data-title="Git-.gitignore 文件失效可能的原因" data-thread-key="Git-gitignore-文件失效可能的原因" data-author-key="Steam" data-url="http://yoursite.com/post/Git-gitignore-文件失效可能的原因"></div>
 	
 </section>
 
