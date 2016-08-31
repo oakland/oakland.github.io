@@ -103,7 +103,7 @@ var _hmt = _hmt || [];
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title"></strong>
-		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题及总结"><span class="toc-number">2.</span> <span class="toc-text">问题及总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#回顾"><span class="toc-number">3.</span> <span class="toc-text">回顾</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题及总结"><span class="toc-number">2.</span> <span class="toc-text">问题及总结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#回顾"><span class="toc-number">3.</span> <span class="toc-text">回顾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关于栅格系统"><span class="toc-number">4.</span> <span class="toc-text">关于栅格系统</span></a></li></ol>
 		</div>
 		
 		<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>最近，网站需要改版，leader 买了一个模板，但是这个模板用了 BS 的框架。之前就会用 BS，也做过一些页面，比如极客学院数据库增删改查的后台等等。但是对于一些概念比较模糊，而且用起来主要就是通过引入编译后的 CSS 和 JS，然后拷贝相应的代码来实现的，再加上现在 BS 3 出来以后，也会有一些变化，所以就又打算重新开始学习 BS。不过在学习 BS 的过程中遇到了一些问题，这里简单做个总结。</p>
@@ -118,6 +118,7 @@ var _hmt = _hmt || [];
 <p>首先是关于三个版本的区别。getting-started 上有三个版本的 Bootstrap 可以下载，第一个版本是 Bootstrap，第二个版本是 Source code，第三个版本是 Sass。第一个版本其实就是编译好的 css, js, font，也就是说如果你不修改任何 Bootstrap 的内容，想直接引用这个框架的话就可以直接下载第一部分的内容，然后像平时引入其他 css, js 库一样，通过 link 或者 script 标签引入这些外部链接，进而进行开发。</p>
 <p>第二个版本是 Source code，这个就是我下载下来的版本，这个版本其实就是就是开发版，如果需要开发人员自己进行测试，配置，调试或者开发新的代码，就可以使用这个版本。这个版本里的 dist 文件其实就是第一个 Bootstrap 下载下来的按个文件。为了能够编译 CSS 和 JS，我们需要用到 grunt 这个工程化工具。关于 grunt 如何安装及使用，我们需要自己去看 grunt 相关的官网和教程。这里说，如果已经安装了 grunt 的情况，先运行 npm install 进行依赖安装，其实就是下载 node_modules。下载完这个就可以通过运行 grunt 的一些命令，来实现 grunt 的一些自动化任务了。比如 grunt dist, grunt watch, grunt test, grunt docs 以及 grunt等。在 grunt docs 这个命令下，有一个命令可以实现本地查看文档。</p>
 <p>而通过运行 bundle exec jekyll serve 可以实现本地查看文档。</p>
+<h3 id="关于栅格系统"><a href="#关于栅格系统" class="headerlink" title="关于栅格系统"></a>关于栅格系统</h3><p>BS3之后，整个框架就变成了 mobile first 的理念，而不是原来的 mobile friendly 了。而且栅格系统从原来的支持三种尺寸变成了支持四种尺寸，即 col-xs-*, col-sm-*, col-md-*, col-lg-*（<em>代表 1-12 的任意数字），分别支持 phones(<768px), tablets(="">=768px), media device desktop(&gt;=992px), large device desktop(&gt;=1200px)。那么这四种系统都是如何运转的话呢？每个系统都可以支持更大一级的系统，但是不支持小一级的系统，例如，col-md-4，在 &gt;=992px 的尺寸下都是占 .row 的1/3宽度，如果这个 div 没有定义 col-ld-\</768px),></em> 的话。但是当媒体尺寸小于 992px 的时候，col-md-4 这个尺寸就失效了，它会根据实际情况展示，一般情况下就直接会展示为 100% 的宽度。所以你要想让界面也展示一定的尺寸，就必须也要定义一个 col-sm-*。<br>同时还要注意，.row 必须放入 .container 或者 .container-fluid 的内部，而只有 columns 可以是 .row 的 immediate children。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
