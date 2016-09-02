@@ -62,7 +62,7 @@ var _hmt = _hmt || [];
 				<h1 class="site-name"><a href="/" title="Steam">Steam</a></h1>
 				<h2 class="blog-motto">DREAM makes you different</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -80,7 +80,7 @@ var _hmt = _hmt || [];
 						</form>
 					
 					</li>
-                <!--<li><div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div></li>-->
+                <!--<li><div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div></li>-->
 
 				</ul>
 			</nav>	
@@ -107,6 +107,14 @@ var _hmt = _hmt || [];
 		</div>
 		
 		<p>使用 Expressjs 连接关系型数据库的时候，建议使用 <a href="https://github.com/dresende/node-orm2" target="_blank" rel="external">link</a>，或者 <a href="http://docs.sequelizejs.com/en/v3/" target="_blank" rel="external">Sequelize</a>，但是 node-orm2 是首选。stackoverflow 上面有这个问题：<a href="http://stackoverflow.com/questions/6007353/which-orm-should-i-use-for-node-js-and-mysql" target="_blank" rel="external">http://stackoverflow.com/questions/6007353/which-orm-should-i-use-for-node-js-and-mysql</a></p>
+<p>关于express中间件的总结：</p>
+<ol>
+<li>中间件其实就是函数。</li>
+<li>路由级别的中间件和应用级别的中间件没有区别，只不过应用级别的中间件是挂载在app上，而路由级别的中间件是挂载在router上的。同时，需要在应用级别上面配置一下 app.use(‘/users’, users)。</li>
+<li>Error handling 中间件和普通中间件也没有任何区别，唯一的区别就在于 Error handling 中间件接收四个参数，(err, req, res, next)，注意，这里面的 err 必须要放在第一个位置。</li>
+<li>目前 Express4.x 版本中，只有一个内置中间件，就是 epxress.static()，用于设计静态资源路由。</li>
+<li>主要的中间件还是第三方中间件，先 require 进来，然后直接使用就可以了。</li>
+</ol>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -133,7 +141,7 @@ var _hmt = _hmt || [];
 
 <div class="next">
 <a href="/2016/08/25/bootstrap-BS3学习过程中的一些问题总结/"  title="bootstrap-BS3学习过程中的一些问题总结">
- <strong>Old:</strong><br/> 
+ <strong>舊一篇:</strong><br/> 
  <span>bootstrap-BS3学习过程中的一些问题总结
 </span>
 </a>
