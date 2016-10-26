@@ -4,14 +4,12 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>JS-前端MVC和传统MVC的区别 | Steam</title>
+    <title>:before 和 :after 伪元素 | Steam</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Steam">
     
-    <meta name="description" content="关于MVC，实际上分为前端 MVC 和传统的 MVC，尤雨溪在知乎的一个回答比较经典
-https://www.zhihu.com/question/20440717
-作者：尤雨溪链接：https://www.zhihu.com/question/20440717/answer/15684806来源：">
+    <meta name="description" content="最开始学习前端的时候，我见到过一个很奇怪的表达，:before 和 :after，后来知道这个是伪元素，但是没有对其深究。后来再看一些网页源码的时候，还发现另外一个表达，就是 ::before 和 ::after，当时还在一些微信的技术群里问过大家两个冒号和一个冒号有什么区别。现在也都已经忘记大家怎">
     
     
     
@@ -94,10 +92,10 @@ var _hmt = _hmt || [];
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/08/14/JS-前端MVC和传统MVC的区别/" title="JS-前端MVC和传统MVC的区别" itemprop="url">JS-前端MVC和传统MVC的区别</a>
+      <a href="/2016/10/26/before-和-after-伪元素/" title=":before 和 :after 伪元素" itemprop="url">:before 和 :after 伪元素</a>
   </h1>
   <p class="article-time">
-    <time datetime="2016-08-14T07:15:26.000Z" itemprop="datePublished">2016-08-14</time>
+    <time datetime="2016-10-26T04:44:57.000Z" itemprop="datePublished">2016-10-26</time>
   </p>
 </header>
 	<div class="article-content">
@@ -105,24 +103,48 @@ var _hmt = _hmt || [];
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title"></strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#官方解释"><span class="toc-number">1.</span> <span class="toc-text">官方解释</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实例"><span class="toc-number">2.</span> <span class="toc-text">实例</span></a></li></ol>
 		</div>
 		
-		<p>关于MVC，实际上分为前端 MVC 和传统的 MVC，尤雨溪在知乎的一个回答比较经典</p>
-<p><a href="https://www.zhihu.com/question/20440717" target="_blank" rel="external">https://www.zhihu.com/question/20440717</a></p>
-<p>作者：尤雨溪<br>链接：<a href="https://www.zhihu.com/question/20440717/answer/15684806" target="_blank" rel="external">https://www.zhihu.com/question/20440717/answer/15684806</a><br>来源：知乎<br>著作权归作者所有，转载请联系作者获得授权。</p>
-<p>服务器端的MVC，每次用户干了什么，流程大致是这样的：</p>
-<p>客户端发送请求 -&gt; 服务器触发Controller -&gt; 服务器进行Model各种操作 -&gt; 服务器根据Model数据渲染View -&gt; 服务器回复请求，包含了整个View的html -&gt; 客户端重新渲染整个页面，所有的css都又计算了一遍，所有的js都重新执行了一遍，所有的资源都重新请求了一遍（虽然可能已经cache了）</p>
-<p>前端MVC的话则是这样的（前端其实大部分是MV+X，不一定有Controller):</p>
-<p>客户端根据用户的行为修改客户端Model -&gt; 客户端更新和该Model相关的View -&gt; 客户端Model发送sync请求到服务器，只包含改变了哪些数据 -&gt; 服务器审核数据改动是否合法，只需回复是否修改成功 -&gt; 客户端收到成功，什么都不用做；不成功，则把刚才改的View改回来，然后通知用户。（当然，也可以在客户端的Model里面也加入审核机制，这样对不合法数据的反应更快，但还是得保留服务器端的审核）</p>
-<p>比较一下可以看到，前端MVC需要向服务器端传递和接收的数据量都少很多，而前端要做的等待和渲染工作也少了很多。换言之，会提供更快的交互反馈，也意味着更好的用户体验。同时，服务器端的负载也略有降低，因为基本上只需要在数据库上提供一个RESTful API即可。</p>
+		<p>最开始学习前端的时候，我见到过一个很奇怪的表达，:before 和 :after，后来知道这个是伪元素，但是没有对其深究。后来再看一些网页源码的时候，还发现另外一个表达，就是 ::before 和 ::after，当时还在一些微信的技术群里问过大家两个冒号和一个冒号有什么区别。现在也都已经忘记大家怎么说的了。最近做项目的时候，使用 icon-font 的时候又多次见到这样的表达方式，所以就留意深入了解了一下伪元素。这里就把这个伪元素的一些内容做个总结。</p>
+<h4 id="官方解释"><a href="#官方解释" class="headerlink" title="官方解释"></a>官方解释</h4><p>根据<a href="http://www.w3school.com.cn/css/css_pseudo_elements.asp" target="_blank" rel="external">官方的说法</a>，伪元素有四种，分别是 :first-line / :first-letter / :before / :after。这里我们主要以 :before 和 :after 为例来进行说明。</p>
+<p><em>:before 和 :after 是类似的，所以下面所有的例子都是以 :before 为例来说明。</em></p>
+<p>W3CSchool 说，:before 伪元素可以在选定元素的内容前面插入新的<strong>内容</strong>。注意，官方给定的说法也是插入“内容”。而这个内容可以是文本也可以是图片等等。例如，官方的例子：</p>
+<pre><code>h1:before {
+    content: url(logo.gif)
+}
+</code></pre><p>可以看到，这个伪元素是通过一个特殊的属性——content 来插入图片或者文字内容。上面是插入图片的写法， content 也可以是文字，如：</p>
+<pre><code>div.test:before {
+    content: &apos;before test&apos;
+}
+</code></pre><p>这个时候在页面上就会显示这段文字，很多时候，我们使用 icon-font 用的就是这种方式，很多 icon 就是使用伪元素来添加的。</p>
+<p>官方还有一段解释，如下</p>
+<blockquote>
+<p>默认的地，这个伪元素是<strong>行内元素</strong>，不过可以使用属性 display 改变这一点。</p>
+</blockquote>
+<p>所以说这个伪元素主要的用途就是添加一些内容文字，或者图片，而且插入的内容是行内样式。关于这个解释还觉得不够明确的话，可以看 <a href="http://docs.webplatform.org/wiki/css/selectors/pseudo-elements/::before" target="_blank" rel="external">webplatform.org</a> 的英文解释，这个伪元素的用途就更加明确了。</p>
+<blockquote>
+<p>::before creates a pseudo-element, which allows you to insert content onto a page from CSS before the selected element(s). </p>
+</blockquote>
+<p>可见，这个伪元素是通过 CSS 来添加 html 内容的一种方式。</p>
+<p>除了上面这些说明之外，我们经常还会有疑问的一点就是，会见到不同的伪元素表达方式，有时候是两个冒号，有时候是一个冒号，到底是怎么回事呢？我们继续看 webplatform.org 上的解释。</p>
+<blockquote>
+<p>In Windows Internet Explorer 8, as well as later versions of Windows Internet Explorer in IE8 Standards mode, only the one-colon form of this pseudo-element is recognized—that is, :before. Beginning with Windows Internet Explorer 9, the ::before pseudo-element requires two colons, though the one-colon form is still recognized and behaves identically to the two-colon form. Microsoft and the World Wide Web Consortium (W3C) encourage web authors to use the two-colon form of the ::before pseudo-element. </p>
+</blockquote>
+<p>上面这段话的大概意思就是说，IE8及以前的版本都是用一个分号，但是从 IE9 开始，使用规范要求使用两个分号，但是也兼容一个分号的写法，但是鼓励大家使用两个分号。所以，:before 和 ::before 的写法都是一样的，只不过是因为规范发生变化而导致的两种不同的写法。如果想兼容的话还是使用 :before 的写法就好了。</p>
+<h4 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h4><p>我见过的伪元素通常用在两个方面：</p>
+<ol>
+<li>插入 icon-font 的小图标。</li>
+<li>或者使用 :after 伪元素来 clear: both。实现块状格式化上下文（BFC）。</li>
+</ol>
+<p>当然，关于伪元素的其他用法，可以参考<a href="http://www.w3cplus.com/css3/pseudo-element-roundup.html" target="_blank" rel="external">大放异彩的伪元素</a>这篇文章。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/JS/">JS</a>
+  <span></span> <a href="/tags/CSS/">CSS</a>
   </div>
 
 
@@ -130,7 +152,7 @@ var _hmt = _hmt || [];
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2016/08/14/JS-前端MVC和传统MVC的区别/" data-title="JS-前端MVC和传统MVC的区别 | Steam" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2016/10/26/before-和-after-伪元素/" data-title=":before 和 :after 伪元素 | Steam" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -139,19 +161,11 @@ var _hmt = _hmt || [];
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/08/24/others-关于-fallback-colors/" title="others-关于 fallback colors">
-  <strong>新一篇:</strong><br/>
-  <span>
-  others-关于 fallback colors</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/08/07/Git-gitignore-文件失效可能的原因/"  title="Git-.gitignore 文件失效可能的原因">
+<a href="/2016/10/04/JS-Array相关的方法总结/"  title="JS-Array相关的方法总结">
  <strong>旧一篇:</strong><br/> 
- <span>Git-.gitignore 文件失效可能的原因
+ <span>JS-Array相关的方法总结
 </span>
 </a>
 </div>
@@ -161,7 +175,7 @@ var _hmt = _hmt || [];
 	
 <section class="comment">
 	
-	<div class="ds-thread" data-title="JS-前端MVC和传统MVC的区别" data-thread-key="JS-前端MVC和传统MVC的区别" data-author-key="Steam" data-url="http://yoursite.com/post/JS-前端MVC和传统MVC的区别"></div>
+	<div class="ds-thread" data-title=":before 和 :after 伪元素" data-thread-key="before-和-after-伪元素" data-author-key="Steam" data-url="http://yoursite.com/post/before-和-after-伪元素"></div>
 	
 </section>
 

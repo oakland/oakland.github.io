@@ -4,14 +4,14 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>JS-前端MVC和传统MVC的区别 | Steam</title>
+    <title>JS-Array相关的方法总结 | Steam</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Steam">
     
-    <meta name="description" content="关于MVC，实际上分为前端 MVC 和传统的 MVC，尤雨溪在知乎的一个回答比较经典
-https://www.zhihu.com/question/20440717
-作者：尤雨溪链接：https://www.zhihu.com/question/20440717/answer/15684806来源：">
+    <meta name="description" content="数组相关的方法总结
+总共有多少个方法，哪些常用，哪些不常用。哪些是不会改变原始数组，只是返回新的数组，哪些是会改变原始数组。哪些是和字符串相关联的。哪些方法常用在那种情况下，比如 Array.prototype.slice.call(arguments)等等。
+还要写一篇关于字符串的类似的文章。">
     
     
     
@@ -94,10 +94,10 @@ var _hmt = _hmt || [];
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/08/14/JS-前端MVC和传统MVC的区别/" title="JS-前端MVC和传统MVC的区别" itemprop="url">JS-前端MVC和传统MVC的区别</a>
+      <a href="/2016/10/04/JS-Array相关的方法总结/" title="JS-Array相关的方法总结" itemprop="url">JS-Array相关的方法总结</a>
   </h1>
   <p class="article-time">
-    <time datetime="2016-08-14T07:15:26.000Z" itemprop="datePublished">2016-08-14</time>
+    <time datetime="2016-10-04T01:46:07.000Z" itemprop="datePublished">2016-10-04</time>
   </p>
 </header>
 	<div class="article-content">
@@ -108,14 +108,9 @@ var _hmt = _hmt || [];
 		
 		</div>
 		
-		<p>关于MVC，实际上分为前端 MVC 和传统的 MVC，尤雨溪在知乎的一个回答比较经典</p>
-<p><a href="https://www.zhihu.com/question/20440717" target="_blank" rel="external">https://www.zhihu.com/question/20440717</a></p>
-<p>作者：尤雨溪<br>链接：<a href="https://www.zhihu.com/question/20440717/answer/15684806" target="_blank" rel="external">https://www.zhihu.com/question/20440717/answer/15684806</a><br>来源：知乎<br>著作权归作者所有，转载请联系作者获得授权。</p>
-<p>服务器端的MVC，每次用户干了什么，流程大致是这样的：</p>
-<p>客户端发送请求 -&gt; 服务器触发Controller -&gt; 服务器进行Model各种操作 -&gt; 服务器根据Model数据渲染View -&gt; 服务器回复请求，包含了整个View的html -&gt; 客户端重新渲染整个页面，所有的css都又计算了一遍，所有的js都重新执行了一遍，所有的资源都重新请求了一遍（虽然可能已经cache了）</p>
-<p>前端MVC的话则是这样的（前端其实大部分是MV+X，不一定有Controller):</p>
-<p>客户端根据用户的行为修改客户端Model -&gt; 客户端更新和该Model相关的View -&gt; 客户端Model发送sync请求到服务器，只包含改变了哪些数据 -&gt; 服务器审核数据改动是否合法，只需回复是否修改成功 -&gt; 客户端收到成功，什么都不用做；不成功，则把刚才改的View改回来，然后通知用户。（当然，也可以在客户端的Model里面也加入审核机制，这样对不合法数据的反应更快，但还是得保留服务器端的审核）</p>
-<p>比较一下可以看到，前端MVC需要向服务器端传递和接收的数据量都少很多，而前端要做的等待和渲染工作也少了很多。换言之，会提供更快的交互反馈，也意味着更好的用户体验。同时，服务器端的负载也略有降低，因为基本上只需要在数据库上提供一个RESTful API即可。</p>
+		<p>数组相关的方法总结</p>
+<p>总共有多少个方法，哪些常用，哪些不常用。哪些是不会改变原始数组，只是返回新的数组，哪些是会改变原始数组。哪些是和字符串相关联的。哪些方法常用在那种情况下，比如 Array.prototype.slice.call(arguments)等等。</p>
+<p>还要写一篇关于字符串的类似的文章。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -130,7 +125,7 @@ var _hmt = _hmt || [];
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2016/08/14/JS-前端MVC和传统MVC的区别/" data-title="JS-前端MVC和传统MVC的区别 | Steam" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2016/10/04/JS-Array相关的方法总结/" data-title="JS-Array相关的方法总结 | Steam" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -140,18 +135,18 @@ var _hmt = _hmt || [];
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2016/08/24/others-关于-fallback-colors/" title="others-关于 fallback colors">
+ <a href="/2016/10/26/before-和-after-伪元素/" title=":before 和 :after 伪元素">
   <strong>新一篇:</strong><br/>
   <span>
-  others-关于 fallback colors</span>
+  :before 和 :after 伪元素</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2016/08/07/Git-gitignore-文件失效可能的原因/"  title="Git-.gitignore 文件失效可能的原因">
+<a href="/2016/09/30/JS-变量声明提升/"  title="JS-变量声明提升">
  <strong>旧一篇:</strong><br/> 
- <span>Git-.gitignore 文件失效可能的原因
+ <span>JS-变量声明提升
 </span>
 </a>
 </div>
@@ -161,7 +156,7 @@ var _hmt = _hmt || [];
 	
 <section class="comment">
 	
-	<div class="ds-thread" data-title="JS-前端MVC和传统MVC的区别" data-thread-key="JS-前端MVC和传统MVC的区别" data-author-key="Steam" data-url="http://yoursite.com/post/JS-前端MVC和传统MVC的区别"></div>
+	<div class="ds-thread" data-title="JS-Array相关的方法总结" data-thread-key="JS-Array相关的方法总结" data-author-key="Steam" data-url="http://yoursite.com/post/JS-Array相关的方法总结"></div>
 	
 </section>
 
