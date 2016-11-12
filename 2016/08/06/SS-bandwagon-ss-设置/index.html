@@ -104,16 +104,26 @@ var _hmt = _hmt || [];
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title"></strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#如何切换IP"><span class="toc-number">1.</span> <span class="toc-text">如何切换IP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#如何续费"><span class="toc-number">2.</span> <span class="toc-text">如何续费</span></a></li></ol>
 		</div>
 		
 		<p>科学上网有很多方法，购买 VPN 或者 SS 账号或者找免费的代理等等，但是作为一个计算机从业者，能够通过自己的技术手段实现科学上网是一件非常有成就感的事情。如何实现呢？通过购买搬瓦工的 vps，然后安装 ss(shadowsocks)，可以上 google。攻略如下：</p>
 <p><a href="http://www.tennfy.com/2083.html" target="_blank" rel="external">http://www.tennfy.com/2083.html</a></p>
-<p>有时候，自己购买的 VPS 会出现无法上网的情况，就需要切换 IP，关于<a href="http://www.tennfy.com/2020.html" target="_blank" rel="external">如何切换 ip </a>，在最下面“小结”之前，一般如果上不去外网的话，可以考虑更换一次 ip 然后再切换回来，就可以了。</p>
+<h2 id="如何切换IP"><a href="#如何切换IP" class="headerlink" title="如何切换IP"></a>如何切换IP</h2><p>有时候，自己购买的 VPS 会出现无法上网的情况，就需要切换 IP，关于<a href="http://www.tennfy.com/2020.html" target="_blank" rel="external">如何切换 ip </a>，在最下面“小结”之前，一般如果上不去外网的话，可以考虑更换一次 ip 然后再切换回来，就可以了。</p>
+<p>大概流程为：</p>
+<p>首先点击 bandwagon 主页右上角的 client area，填写账号密码登陆，然后选择 services / my services，然后点击 manage 下的 kiwiVMControlPanel 进入界面。</p>
+<p>进入界面之后选择左侧菜单中的 migrate to another DC，选择右侧五个选项中的一个，我试过 Netherlands，效果很差，速度奇慢，建议选择 Arizona，速度不错。然后选择 confirm on next step，成功之后会收到一封邮件，会告诉你迁移已经成功了，而且会告诉你新的 ip 地址。但是新的端口号和密码是多少呢？继续看 kiwiVMControlPanel 界面中左侧最下面的 Shadowsocks server就可以看到了。</p>
+<h2 id="如何续费"><a href="#如何续费" class="headerlink" title="如何续费"></a>如何续费</h2><p>自从买了 Bandwagon VPS 之后，科学上网就成了生活必不可少的一部分，一旦无法科学上网就觉得难受。所以买了 Bandwagon 服务之后肯定会续费，那么到底应该如何续费呢？网上找了一个攻略：<a href="http://www.banwagong.com/237.html" target="_blank" rel="external">关于续费的那些事</a>。不过为了防止页面丢失，这里也单独用文字记录一下：</p>
+<blockquote>
+<p>1、首先请注意，你的Services-My services里面，VPS后面的Renewal是不是ON的状态，如果是ON的状态，那么在服务到期前的6-7天，你会收到搬瓦工的账单，这时候就可以支付账单，续费VPS了。</p>
+<p>2、如果你的Renewal是OFF的状态，那就意味着，你的服务到期后会自动取消，你将不会收到续费的账单。如果你是不小心手滑点错了，那么赶紧写TK给客服，请他帮你设置成ON，越快越好，在到期前8天以内还可以帮你激活。如果你写TK的日期距离你VPS到期的时间少于8天了，那客服也帮不了你了。</p>
+<p>3、还有就是很多人问过提前续费的问题。这里搬瓦工有了很明确的说法，无法提供提前续费。但是你可以增加账户的余额。到时候就会直接从你余额里扣除续费的钱了。举个例子，续费日期正好在春节假期那几天，那几天又正好在老家，老家还没电脑，怎么办？写个Tk给客服，让他给你开一个”Add funds”的账单，也就是增加账户的余额的账单，你支付了这张账单，就不用担心这个问题了。当然，最低的充值金额是10美金。</p>
+<p>更多的咨询可以参考搬瓦工官方的文章<a href="https://bandwagonhost.com/knowledgebase/21/renewal.html" target="_blank" rel="external">https://bandwagonhost.com/knowledgebase/21/renewal.html</a></p>
+</blockquote>
 <p>很多朋友会好奇VPS SS 上网的原理是什么，这里有一篇文章讲的很好，引用过来供参考：<a href="http://vc2tea.com/whats-shadowsocks/" target="_blank" rel="external">写给非专业人士看的Shadowsocks简介</a>。</p>
 <p>阅读上面这篇文章的前提是你需要对 HTTP 网络连接如何实现有个了解，关于网络是如何实现连接的，极力推荐一本好书‘HTTP: The Definitive Guide’，中文名叫《HTTP权威指南》。这本书里对于HTTP / TCP / IP 以及代理、缓存、DNS 等等一系列网络概念有非常贴切的描述和比喻，例如在网上经常有人装逼用的“三次握手”，我看过很多文章都不理解，但是通过看这本书其实你会发现也没什么嘛！只不过是在建立HTTP连接之前进行的一个TCP连接过程而已，也不知道什么原因，可能是为了应试教育而故意提取出一些概念用来记忆吧。还有，之前总是不理解网络分层模型，如五层模型或者七层模型之类的，但是看完这本书的第一部分，再去看一些博客，就会对着概念很好理解了。这本书对于转行的我而言，如获至宝。推荐阅读英文原版，不理解或者看不懂的地方可以参阅中文版辅助理解。</p>
 <hr>
-<p>这篇博客会持续更新，本次更新时间20160913。</p>
+<p>这篇博客会持续更新，本次更新时间20161112。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
