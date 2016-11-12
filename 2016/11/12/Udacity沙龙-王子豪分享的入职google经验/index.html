@@ -4,15 +4,12 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>HTTP TCP IP 等的一些概念 | Steam</title>
+    <title>Udacity沙龙-王子豪分享的入职google经验 | Steam</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Steam">
     
-    <meta name="description" content="前言最近在看 ‘HTTP: The Definitice Guide’，这本书里关于 HTTP/TCP/IP 等的一些概念讲解的很贴切，而且很系统，更容易让人理解，这里摘录一些做翻译，便于以后查找。
-
-翻译Overview of HTTP &amp;gt; Connections, 13 页
-在 HTTP ">
+    <meta name="description" content="今天上午听了从 Udacity 的 Full stack 课程学出来的学员王子豪，讲如何学习以及如何进入 google 的情况。他说北理工2010-2014年的机械专业学生，大四交换去了伯克利学习，在那边开始学习 cs。工作一年之后开始学习 udacity 的 full stack 课程，相当于转专">
     
     
     
@@ -95,10 +92,10 @@ var _hmt = _hmt || [];
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/09/09/HTTP-TCP-IP-等的一些概念/" title="HTTP TCP IP 等的一些概念" itemprop="url">HTTP TCP IP 等的一些概念</a>
+      <a href="/2016/11/12/Udacity沙龙-王子豪分享的入职google经验/" title="Udacity沙龙-王子豪分享的入职google经验" itemprop="url">Udacity沙龙-王子豪分享的入职google经验</a>
   </h1>
   <p class="article-time">
-    <time datetime="2016-09-09T13:35:48.000Z" itemprop="datePublished">2016-09-09</time>
+    <time datetime="2016-11-12T04:05:58.000Z" itemprop="datePublished">2016-11-12</time>
   </p>
 </header>
 	<div class="article-content">
@@ -106,43 +103,32 @@ var _hmt = _hmt || [];
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title"></strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#翻译"><span class="toc-number">2.</span> <span class="toc-text">翻译</span></a></li></ol>
+		
 		</div>
 		
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在看 ‘HTTP: The Definitice Guide’，这本书里关于 HTTP/TCP/IP 等的一些概念讲解的很贴切，而且很系统，更容易让人理解，这里摘录一些做翻译，便于以后查找。</p>
-<hr>
-<h2 id="翻译"><a href="#翻译" class="headerlink" title="翻译"></a>翻译</h2><p>Overview of HTTP &gt; Connections, 13 页</p>
-<p>在 HTTP 客户端可以向服务器发送请求之前，客户端和服务端需要通过 Internet protocol address(因特网协议地址，即IP地址) 和 port numbers(端口号)来建立客户端和服务器端之间的联系。</p>
-<p>设置 TCP 连接有点像给公司办公室的某个人打电话。首先你需要拨通公司的电话，这一步让你找到正确的组织。接着你再拨通你想要找的人的分机号。（–steam comment–，这里把 IP 地址比喻成公司总机电话，而把端口号比喻成分机号）</p>
-<p>在 TCP 中，你需要服务器电脑的 IP 地址和 TCP 的端口号，这个端口号与运行在服务器上的具体的软件程序相关联。</p>
-<p>这种方式很好，但是你如何能够获取 IP 地址和 HTTP 端口号呢？还记得吗？！当然是用 URL 啊！我们之前说过，URL 是资源的地址，所以 URL 可以给我们提供拥有资源的机器的 IP 地址，这再自然不过了！我们来看几个 URL 的例子：</p>
-<ul>
-<li><a href="http://207.200.83.29:80/index.html" target="_blank" rel="external">http://207.200.83.29:80/index.html</a></li>
-<li><a href="http://www.netscape.com:80/index.html" target="_blank" rel="external">http://www.netscape.com:80/index.html</a></li>
-<li><a href="http://www.netscape.com/index.html" target="_blank" rel="external">http://www.netscape.com/index.html</a></li>
-</ul>
-<p>第一个 URL 拥有机器的 IP 地址，’207.200.83.29’，以及端口地址，’80’。</p>
-<p>第二个 URL 没有数字的 IP 地址，而是一个文本域名，或者称为主机名（“www.netscape.com”）。主机名相比于 IP 地址而言是一个更人性化的代号。主机名，借助 Domain Name Service （DNS），可以非常轻松地转化为 IP 地址，所以，我们又回到了这里。我们将会在第二章中详细讨论 DNS 和 URL。</p>
-<p>最后一个 URL 没有端口号。当 HTTP URL 中没有端口号的时候，你可以默认端口号的值是 80。</p>
-<p>通过 IP 地址和端口号，用户可以很容易地通过 TCP/IP 进行交流。图1-10所展示的就是浏览器如何通过 HTTP 来呈现一个简单的驻扎在远程服务器上的 HTML 资源。</p>
-<p>下面是整个过程：</p>
-<p>a. 浏览器从 URL 中提取服务器主机名。<br>b. 浏览器将服务器主机名转化为服务器 IP 地址。<br>c. 浏览器从 URL 中提取端口号，如果有的话。<br>d. 浏览器和服务器之间建立 TCP 连接。<br>e. 浏览器发送 HTTP 请求信息给服务器。<br>f. 服务器返回 HTTP 响应给浏览器。<br>g. 连接终止，浏览器展示文档。</p>
-<p><img src="HTTPTCPIP.png" alt="image"></p>
-<p>关于 DNS 相关的文章，参考下面两篇</p>
-<ul>
-<li><a href="http://computer.howstuffworks.com/dns.htm" target="_blank" rel="external">How Domain Name Servers Work</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Domain_Name_System" target="_blank" rel="external">Domain Name System</a></li>
-</ul>
-<p>GET 和 POST 请求的不同点在这本书里可以看到一个：</p>
-<p>GET 没有 Message Body 而 POST 有</p>
-<p><img src="./GETvsPOST.png" alt="get 和 post 的区别"></p>
+		<p>今天上午听了从 Udacity 的 Full stack 课程学出来的学员王子豪，讲如何学习以及如何进入 google 的情况。他说北理工2010-2014年的机械专业学生，大四交换去了伯克利学习，在那边开始学习 cs。工作一年之后开始学习 udacity 的 full stack 课程，相当于转专业并且边工作边学习最后进入了 google。Udacity 中国组织了一个沙龙，其实就是线上的一个直播活动，在红点直播，根据他的一些经验，我听得过程中简单总结了几点，记录下来：</p>
+<ol>
+<li>google 只面试算法，不面其他的内容。</li>
+<li>算法主要做了 leetcode 上面的内容</li>
+<li>google 面试当时面了5轮，5轮基本都是算法题。在美国面试 facebook 和 google， 必须学会算法，比如tree map, hash map这些，会问你为什么会选这个数据结构而不选另外一个数据结构，为什么用 dfs 而不用 bfs，这其实就是考你对这些数据结构和算法的一个真正的了解程度。最后要达到的效果是，比较难得算法，聊着聊着 20 min 能出来结果，如果是简单的算法则基本上10分钟之内要写出代码，很快给出思路。举了一个例子，比如24的所有组合情况，1x24, 2x12, 3x8, 2x2x6, 用 DFS，因为是包含了所有的可能性，两个数相乘，三个数相乘都有。但是如果要所有两个数的组合则用 BFS。</li>
+<li>为什么从 python 转了 java：因为python 的 api 太多了，会把所有的东西直接给你了，很多东西不需要你知道算法，直接调用 api 就可以了。所以从 python 转 java。而之所以没选 c，是因为java 又没有 c 那么基础，最后取了个中间的，就是 java。而且 google 内部 java, python, c++ 比较主流，而 java 最主流。</li>
+<li>对于国内来说，基本上要拿到 acn(acm?) 竞赛的人才能拿到国内 google 的面试机会。</li>
+<li>美国会对转专业的计算机学生会有偏见吗？会！</li>
+<li>为什么选 udacity：感觉udacity 的课程比 courseera 好，因为 courseera 讲解的比较基础，但是 udacity 讲解实际应用方面的比较多，很多讲师本来就是 google facebook 的工程师，所以讲解的比较实际。我修的课程是 udacity 的 full stack。</li>
+<li>如何找工作：我是通过有朋友内推进去的，但是其实你也可以在 linkedin 在上面找找你想去的公司的人，然后给他发简历，发邮件说你想去，会有些人会帮忙，但也不一定。</li>
+<li>假如你在准备图（一种数据结构？不知道，map吗？），bfs 和 dfs，给你一个矩阵 matrix， n*n， 有些是 1 有些是0， 1连起来的是岛， 有三个问题：1.有多少座岛。2.问你湖的面积有多少（被岛围起来的就是湖）。3. 我现在要填海造陆，或者填湖造陆，问你每一步动态变化的时候岛和陆地怎么变化。</li>
+<li>面 yellowpage（也是一个网络公司？） 和 google 的时候都是白板写代码， 前提是你的交流要很好，而且对整个算法很了解，不能在白板上东写一块西写一块，而且又会擦来擦去，最后的效果就不好了。</li>
+<li>美国对三年以下工作经验的人基本不会问设计方面的问题，比如线程的具体实现，以及本质这些。</li>
+<li>如何刷算法题：leetcode 至少要做到 300 多道题，而且要做到两遍以上。我加了一个算法的培训班，很贵，但是挺好的，先不做广告了，可以加微信再聊。</li>
+<li>很多 python 的算法，直接调用 api 就可以了。但是 java 不是，比较系统。sort 总共有多少种？每种都是什么优劣，以及使用的场景等等。</li>
+</ol>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/network/">network</a>
+  <span></span> <a href="/tags/Udacity-Google/">Udacity Google</a>
   </div>
 
 
@@ -150,7 +136,7 @@ var _hmt = _hmt || [];
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2016/09/09/HTTP-TCP-IP-等的一些概念/" data-title="HTTP TCP IP 等的一些概念 | Steam" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2016/11/12/Udacity沙龙-王子豪分享的入职google经验/" data-title="Udacity沙龙-王子豪分享的入职google经验 | Steam" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -159,19 +145,11 @@ var _hmt = _hmt || [];
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/09/15/mac-macbook-存储空间中的其他是什么/" title="mac-macbook 存储空间中的其他是什么">
-  <strong>New:</strong><br/>
-  <span>
-  mac-macbook 存储空间中的其他是什么</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/08/30/nodejs-tips-on-nodejs-and-expressjs-and-so-on/"  title="nodejs-tips on nodejs and expressjs and so on">
+<a href="/2016/10/26/before-和-after-伪元素/"  title=":before 和 :after 伪元素">
  <strong>Old:</strong><br/> 
- <span>nodejs-tips on nodejs and expressjs and so on
+ <span>:before 和 :after 伪元素
 </span>
 </a>
 </div>
@@ -181,7 +159,7 @@ var _hmt = _hmt || [];
 	
 <section class="comment">
 	
-	<div class="ds-thread" data-title="HTTP TCP IP 等的一些概念" data-thread-key="HTTP-TCP-IP-等的一些概念" data-author-key="Steam" data-url="http://yoursite.com/post/HTTP-TCP-IP-等的一些概念"></div>
+	<div class="ds-thread" data-title="Udacity沙龙-王子豪分享的入职google经验" data-thread-key="Udacity沙龙-王子豪分享的入职google经验" data-author-key="Steam" data-url="http://yoursite.com/post/Udacity沙龙-王子豪分享的入职google经验"></div>
 	
 </section>
 
