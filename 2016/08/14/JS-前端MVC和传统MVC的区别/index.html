@@ -9,9 +9,7 @@
     
     <meta name="author" content="Steam">
     
-    <meta name="description" content="关于MVC，实际上分为前端 MVC 和传统的 MVC，尤雨溪在知乎的一个回答比较经典
-https://www.zhihu.com/question/20440717
-作者：尤雨溪链接：https://www.zhihu.com/question/20440717/answer/15684806来源：">
+    <meta name="description" content="关于MVC，实际上分为前端 MVC 和传统的 MVC，这个概念是由 JC 告诉我的，但是我一直没有能够理解。后来在网上找了一些资料，再加上项目上的一些实践，慢慢的对这个概念有些深入的理解了，现在的感觉就是似乎这个前端 MVC 其实就是把后端的一些操作放在了前端，本质就是为了让用户和机器的几乎能够更加">
     
     
     
@@ -105,17 +103,78 @@ var _hmt = _hmt || [];
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title"></strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Quora-What-are-the-differences-between-MVC-on-the-frontend-and-MVC-on-the-backend"><span class="toc-number">1.</span> <span class="toc-text">Quora - What are the differences between MVC on the frontend and MVC on the backend?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Quora-Why-do-we-need-two-mvc-for-a-web-app-both-for-frontend-and-backend"><span class="toc-number">2.</span> <span class="toc-text">Quora - Why do we need two mvc for a web app both for frontend and backend?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#知乎-前端-MVC-和服务器端有哪些差别？"><span class="toc-number">3.</span> <span class="toc-text">知乎 - 前端 MVC 和服务器端有哪些差别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其他"><span class="toc-number">4.</span> <span class="toc-text">其他</span></a></li></ol>
 		</div>
 		
-		<p>关于MVC，实际上分为前端 MVC 和传统的 MVC，尤雨溪在知乎的一个回答比较经典</p>
-<p><a href="https://www.zhihu.com/question/20440717" target="_blank" rel="external">https://www.zhihu.com/question/20440717</a></p>
+		<p>关于MVC，实际上分为前端 MVC 和传统的 MVC，这个概念是由 JC 告诉我的，但是我一直没有能够理解。后来在网上找了一些资料，再加上项目上的一些实践，慢慢的对这个概念有些深入的理解了，现在的感觉就是似乎这个前端 MVC 其实就是把后端的一些操作放在了前端，本质就是为了让用户和机器的几乎能够更加快捷，不知道自己的理解对不对。下面有两篇文章我觉得写得都不错，尤其推荐Quora上的这个问题的回答，解释的非常清楚。</p>
+<h3 id="Quora-What-are-the-differences-between-MVC-on-the-frontend-and-MVC-on-the-backend"><a href="#Quora-What-are-the-differences-between-MVC-on-the-frontend-and-MVC-on-the-backend" class="headerlink" title="Quora - What are the differences between MVC on the frontend and MVC on the backend?"></a>Quora - What are the differences between MVC on the frontend and MVC on the backend?</h3><p><a href="https://www.quora.com/What-are-the-differences-between-MVC-on-the-frontend-and-MVC-on-the-backend" target="_blank" rel="external">原文链接</a></p>
+<p>Fernando Zamora的回答：</p>
+<blockquote>
+<p>MVC stands for model view controller.</p>
+<p>The model is basically your business logic. The model is all your entities, your value objects, anything related to the business logic. It also makes use of data objects (repositories, etc.) to perform the CRUD operation.</p>
+<p>The view is the user interface. It is usually the presentation. Usually the view performs minimal programming logic mostly related to organizing the presentation of the data.</p>
+<p>The controller is the mediator between the user’s request and the model.</p>
+<p>With that said MVC on the back end means that whenever a http request comes in the Controller handles the operation by handing over the received data and communicating with the model. After it coordinates the operation typically it responds to the client by sending down a view. A view usually consists of some script that combines the view model with HTML. The view engine works the magic to generate HTML from this script. The script can be in the form of JSP, Razor scripts, PHP etc. The controller sends back that HTML, well not directly since there is usually an entire framework that handles the response details but to you as a user of that MVC framework it appears the controller sends it. All these operations take place on the back end. This is MVC on the back end.</p>
+<p>With MVC on the front end there is usually a framework, typically written in JavaScript(or maybe always a JavaScript framework). You leverage that framework to perform the MVC logic on the client. That framework is responsible for handling templates and combining them with logic to render dynamic web pages. The controller still handles a lot of the work going on but it’s going in the client. All the templates usually get downloaded only once and they are manipulated with logic as needed. To fetch data you can utilize some of the frameworks code to perform the calls to the back end. The framework likely uses AJAX (with Json usually) fetch the data. The requests receive the data and the controller maps that data to entries on HTML templates which render the dynamic page.</p>
+<p>The main difference between MVC on the client and MVC on the back end is that with MVC on the front end there is minimal code running on the server. The server is mainly used for handling web API requests which respond with JSON data. The back end is quite light weight. With MVC on the back end you are receiving the full HTML page every time.</p>
+<p>Another notable difference is that MVC on the front end will seem more responsive since you are relying on JavaScript for changing your views around. Buttons show and hide in an instant. Views show and hide as well. Controls can double bind easily meaning that as you enter data in one control it updates another control in real time.</p>
+<p>MVC on the front end may increase the handling capabilities of your server because it has a lighter load. On the flip side, if you have large JavaScript files it can actually create download and bandwidth issues for your users.</p>
+<p>For MVC on the back end you have the choice of many different languages; Java, C#, Ruby, JavaScript(Node), PHP, etc. Each one of these with their own MVC framework.</p>
+<p>With MVC on the front end you have a choice of different frameworks or libraries which all rely on JavaScript.</p>
+<p>MVC on the client in may cases is also referred to as single page application (SPA) since all you are doing is manipulate UI templates around the single page.</p>
+</blockquote>
+<hr>
+<p>Alex Rogachevsk 的回答：</p>
+<blockquote>
+<p>Technically MVC entirely resides in the physical “back-end” i.e. the Web server, rather than the browser. The page is completely rendered there and sent to the browser as an HTTP reply. Anything it produces e.g. JavaScript lives its own life.</p>
+<p>Some may refer to the “V” (view) as the “front end” since it (e.g. a JSP page or Groovy template) represents your templated HTML.</p>
+<p>Honestly I don’t know how AJAX fits into MVC other than those “cargo” calls are commonly fulfilled by Spring MVC Controllers - that definitely lack the View. They return the raw Model directly e.g. in JSON form.</p>
+<p>If you want to impress someone at the interview with your deep understanding of the MVC pattern, you can also google MVC1 vs. MVC2. No one has used MVC1 since 2000.</p>
+<p>There is also a lesser known, but just as powerful MVP (Model, View, Presenter) pattern originated in 100% client-side frameworks like GWT and later influenced also 100% front-end Android API.</p>
+</blockquote>
+<hr>
+<p>Miguel Paraz 的回答：</p>
+<blockquote>
+<p>“MVC on the back-end”, with frameworks such as Spring MVC, means that the dynamic code and data that make up the MVC all reside on the server, but it is not purely back-end because the view is rendered on the browser. In its purest form, the MVC is implemented by full page refreshes as there is no dynamic code to do the redrawing on the browser.</p>
+<p>“MVC on the front-end” with JavaScript frameworks move the model, view and controller to dynamic code and data running in the browser. This makes it closer to the original idea of MVC designed for desktop GUI applications. To make it more confusing, these frameworks can talk to the back-end using RESTful endpoints implemented with the Spring MVC framework - but using Spring this way is not making use of the MVC pattern.</p>
+</blockquote>
+<h3 id="Quora-Why-do-we-need-two-mvc-for-a-web-app-both-for-frontend-and-backend"><a href="#Quora-Why-do-we-need-two-mvc-for-a-web-app-both-for-frontend-and-backend" class="headerlink" title="Quora - Why do we need two mvc for a web app both for frontend and backend?"></a>Quora - Why do we need two mvc for a web app both for frontend and backend?</h3><p><a href="https://www.quora.com/Why-do-we-need-two-mvc-for-a-web-app-both-for-frontend-and-backend" target="_blank" rel="external">原文链接</a></p>
+<p>这个回答也讲解的非常好！</p>
+<p>Cheng Lou 的回答：</p>
+<p>I’ll assume for the sake of the question that the front-end is really a MVC, although currently most popular front-end paradigms are MV* (as in, something).</p>
+<p>That’s because these two MVCs don’t fill the same role, and the fact both ends are using the same paradigm is simply due to the effectiveness of it.</p>
+<p>The Model:</p>
+<p>Server-side: connection to database to retrieve/store info: get a list of student names.<br>Client-side: structuring AJAX data: get a JSON representation of student names, store it for easy manipulation in an object with convenient methods such as delete (which, say, triggers a DELETE request to the server).</p>
+<p>The Controller:</p>
+<p>Server-side: the coordinator between data and views: the client requested a page which needs the list of student names; get it from the model and insert it into a determined view, then send it.<br>Client-side: same here. In some cases it also takes care of routing, i.e. changing the URL without refreshing the page (simply request another JSON to fill the page).</p>
+<p>The View:</p>
+<p>Server-side: most probably a template html page, that the controller takes as a big string and insert data where needed: loop through the student names and generate a line of ‘<li>studentName[i]</li>‘ each time. At the end, you get a valid html string.<br>Client-side: manipulates the UI, add interactivity: make students whose family name start with ‘A’ flashy red, and when hovered, display more info.</p>
+<p>The big reason why there are two MVCs is because the front end cannot communicate directly with a server database, and the back end cannot dynamically update UI and respond to interactivity. The two MVCs do different jobs.</p>
+<p>That being said, a while ago, and if you really stretch the definition of ‘web app’, serving plain, JavaScript-less static pages was viable. In that case, There’s no need for a client-side paradigm. You click on a page, it triggers a request to server, which uses MVC to send you another page, rinse and repeat. Some might recall those click-refresh-click games made in PHP back then.</p>
+<p>But the modern web apps need interactivity; you can’t possibly create a good experience by refreshing the screen each time you make an action. Can you imagine Facebook refreshing each time you send a message to your buddy?</p>
+<p>Side notes:</p>
+<ol>
+<li><p>Meteor tries to change this, at least on the apparance, by “merging” client-side and server-side through Node.js (JavaScript on the server). This can alleviate some pain.</p>
+</li>
+<li><p>Theoretically, if there exists a client-side view system so powerful that you can just take the data and feed it to a UI without worrying too much about organizing data and coordinate it with controllers, then you could also eliminate a big chunk of the need of a front end MVC.</p>
+</li>
+</ol>
+<h3 id="知乎-前端-MVC-和服务器端有哪些差别？"><a href="#知乎-前端-MVC-和服务器端有哪些差别？" class="headerlink" title="知乎 - 前端 MVC 和服务器端有哪些差别？"></a>知乎 - 前端 MVC 和服务器端有哪些差别？</h3><p><a href="https://www.zhihu.com/question/20440717" target="_blank" rel="external">原文链接</a></p>
+<p>尤雨溪的回答</p>
 <p>作者：尤雨溪<br>链接：<a href="https://www.zhihu.com/question/20440717/answer/15684806" target="_blank" rel="external">https://www.zhihu.com/question/20440717/answer/15684806</a><br>来源：知乎<br>著作权归作者所有，转载请联系作者获得授权。</p>
 <p>服务器端的MVC，每次用户干了什么，流程大致是这样的：</p>
 <p>客户端发送请求 -&gt; 服务器触发Controller -&gt; 服务器进行Model各种操作 -&gt; 服务器根据Model数据渲染View -&gt; 服务器回复请求，包含了整个View的html -&gt; 客户端重新渲染整个页面，所有的css都又计算了一遍，所有的js都重新执行了一遍，所有的资源都重新请求了一遍（虽然可能已经cache了）</p>
 <p>前端MVC的话则是这样的（前端其实大部分是MV+X，不一定有Controller):</p>
 <p>客户端根据用户的行为修改客户端Model -&gt; 客户端更新和该Model相关的View -&gt; 客户端Model发送sync请求到服务器，只包含改变了哪些数据 -&gt; 服务器审核数据改动是否合法，只需回复是否修改成功 -&gt; 客户端收到成功，什么都不用做；不成功，则把刚才改的View改回来，然后通知用户。（当然，也可以在客户端的Model里面也加入审核机制，这样对不合法数据的反应更快，但还是得保留服务器端的审核）</p>
 <p>比较一下可以看到，前端MVC需要向服务器端传递和接收的数据量都少很多，而前端要做的等待和渲染工作也少了很多。换言之，会提供更快的交互反馈，也意味着更好的用户体验。同时，服务器端的负载也略有降低，因为基本上只需要在数据库上提供一个RESTful API即可。</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>通过 google 或者 bing 可以搜索到很多关于这方面的问答、博客、文章。下面这些内容，讲的也非常好，但是时间关系，先将内容列出来，然后再慢慢阅读、消化、总结。</p>
+<ul>
+<li><a href="http://joomlatuts.net/joomla-2-5/87-how-backend-model-view-controller-mvc-works-in-joomla/98-difference-between-frontend-and-backend-mvc" target="_blank" rel="external">http://joomlatuts.net/joomla-2-5/87-how-backend-model-view-controller-mvc-works-in-joomla/98-difference-between-frontend-and-backend-mvc</a></li>
+<li><a href="https://www.quora.com/What-is-the-difference-between-front-end-and-back-end-development" target="_blank" rel="external">https://www.quora.com/What-is-the-difference-between-front-end-and-back-end-development</a></li>
+<li><a href="https://www.quora.com/What-are-the-main-differences-between-MVC-MVP-and-MVVM-design-patterns-for-the-JavaScript-developer" target="_blank" rel="external">https://www.quora.com/What-are-the-main-differences-between-MVC-MVP-and-MVVM-design-patterns-for-the-JavaScript-developer</a></li>
+<li><a href="https://www.quora.com/Whats-the-difference-between-MVC-vs-MVVM" target="_blank" rel="external">https://www.quora.com/Whats-the-difference-between-MVC-vs-MVVM</a></li>
+</ul>
+<p>– 更新于 2016.11.14</p>
   
 	</div>
 		<footer class="article-footer clearfix">
