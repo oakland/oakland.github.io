@@ -62,7 +62,7 @@ var _hmt = _hmt || [];
 				<h1 class="site-name"><a href="/" title="Steam">Steam</a></h1>
 				<h2 class="blog-motto">DREAM makes you different</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -80,7 +80,7 @@ var _hmt = _hmt || [];
 						</form>
 					
 					</li>
-                <!--<li><div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div></li>-->
+                <!--<li><div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div></li>-->
 
 				</ul>
 			</nav>	
@@ -107,15 +107,15 @@ var _hmt = _hmt || [];
 		</div>
 		
 		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>第一次听说 jsonp 还是我刚开始转行找工作的时候。那个时候为了应付面试，匆匆忙忙在网上找了几篇文章看了下，才勉强应付过去面试官的提问。当时看了很多文章，对于 jsonp 的理解就是用一个 script 标签去请求资源，这样的话不受域的限制。但是什么是跨域，以及实现的内在原理，还有文章中所说的 callback，以及参数等等的概念还不是很了解。</p>
-<p>工作之后，会接触到很多的后端工程师，再加上自己计算机知识的拓展，尤其是当看了一部分《http 权威指南》之后，对于整个前后端的交互理解就更深入了一些，这个时候再去看关于 jsonp 的内容，就会发现理解起来更加容易些了。</p>
-<p>本文就把这些内容做一个整理和总结，同时把一些比较好的参考资料也罗列出来，供以后参考或者其他朋友深入了解。</p>
+<p>工作之后，会接触到很多的后端工程师，再加上自己计算机知识的拓展，尤其是当看了一部分《http 权威指南》之后，对于整个前后端的交互理解就更深入了一些，这个时候再去看关于 jsonp 的内容，就会发现理解起来更加容易些了。所以在这里强烈安利一下《http 权威指南》这本书，不论是前端还是后端都值得看！</p>
+<p>本文就把这些内容做一个整理和总结，同时把一些比较好的参考资料也罗列出来，供以后参考或者读者深入了解。</p>
 <h2 id="跨域"><a href="#跨域" class="headerlink" title="跨域"></a>跨域</h2><p>在了解什么是 jsop，以及如何实现 jsonp 这些细节之前，我们需要先了解为什么有 jsonp，或者说 jsonp 的背景是什么。</p>
-<p>通常情况下，前后端的交互，就是浏览器向服务器发送一个请求，而服务器会给浏览器返回一个响应，就这么简单。但是默认情况下，我们所请求的内容，都必须是同源的，也就是说由同一个服务器提供的。浏览器是不允许跨域请求，是因为跨域可能会出现安全问题。因为跨域之后不论是请求还是响应，都可能会有各种各样的风险。就好像同一个公司的同事，我们可以共享资源，共享内容，但是如果你一旦跨公司了，那么你透露出去的信息有可能会被泄露，或者别人返回给你的信息可能会是恶意信息，这些都不由我们控制了。</p>
+<p>通常情况下，前后端的交互，就是浏览器向服务器发送一个请求，而服务器会给浏览器返回一个响应，就这么简单。但是默认情况下，我们所请求的内容，都必须是同源的，也就是说由同一个服务器提供的。浏览器是不允许跨域请求，是因为跨域可能会出现安全问题。跨域之后不论是请求还是响应，都可能会有各种各样的风险。就好像同一个公司的同事，我们可以共享资源，共享内容，但是如果你一旦跨公司了，那么你透露出去的信息有可能会被泄露，或者别人返回给你的信息可能会是恶意信息，这些都不由我们控制。</p>
 <p>我们目前大多数的请求都是通过 ajax 实现，而 ajax 实现的是同源的请求。而我们讲 jsonp 实现的是跨域请求，那么什么跨域呢？</p>
 <p>只要是协议、域名、端口有任何一个不同，就是一个跨域的请求。</p>
 <h2 id="jsonp-的具体实现说明"><a href="#jsonp-的具体实现说明" class="headerlink" title="jsonp 的具体实现说明"></a>jsonp 的具体实现说明</h2><p>jsonp 其实就是动态创建一个 script 标签，将这个标签的 src 属性修改为想要请求的 url，同时在这个 url 中传递两个信息，一个是参数信息，就是要发送给服务器的参数，另一个是回调函数的名称，即经常说的 callback 的函数名。然后当服务器返回数据之后，通过 callback 实现对数据的处理。一个非常简单的例子就是：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function cb(data) &#123;</div><div class="line">    document.getElementById(&apos;output&apos;).innerHTML(data);</div><div class="line">&#125;</div><div class="line"></div><div class="line">var tag = document.createElement(&apos;script&apos;);</div><div class="line">tag.src = &apos;http://flightQuery.com/jsonp/flightResult.aspx?code=CA1998&amp;callback=cb&apos;</div><div class="line">document.getElementsByTagName(&apos;head&apos;)[0].appendChild(tag);</div></pre></td></tr></table></figure>
-<p>上面这段代码就是相当于向不同的域发起了一个请求，并且要求请求回来的内容再通过 cb 这个函数进行执行。</p>
+<p>上面这段代码就是相当于向不同的域发起了一个请求，提供了一个请求的参数——CA1998，以及一个回调函数的名字——cb。而响应回来的就是一个 cb({key1:value1, key2:value2}) 这样的形式。所以说 ajax 请求返回的的内容是一个 json（大多数情况下），而 jsonp 返回的是一个执行函数，这个函数是提前定义好的，并且是全局的，而后端通过处理之后返回这个回调函数的执行状态，到了前端就会自动执行。</p>
 <h2 id="使用-jQuery-实现-jsonp"><a href="#使用-jQuery-实现-jsonp" class="headerlink" title="使用 jQuery 实现 jsonp"></a>使用 jQuery 实现 jsonp</h2><p>jQuery 等前端库实现了对 jsonp 的封装，我们可以直接使用，下面就是参考资料中的一个示例</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">jQuery(document).ready(function()&#123; </div><div class="line">        $.ajax(&#123;</div><div class="line">             type: &quot;get&quot;,</div><div class="line">             async: false,</div><div class="line">             url: &quot;http://flightQuery.com/jsonp/flightResult.aspx?code=CA1998&quot;,</div><div class="line">             dataType: &quot;jsonp&quot;,</div><div class="line">             jsonp: &quot;callback&quot;,</div><div class="line">             jsonpCallback:&quot;flightHandler&quot;,//自定义的jsonp回调函数名称，默认为jQuery自动生成的随机函数名，也可以写&quot;?&quot;，jQuery会自动为你处理数据</div><div class="line">             success: function(json)&#123;</div><div class="line">                 alert(&apos;您查询到航班信息：票价： &apos; + json.price + &apos; 元，余票： &apos; + json.tickets + &apos; 张。&apos;);</div><div class="line">             &#125;,</div><div class="line">             error: function()&#123;</div><div class="line">                 alert(&apos;fail&apos;);</div><div class="line">             &#125;</div><div class="line">         &#125;);</div><div class="line">     &#125;);</div></pre></td></tr></table></figure>
 <hr>
@@ -148,7 +148,7 @@ var _hmt = _hmt || [];
 
 <div class="next">
 <a href="/2017/02/08/如何不翻墙安装chrome插件/"  title="如何不翻墙安装chrome插件">
- <strong>Old:</strong><br/> 
+ <strong>舊一篇:</strong><br/> 
  <span>如何不翻墙安装chrome插件
 </span>
 </a>
