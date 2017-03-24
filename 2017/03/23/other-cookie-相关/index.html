@@ -10,8 +10,7 @@
     <meta name="author" content="Steam">
     
     <meta name="description" content="前言作为一个转行的前端，其实对计算机的基础了解的太少，所以前端和后端交互的很多事情都不是很清楚。今天看了很多和 cookie 相关的文章，正好找到一篇从头开始介绍 cookie 的文章，写的非常好。值得记录下来。
-参考cookie 在前端中的实践
-这篇文章以一个 express 实践为例，从头开始给">
+什么是 cookie如果一个计算机知识或者原理可以用一个比喻来形容的话，对于读者其实是">
     
     
     
@@ -64,7 +63,7 @@ var _hmt = _hmt || [];
 				<h1 class="site-name"><a href="/" title="Steam">Steam</a></h1>
 				<h2 class="blog-motto">DREAM makes you different</h2>
 			</div>
-			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
 			</a></div>
 			<nav class="animated">
 				<ul>
@@ -82,7 +81,7 @@ var _hmt = _hmt || [];
 						</form>
 					
 					</li>
-                <!--<li><div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div></li>-->
+                <!--<li><div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div></li>-->
 
 				</ul>
 			</nav>	
@@ -105,12 +104,22 @@ var _hmt = _hmt || [];
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title"></strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">2.</span> <span class="toc-text">参考</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是-cookie"><span class="toc-number">2.</span> <span class="toc-text">什么是 cookie</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">3.</span> <span class="toc-text">参考</span></a></li></ol>
 		</div>
 		
 		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>作为一个转行的前端，其实对计算机的基础了解的太少，所以前端和后端交互的很多事情都不是很清楚。今天看了很多和 cookie 相关的文章，正好找到一篇从头开始介绍 cookie 的文章，写的非常好。值得记录下来。</p>
+<h2 id="什么是-cookie"><a href="#什么是-cookie" class="headerlink" title="什么是 cookie"></a>什么是 cookie</h2><p>如果一个计算机知识或者原理可以用一个比喻来形容的话，对于读者其实是最好的。我也喜欢用比喻来说明一些计算机知识。对于 cookie 而言也是一样。我们把 cookie 打个比喻来进行说明。浏览器发起一个请求，服务器会返回一个响应，这就是计算机网络通信的基本内容。那么 cookie 在哪个过程中出现，又在什么时候使用呢？</p>
+<p>通常情况下，cookie 首次是由服务器设置好的，然后之后就会由浏览器发给服务器，而服务器则会根据不同的 cookie 返回给浏览器个性化的内容。就好像一个人去了商店之后，商店给这个人一个 vip 的编号，之后这个人每次去这个商店都会带着这个 vip 的编号，只要带着这个编号，商店都会认识这个人，知道这个人之前买过什么东西，这次可能会买什么东西，从而给这个顾客推荐更个性化的内容。而这个编号有时候会设置一些内容，比如 expire / max-age, path 等等。对于 expire / max-age 而言，就好像这个 vip 的卡是有有效期的，过了这个有效期，商店就需要重新给你发一个 vip 卡一样。而 path 则表示商店的不同的部门，或者品类才会用到这个 vip 卡，比如商店规定这个 vip 只适用于水果品类，你去商店的其他品类，比如肉类，则肉类是完全不认识这个 vip 卡的。</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://segmentfault.com/a/1190000007243675" target="_blank" rel="external">cookie 在前端中的实践</a></p>
 <p>这篇文章以一个 express 实践为例，从头开始给我们讲解了一个 cookie 的产生和使用。对于很多转行的前端来说是很好的一篇文章。</p>
+<p>这篇文章中 <a href="https://segmentfault.com/a/1190000007243675#articleHeader6" target="_blank" rel="external">expire / max-age</a> 这部分，还在实例的代码中使用了 ES6 中的模板字面量(templateStrings) 和箭头函数(arrow function)，也是值得细看的。这篇文章的讲解非常详细，读下来之后对 cookie 基本就了解了。</p>
+<p><a href="http://mertensming.github.io/2016/10/19/cookie-session/#more" target="_blank" rel="external">cookie 和 session的使用简记</a></p>
+<p>这篇文章是上一篇文章列出来的参考文章，我觉得也是写的很好，从一个后端的角度来看 cookie。</p>
+<p><a href="http://www.runoob.com/html/html5-webstorage.html" target="_blank" rel="external">html5 web存储</a></p>
+<p>除了 cookie，还有 webStorage 也是和 cookie 经常一起出现的概念。对于 storage 这个概念我理解的还不是很深刻。这篇文章是 runoob 上的一篇介绍 Storage 的文章，其中有个应用是输入 网站名和 url ，可以通过网站名获取 url 的一个实例，我觉得对于理解 storage 的概念还是比较有帮助。目前还在理解中，希望后续可以对于 webStorage 有更深刻的理解。</p>
+<p><a href="https://hongqinma.github.io/2016/11/01/s012-Cookie%E3%80%81Session-%E5%AD%98%E5%82%A8/" target="_blank" rel="external">cookie、session的存储技术</a></p>
+<p>这篇文章对于 cookie 和 session 的解释也比较全面，其中 cookie 的使用场景这个小节对于理解 cookie 的作用有很大的帮助。</p>
+<p>而 在express中使用express-session 中间件 这部分的内容中的代码，也很好的解释了 session 的功能。</p>
 <hr>
 <p>first published on 2017.3.23</p>
   
@@ -139,7 +148,7 @@ var _hmt = _hmt || [];
 
 <div class="next">
 <a href="/2017/03/20/JS-跨域和jsonp/"  title="JS-跨域和jsonp">
- <strong>舊一篇:</strong><br/> 
+ <strong>Old:</strong><br/> 
  <span>JS-跨域和jsonp
 </span>
 </a>
