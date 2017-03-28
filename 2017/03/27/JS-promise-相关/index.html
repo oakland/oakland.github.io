@@ -110,6 +110,18 @@ var _hmt = _hmt || [];
 		<h2 id="promise-的流程"><a href="#promise-的流程" class="headerlink" title="promise 的流程"></a>promise 的流程</h2><p>基本的构造是这样： new Promise().then().catch()</p>
 <p>new Promise( function(resolve, reject) {<br>  // 执行异步操作<br>  // 对异步进行判断，如果是成功则执行 resolve( resolveData )<br>  // 如果失败，则执行 reject( rejectData )<br>  // 其中 resolve 和 reject 是关键词，或者说大家已经达成共识的保留词<br>} )</p>
 <p>如果执行了 resolve 函数，则 then 会执行，<br>then(function(data) {<br>  // 处理 data，这个 data 就是上面的 resolveData<br>})<br>如果执行 reject 函数，则 catch 会执行，<br>catch(function(e) {<br>  // 处理 e，而 e 则是上面的 rejectData<br>})</p>
+<p>和普通回调函数相比， promise 只是将逻辑从回调转成了外部调用，使代码逻辑更加简洁了吗？这个我不太清粗。但是要注意的是，和普通回调相比，我们需要改造的就是回调部分，或者说异步执行的部分，这部分函数内部一定会执行 resolve() 或者 reject()，只是将回调函数放到了 then() 里而已了。<br>举例俩说，正常的 ajax 核心代码是这样的：</p>
+<pre><code>request.onreadystatechange = function () {
+    if (request.readyState === 4) {
+        if (request.status === 200) {
+            return success(request.responseText);
+        } else {
+            return fail(request.status);
+        }
+    }
+}
+</code></pre><p>那么这个 onreadystatechange 就是回调函数，那在 promise 里改造的话就是改造这个。将 success() 这个回调部分直接改为 resolve()，而将 fail() 部分直接改为 reject()，然后再 promise 后再写 then() 替代 success 的功能，而 catch() 来替代 fail 的功能。</p>
+<p>同理，如果是 setTimeout 在 promise 里的话，应该就是对 setTimeout 里面的内容进行判断，成功的话就执行 resolve()，然后把 resolve 要处理的内容放在 then() 中处理，而失败的话则执行 reject()，然后在 catch() 里执行要处理的问题。</p>
 <h2 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h2><p>最近在看 promise 相关的内容，找到一些不错的资源先罗列下来。</p>
 <p><a href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/0014345008539155e93fc16046d4bb7854943814c4f9dc2000" target="_blank" rel="external">廖雪峰的 js 教程</a></p>
 <p><a href="https://davidwalsh.name/promises" target="_blank" rel="external">JavaScript Promise API</a>，这里面有一个原生 js 实现 ajax 的代码，非常值得一读，里面就是关于 promise 在实际中使用的非常好的例子，可以让你能更明白实际中使用 promise 的效果。</p>
