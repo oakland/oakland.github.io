@@ -4,12 +4,13 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>other-StackOverflow 简介以及问答社区的一些基本常识 | Steam</title>
+    <title>python-生成器中一句话引发的思考 | Steam</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Steam">
     
-    <meta name="description" content="问答社区现在越来越普及和活跃，常见的如国内的知乎，以及国外的 quora 和 stack overflow。除了这些，我们还经常会用到 github，github 的仓库有一个 issue 的界面，这个界面是用于提问或者跟踪 bug 的。我们也会经常去逛一些问答社区，但是这些问答社区除了简单的问答之">
+    <meta name="description" content="前言学习都是一个循序渐进的过程，一个事情反复去看，反复去敲代码，会在这个过程中不断地学到东西，而不是过一遍就完事儿了。尤其是比较好的文章是值得反复去阅读的。在不断阅读的过程中，能收获到很多新的知识，同时对这个事情的印象也会更加深刻。
+现在学习 CS 的过程就是这样的，不断地去看新的知识，但是新的知识">
     
     
     
@@ -92,10 +93,10 @@ var _hmt = _hmt || [];
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/11/20/other-StackOverflow-简介以及问答社区的一些基本常识/" title="other-StackOverflow 简介以及问答社区的一些基本常识" itemprop="url">other-StackOverflow 简介以及问答社区的一些基本常识</a>
+      <a href="/2017/03/30/python-生成器中一句话引发的思考/" title="python-生成器中一句话引发的思考" itemprop="url">python-生成器中一句话引发的思考</a>
   </h1>
   <p class="article-time">
-    <time datetime="2016-11-20T01:14:34.000Z" itemprop="datePublished">2016-11-20</time>
+    <time datetime="2017-03-30T01:18:59.000Z" itemprop="datePublished">2017-03-30</time>
   </p>
 </header>
 	<div class="article-content">
@@ -103,18 +104,47 @@ var _hmt = _hmt || [];
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title"></strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#closed-或者-on-hold-状态"><span class="toc-number">1.</span> <span class="toc-text">closed 或者 on hold 状态</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正文"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-number">3.</span> <span class="toc-text">结语</span></a></li></ol>
 		</div>
 		
-		<p>问答社区现在越来越普及和活跃，常见的如国内的知乎，以及国外的 quora 和 stack overflow。除了这些，我们还经常会用到 github，github 的仓库有一个 issue 的界面，这个界面是用于提问或者跟踪 bug 的。我们也会经常去逛一些问答社区，但是这些问答社区除了简单的问答之外，还会有一些特殊的规则，比如一个问题被关闭，或者一个问题被编辑了，等等。那么什么时候问题会被关闭，什么时候会被编辑，以及什么人可以关闭，什么人可以编辑问题，等等，这些我刚开始遇到的时候都会不明白。最近在看 stack overflow，发现上面有一个关于社区基本常识的 help，很多上面的这些疑惑在这里都有非常详细的解释和阐述，这里摘录一些，供大家参考。</p>
-<h2 id="closed-或者-on-hold-状态"><a href="#closed-或者-on-hold-状态" class="headerlink" title="closed 或者 on hold 状态"></a>closed 或者 on hold 状态</h2><p><a href="http://stackoverflow.com/help/closed-questions" target="_blank" rel="external">http://stackoverflow.com/help/closed-questions</a></p>
+		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>学习都是一个循序渐进的过程，一个事情反复去看，反复去敲代码，会在这个过程中不断地学到东西，而不是过一遍就完事儿了。尤其是比较好的文章是值得反复去阅读的。在不断阅读的过程中，能收获到很多新的知识，同时对这个事情的印象也会更加深刻。</p>
+<p>现在学习 CS 的过程就是这样的，不断地去看新的知识，但是新的知识有时候很难理解的话，你需要第二天在回过头来看新的知识，继续从其中挖掘到新的内容，同时加深对这个知识的理解。廖雪峰的教程就值得反复阅读。比如 js 中的 promise 章节，第一次看看不懂没关系，第二天接着看，就会有新的收获，而且会突然间恍然大悟，说：哦，原来是这个意思。然后接着看，看到第三遍的时候，相信你已经对 promise 有了很深的理解，甚至可以自己写一篇类似的文章，告诉别人 promise 是怎么回事。我在看廖雪峰的 python 教程的时候也有同样的体会。</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>在学习廖雪峰 python2.7 教程的过程中，有一个<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/00138681965108490cb4c13182e472f8d87830f13be6e88000#0" target="_blank" rel="external">生成器</a>章节。这个章节里有一个斐波那契数列（fibonaci）数列的生成器的写法。</p>
+<pre><code>def fib(max) {
+    n, a, b = 0, 0, 1
+    while n &lt; max:
+        yield b
+        a, b = b, a+b
+        n = n + 1
+}
+</code></pre><p>这里面有一句话在第一次看这个章节的时候忽略了，虽然下面的评论里有关于这句话的讨论，但是当时对于 python 的理解，对于计算机执行语句的理解都不是很好。而且当时又急于快速学会  python 这门语言，所以就没有在意这句话。</p>
+<p>这句话就是：<code>a, b = b, a+b</code></p>
+<p>为什么说这句话被忽略了，或者说这句话其实隐含着计算机计算过程的奥义呢？</p>
+<p>因为在第一次看这个章节的时候，我想当然的认为，这就是很简单的，把 b 赋值给 a，然后把 a+b 的和赋值给 b。不就是这么简单的事情吗？</p>
+<p>但是后来在 Coursera 上学习 Python for everybody 这门课程的时候，Charles 教授解释了关于 a = 1 这句话。这句话的意思是 find 1, and stick with a。那么如果按照这种方式来理解 <code>a, b = b, a+b</code> 的话，其实这个 fib 数列是有问题的。我们一句句来理解，将 b 的值赋给 a，那么此时 a === b，然后将 a+b 的值赋给 b，因为上面已经执行了一步 b 的值赋给 a，所以此时此时 a+b 相当于是 b+b，那么新生成的 b 的值是 2b。举例说明可能更清楚一些：</p>
+<pre><code>a = 2
+b = 3
+
+# 按照一般的思维来理解
+a = b #此时 a = 3
+b = a+b # 相当于是 3+3=6
+</code></pre><p>按照上面这种思路，此时的 fib 数列三个数字分别是 2, 3, 6，但实际上应该是 2, 3, 5。那么按照按照一般的思路去理解这句话的话是错误的。</p>
+<p>那么这句话到底应该怎么理解呢？</p>
+<p>其实看下面的评论里，大家有对这句话的激烈讨论，各式各样的说法都有。其实很多人的理解也都可以，但是根据廖雪峰的说法，其实这个构成是创建了一个中间的 tuple 变量 t 的。那么其中的奥义在哪里呢？我觉得应该就是在这个逗号里。也就是说：</p>
+<p><code>a, b = b, a+b</code> 中两个逗号，表示这个计算过程是同时的，就是在保持原来的 a, b 不变的情况下进行的。这个过程是同时的，而不是分开进行的。或者按照讨论里有人的评论说的，是先计算右边然后再赋值给左边。也就是说在计算没有完成之前，a, b 的值是保留原来的值没有变化的。这个过程相当于是：</p>
+<p><code>a, b = 3, 2+3</code>  ==&gt;  <code>a, b = 3, 5</code>  ==&gt;  <code>a = 3, b = 5</code></p>
+<p>这样的话其实这个过程就是正确的了。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>计算机博大精深，内容太广阔了，要想完全掌握可能在我有生之年，这短短的几十年都无法全部掌握，但是基础知识很重要。只有基础知识掌握了，你看别的东西才会一看就懂，才会融会贯通。同时知识的广度也要扩展开，只有知识的广度扩展开你的思维才不会局限在一种形式上面，才会打开，才会有类比，才会触类旁通。我现在依然在打基础和扩展知识广度的层面。我相信每天坚持有效的学习，一定会有一天对计算机能游刃有余，一定有一天会对计算机有深刻的了解。</p>
+<p>最近在找工作，感觉其实难度还是很大的，很多的人对于转行学习的人有一些偏见。我只有通过自己的努力，不论是技术层面还是战略层面的努力，才能实现自己的梦想。</p>
+<p>继续打好基础，扩展知识范围。从 js 到 python，已经开始扩展自己的广度了，从前端基本的知识到现在主流的 mv* 框架，比如 angular, react, vue等等，到爬虫，到后端的 node，python 等等。我觉得我又有了一个比较大的进步。目前还在学习  coursera 上面的 python for everybody 这个系列课程。感觉对于循环，判断，函数等等一些基本的知识又有了更新的理解。加油，和时间赛跑。争取在5年的时间内可以实现新的突破和跨越。</p>
+<p>我自学了 angular，但是又想学习 react，有人说知识要有选择性。我觉得是的，但是我相信同时掌握两个框架也不是不可能的事情。不要给自己设置障碍和屏障。加油，快速的学习，突破自己。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/others/">others</a>
+  <span></span> <a href="/tags/python/">python</a>
   </div>
 
 
@@ -122,7 +152,7 @@ var _hmt = _hmt || [];
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2016/11/20/other-StackOverflow-简介以及问答社区的一些基本常识/" data-title="other-StackOverflow 简介以及问答社区的一些基本常识 | Steam" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2017/03/30/python-生成器中一句话引发的思考/" data-title="python-生成器中一句话引发的思考 | Steam" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -131,19 +161,11 @@ var _hmt = _hmt || [];
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/02/08/如何不翻墙安装chrome插件/" title="如何不翻墙安装chrome插件">
-  <strong>新一篇:</strong><br/>
-  <span>
-  如何不翻墙安装chrome插件</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/11/18/others-gist-gitbook-and-gitlab/"  title="others-gist, gitbook and gitlab">
+<a href="/2017/03/27/JS-promise-相关/"  title="JS-promise 相关">
  <strong>旧一篇:</strong><br/> 
- <span>others-gist, gitbook and gitlab
+ <span>JS-promise 相关
 </span>
 </a>
 </div>
@@ -153,7 +175,7 @@ var _hmt = _hmt || [];
 	
 <section class="comment">
 	
-	<div class="ds-thread" data-title="other-StackOverflow 简介以及问答社区的一些基本常识" data-thread-key="other-StackOverflow-简介以及问答社区的一些基本常识" data-author-key="Steam" data-url="http://yoursite.com/post/other-StackOverflow-简介以及问答社区的一些基本常识"></div>
+	<div class="ds-thread" data-title="python-生成器中一句话引发的思考" data-thread-key="python-生成器中一句话引发的思考" data-author-key="Steam" data-url="http://yoursite.com/post/python-生成器中一句话引发的思考"></div>
 	
 </section>
 
