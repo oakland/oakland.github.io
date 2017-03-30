@@ -4,13 +4,12 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>python-生成器中一句话引发的思考 | Steam</title>
+    <title>再看OOP，到底什么是OOP | Steam</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Steam">
     
-    <meta name="description" content="前言学习都是一个循序渐进的过程，一个事情反复去看，反复去敲代码，会在这个过程中不断地学到东西，而不是过一遍就完事儿了。尤其是比较好的文章是值得反复去阅读的。在不断阅读的过程中，能收获到很多新的知识，同时对这个事情的印象也会更加深刻。
-现在学习 CS 的过程就是这样的，不断地去看新的知识，但是新的知识">
+    <meta name="description" content="最开始学习编程的时候，就感觉 OOP 非常难以理解。我接触的第一门编程语言是 JS，当时不仅对如何实现 OOP 不理解，更无法理解 OOP 的设计哲学。无法理解为什么要这么做。后来随着学习范围的拓展，还有基础知识不断积累，对于 OOP 又会有了新的理解。就像我在上一篇文章中说的那样，多回头去看看一些">
     
     
     
@@ -93,10 +92,10 @@ var _hmt = _hmt || [];
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/03/30/python-生成器中一句话引发的思考/" title="python-生成器中一句话引发的思考" itemprop="url">python-生成器中一句话引发的思考</a>
+      <a href="/2017/03/30/再看OOP，到底什么是OOP/" title="再看OOP，到底什么是OOP" itemprop="url">再看OOP，到底什么是OOP</a>
   </h1>
   <p class="article-time">
-    <time datetime="2017-03-30T01:18:59.000Z" itemprop="datePublished">2017-03-30</time>
+    <time datetime="2017-03-30T08:51:18.000Z" itemprop="datePublished">2017-03-30</time>
   </p>
 </header>
 	<div class="article-content">
@@ -104,50 +103,58 @@ var _hmt = _hmt || [];
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title"></strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#正文"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-number">3.</span> <span class="toc-text">结语</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#摘录"><span class="toc-number">1.</span> <span class="toc-text">摘录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结语"><span class="toc-number">2.</span> <span class="toc-text">结语</span></a></li></ol>
 		</div>
 		
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>学习都是一个循序渐进的过程，一个事情反复去看，反复去敲代码，会在这个过程中不断地学到东西，而不是过一遍就完事儿了。尤其是比较好的文章是值得反复去阅读的。在不断阅读的过程中，能收获到很多新的知识，同时对这个事情的印象也会更加深刻。</p>
-<p>现在学习 CS 的过程就是这样的，不断地去看新的知识，但是新的知识有时候很难理解的话，你需要第二天在回过头来看新的知识，继续从其中挖掘到新的内容，同时加深对这个知识的理解。廖雪峰的教程就值得反复阅读。比如 js 中的 promise 章节，第一次看看不懂没关系，第二天接着看，就会有新的收获，而且会突然间恍然大悟，说：哦，原来是这个意思。然后接着看，看到第三遍的时候，相信你已经对 promise 有了很深的理解，甚至可以自己写一篇类似的文章，告诉别人 promise 是怎么回事。我在看廖雪峰的 python 教程的时候也有同样的体会。</p>
-<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>在学习廖雪峰 python2.7 教程的过程中，有一个<a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/00138681965108490cb4c13182e472f8d87830f13be6e88000#0" target="_blank" rel="external">生成器</a>章节。这个章节里有一个斐波那契数列（fibonaci）数列的生成器的写法。</p>
-<pre><code>def fib(max) {
-    n, a, b = 0, 0, 1
-    while n &lt; max:
-        yield b
-        a, b = b, a+b
-        n = n + 1
-}
-</code></pre><p>这里面有一句话在第一次看这个章节的时候忽略了，虽然下面的评论里有关于这句话的讨论，但是当时对于 python 的理解，对于计算机执行语句的理解都不是很好。而且当时又急于快速学会  python 这门语言，所以就没有在意这句话。</p>
-<p>这句话就是：<code>a, b = b, a+b</code></p>
-<p>为什么说这句话被忽略了，或者说这句话其实隐含着计算机计算过程的奥义呢？</p>
-<p>因为在第一次看这个章节的时候，我想当然的认为，这就是很简单的，把 b 赋值给 a，然后把 a+b 的和赋值给 b。不就是这么简单的事情吗？</p>
-<p>但是后来在 Coursera 上学习 Python for everybody 这门课程的时候，Charles 教授解释了关于 a = 1 这句话。这句话的意思是 find 1, and stick with a。那么如果按照这种方式来理解 <code>a, b = b, a+b</code> 的话，其实这个 fib 数列是有问题的。我们一句句来理解，将 b 的值赋给 a，那么此时 a === b，然后将 a+b 的值赋给 b，因为上面已经执行了一步 b 的值赋给 a，所以此时此时 a+b 相当于是 b+b，那么新生成的 b 的值是 2b。举例说明可能更清楚一些：</p>
-<pre><code>a = 2
-b = 3
-
-# 按照一般的思维来理解
-a = b #此时 a = 3
-b = a+b # 相当于是 3+3=6
-</code></pre><p>按照上面这种思路，此时的 fib 数列三个数字分别是 2, 3, 6，但实际上应该是 2, 3, 5。那么按照按照一般的思路去理解这句话的话是错误的。</p>
-<p>那么这句话到底应该怎么理解呢？</p>
-<p>其实看下面的评论里，大家有对这句话的激烈讨论，各式各样的说法都有。其实很多人的理解也都可以，但是根据廖雪峰的说法，其实这个构成是创建了一个中间的 tuple 变量 t 的。那么其中的奥义在哪里呢？我觉得应该就是在这个逗号里。也就是说：</p>
-<p><code>a, b = b, a+b</code> 中两个逗号，表示这个计算过程是同时的，就是在保持原来的 a, b 不变的情况下进行的。这个过程是同时的，而不是分开进行的。或者按照讨论里有人的评论说的，是先计算右边然后再赋值给左边。也就是说在计算没有完成之前，a, b 的值是保留原来的值没有变化的。这个过程相当于是：</p>
-<p><code>a, b = 3, 2+3</code>  ==&gt;  <code>a, b = 3, 5</code>  ==&gt;  <code>a = 3, b = 5</code></p>
-<p>这样的话其实这个过程就是正确的了。</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>计算机博大精深，内容太广阔了，要想完全掌握可能在我有生之年，这短短的几十年都无法全部掌握，但是基础知识很重要。只有基础知识掌握了，你看别的东西才会一看就懂，才会融会贯通。同时知识的广度也要扩展开，只有知识的广度扩展开你的思维才不会局限在一种形式上面，才会打开，才会有类比，才会触类旁通。我现在依然在打基础和扩展知识广度的层面。我相信每天坚持有效的学习，一定会有一天对计算机能游刃有余，一定有一天会对计算机有深刻的了解。</p>
-<p>最近在找工作，感觉其实难度还是很大的，很多的人对于转行学习的人有一些偏见。我只有通过自己的努力，不论是技术层面还是战略层面的努力，才能实现自己的梦想。</p>
-<p>继续打好基础，扩展知识范围。从 js 到 python，已经开始扩展自己的广度了，从前端基本的知识到现在主流的 mv* 框架，比如 angular, react, vue等等，到爬虫，到后端的 node，python 等等。我觉得我又有了一个比较大的进步。目前还在学习  coursera 上面的 python for everybody 这个系列课程。感觉对于循环，判断，函数等等一些基本的知识又有了更新的理解。加油，和时间赛跑。争取在5年的时间内可以实现新的突破和跨越。</p>
-<p>我自学了 angular，但是又想学习 react，有人说知识要有选择性。我觉得是的，但是我相信同时掌握两个框架也不是不可能的事情。不要给自己设置障碍和屏障。加油，快速的学习，突破自己。</p>
-<p>再多讲一句，多和计算机玩才能熟悉计算机，本来不打算入手树莓派（Raspberry pi）的，但是在上 Python for everybody 这么课程的时候，Charles 总是拿出来 CPU 和 内存条，还有硬盘，而且拿出来之后你其实会对这个过程理解的更多一些。尤其第一次课程上 Charles 拿出来这些东西的实体的时候，我对这个过程就感觉自动理解的多了一些。既然如此，而树莓派又和普通的 pc 没什么区别，所以我还是决定入手一个，我相信看到硬件之后尽管不会对你让计算机有直接的理解，但是一定会刺激某一方面的大脑，让你对于计算机有一个更多的了解。在玩树莓派的过程中一定会更加深刻的理解计算机。</p>
-<hr>
-<p>2017.3.30 first published</p>
+		<p>最开始学习编程的时候，就感觉 OOP 非常难以理解。我接触的第一门编程语言是 JS，当时不仅对如何实现 OOP 不理解，更无法理解 OOP 的设计哲学。无法理解为什么要这么做。后来随着学习范围的拓展，还有基础知识不断积累，对于 OOP 又会有了新的理解。就像我在上一篇文章中说的那样，多回头去看看一些东西，你会发现一些新的内容，这些内容其实都是比较经典的基础知识，只有这些内容你理解了，你才能更快的学习新的东西，才能对计算机融会贯通。</p>
+<p>其实想写这篇文章是因为看到了廖雪峰 python2.7 的教程中<a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014318645694388f1f10473d7f416e9291616be8367ab5000" target="_blank" rel="external">面向对象编程</a>这个章节的内容之后，又去 google 了一下 OOP，看到了一篇文章写的不错，然后因为正好又在学习 python，所以又根据 google 的提示，搜了一下 python oop 的内容，又看到了一篇写的非常不错的文章，详细介绍了 OOP 的背景，以及 python 中 OOP 的实现等。这里就把这些文章写罗列下来，供以后深入了解和复习参考。</p>
+<ol>
+<li><a href="http://searchmicroservices.techtarget.com/definition/object-oriented-programming-OOP" target="_blank" rel="external">object-oriented-programming-OOP</a></li>
+<li><a href="https://jeffknupp.com/blog/2014/06/18/improve-your-python-python-classes-and-object-oriented-programming/" target="_blank" rel="external">Improve your Python: Python classes and OOP</a></li>
+</ol>
+<h2 id="摘录"><a href="#摘录" class="headerlink" title="摘录"></a>摘录</h2><p><a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/0014318645694388f1f10473d7f416e9291616be8367ab5000" target="_blank" rel="external">廖雪峰的教程</a>中，关于 OOP 的描述，有一些比较经典。</p>
+<blockquote>
+<p>OOP把对象作为程序的基本单元，一个对象包含了数据和操作数据的函数。</p>
+<p>面向过程的程序设计把计算机程序视为一系列的命令集合，即一组函数的顺序执行。为了简化程序设计，面向过程把函数继续切分为子函数，即把大块函数通过切割成小块函数来降低系统的复杂度。</p>
+<p>而面向对象的程序设计把计算机程序视为一组对象的集合，而每个对象都可以接收其他对象发过来的消息，并处理这些消息，计算机程序的执行就是一系列消息在各个对象之间传递。</p>
+<p>… 面向对象的抽象程度又比函数要高，因为一个Class既包含数据，又包含操作数据的方法。</p>
+</blockquote>
+<p>而且在这个章节中举得例子也非常的好，可以看得出面向过程和面向对象的区别来。面向对象其实就是相当于把数据和方法（或者叫函数）封装起来，而直接使用这些数据和方法，编程的过程变成了数据之间通信和操作数据的过程。而面向过程则是将一个任务分成多个小任务，一个一个去实现的过程。</p>
+<p><a href="https://jeffknupp.com/blog/2014/06/18/improve-your-python-python-classes-and-object-oriented-programming/" target="_blank" rel="external">Improve your python</a> 中</p>
+<blockquote>
+<p>What is the <code>class</code> keyword used for, exactly? Like its function-based cousin <code>def</code>, it concerns the definition of things. While <code>def</code> is used to define a function, <code>class</code> is used to define a class. And what is a class? Simply a logical grouping of data and functions (the latter of which are frequently referred to as “methods” when defined within a class).</p>
+</blockquote>
+<p>这段话说了两个意思：第一，<code>def</code> 关键字用来定义函数，而 <code>class</code> 关键字用来定义类。第二，所谓 <code>class</code>，其实就是 logical grouping of data and functions。这个说法和上面廖雪峰的说法是一致的。这个定义里的关键的词就是 logical，也就是说一个 <code>class</code> 拥有数据和方法，但是这些数据和方法之间是有逻辑关系的，不是随意放在一起的。</p>
+<blockquote>
+<p>What do we mean by “logical grouping”? Well, a class can contain any data we’d like it to, and can have any functions (methods) attached to it that we please. Rather than just throwing random things together under the name “class”, we try to create classes where there is a logical connection between things. …</p>
+</blockquote>
+<p>这段话说的就是我刚才上面说的意思，<code>class</code> 内部的数据和方法是有关联的，而不是随意组合形成的。</p>
+<blockquote>
+<p>Classes can be thought of as blueprints for creating objects. When I define a Customer class using the class keyword, I haven’t actually created a customer. Instead, what I’ve created is a sort of instruction manual for constructing “customer” objects….</p>
+</blockquote>
+<p>这段话中有一句话对于 <code>class</code> 的定义描写的特别好，就是 instruction manual for constructing，就是说所谓的 <code>class</code> 并不是一个真实的东西，而是很多实例的抽象概念，是创建实例时候的说明手册一样，告诉你创建的时候会有什么样的数据，什么样的方法等等。这个比喻特别好。</p>
+<p>后面就是关于 python 中应该如何具体的创建 <code>class</code> 的内容了，这里就不展开详细讲解了。</p>
+<p>再说一下第一篇文章<a href="http://searchmicroservices.techtarget.com/definition/object-oriented-programming-OOP" target="_blank" rel="external">object-oriented-programming-OOP</a></p>
+<blockquote>
+<p>Object-oriented programming (OOP) is a programming language model organized around objects rather than “actions” and data rather than logic. Historically, a program has been viewed as a logical procedure that takes input data, processes it, and produces output data.</p>
+</blockquote>
+<p>这段话说的是，OOP 这个计算机哲学是围绕 object 的，而 OOP 相对的是传统的理解，就是对于 actions 的操作。因为过去人们都是把计算机当做一系列 actions 的操作。</p>
+<blockquote>
+<p>The programming challenge was seen as how to write the logic, not how to define the data. Object-oriented programming takes the view that what we really care about are the objects we want to manipulate rather than the logic required to manipulate them. </p>
+</blockquote>
+<p>还是这个意思，在计算机刚开始的时候，人们写程序的挑战是如何书写 logic 的 actions，而不是如何定义数据。而 OOP 的重点在于我们应该如何实现对象之间的交互，而不是如何书写过程 logic。</p>
+<blockquote>
+<p>The first step in OOP is to identify all the objects the programmer wants to manipulate and how they relate to each other, an exercise often known as data modeling. </p>
+</blockquote>
+<p>OOP 的第一步是确认我们需要操作哪些对象，然后就是这些对象之间是如何交互的。</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>OOP 的概念一直是初学者的难点，需要不断地去看不同的语言，来更加深刻的理解 OOP。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/python/">python</a>
+  <span></span> <a href="/tags/JS-python/">JS, python</a>
   </div>
 
 
@@ -155,7 +162,7 @@ b = a+b # 相当于是 3+3=6
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2017/03/30/python-生成器中一句话引发的思考/" data-title="python-生成器中一句话引发的思考 | Steam" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2017/03/30/再看OOP，到底什么是OOP/" data-title="再看OOP，到底什么是OOP | Steam" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -164,19 +171,11 @@ b = a+b # 相当于是 3+3=6
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/03/30/再看OOP，到底什么是OOP/" title="再看OOP，到底什么是OOP">
-  <strong>New:</strong><br/>
-  <span>
-  再看OOP，到底什么是OOP</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/03/27/JS-promise-相关/"  title="JS-promise 相关">
+<a href="/2017/03/30/python-生成器中一句话引发的思考/"  title="python-生成器中一句话引发的思考">
  <strong>Old:</strong><br/> 
- <span>JS-promise 相关
+ <span>python-生成器中一句话引发的思考
 </span>
 </a>
 </div>
@@ -186,7 +185,7 @@ b = a+b # 相当于是 3+3=6
 	
 <section class="comment">
 	
-	<div class="ds-thread" data-title="python-生成器中一句话引发的思考" data-thread-key="python-生成器中一句话引发的思考" data-author-key="Steam" data-url="http://yoursite.com/post/python-生成器中一句话引发的思考"></div>
+	<div class="ds-thread" data-title="再看OOP，到底什么是OOP" data-thread-key="再看OOP，到底什么是OOP" data-author-key="Steam" data-url="http://yoursite.com/post/再看OOP，到底什么是OOP"></div>
 	
 </section>
 
