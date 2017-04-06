@@ -1,0 +1,374 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>other-AMD, CMD, Commonjs, seajs, requirejs | Steam</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Steam">
+    
+    <meta name="description" content="前言去乐视面试还是有一些收获的，虽然说还不知道能否进入二面，但是还是非常希望可以进入二面。这次面试的收获之一就是对于 AMD, CMD, Commonjs, requirejs,  seajs 等等这些内容之间的关系理解的更加清楚了。面试官的一句话就把这些内容串起来了。这就是聊天和看书之间的区别，很">
+    
+    
+    
+    
+    <link rel="alternative" href="/Tinnypp/atom.xml## RSS address." title="Steam" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/Tinny.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/Tinny.jpg">
+    
+
+  
+    <link href="/css/font-awesome.min.css" rel="stylesheet">
+    
+  
+  <link href="http://cdn.bootcss.com/highlight.js/8.2/styles/railscasts.min.css" rel="stylesheet">
+  <script src="http://cdn.bootcss.com/highlight.js/8.2/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?d182ed77fc48758bf45a33835ee35745";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+      <script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v1/st.js','_st');
+
+  _st('install','.............Add your swiftype userID...............');
+</script>
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Steam">Steam</a></h1>
+				<h2 class="blog-motto">DREAM makes you different</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+                    <ul>
+					 
+						<li><a href="/">首页</a></li>
+					
+						<li><a href="/archives">归档</a></li>
+					
+					<li>
+					
+						<form class="search" action="/search/index.html" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="st-search-inpu" maxlength="20" placeholder="Search" />
+						</form>
+					
+					</li>
+                <!--<li><div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div></li>-->
+
+				</ul>
+			</nav>	
+</div>
+    </header>
+    <div id="container" class="clearfix">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/04/06/other-AMD-CMD-Commonjs-seajs-requirejs/" title="other-AMD, CMD, Commonjs, seajs, requirejs" itemprop="url">other-AMD, CMD, Commonjs, seajs, requirejs</a>
+  </h1>
+  <p class="article-time">
+    <time datetime="2017-04-06T01:31:42.000Z" itemprop="datePublished">2017-04-06</time>
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title"></strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#一句话来理解这些概念"><span class="toc-number">2.</span> <span class="toc-text">一句话来理解这些概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#详细说明"><span class="toc-number">3.</span> <span class="toc-text">详细说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结语"><span class="toc-number">4.</span> <span class="toc-text">结语</span></a></li></ol>
+		</div>
+		
+		<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>去乐视面试还是有一些收获的，虽然说还不知道能否进入二面，但是还是非常希望可以进入二面。这次面试的收获之一就是对于 AMD, CMD, Commonjs, requirejs,  seajs 等等这些内容之间的关系理解的更加清楚了。面试官的一句话就把这些内容串起来了。这就是聊天和看书之间的区别，很多时候，我们看书往往看不到重点，就是因为书本的内容是没有情绪和感情的，尤其是技术方面的文字，关键性的语句如果作者不强调的话，很多时候你会忽略掉。但是聊天不同，聊天的时候，面试官也好，指导人也好，他会强调或者说加重某些语句，让你更加明确重点，所以还是非常希望可以有多多的技术沙龙和面对面的聊天。先不说这些了，说说这篇博客要讲的技术方面的问题。</p>
+<p>之前我就对 AMD, CMD, Commonjs, requirejs, seajs 这些内容做过一些整理和思考，但是依然没有能深刻或者具体的理清楚他们之间的关系。下面是之前写过的几篇文章：</p>
+<ul>
+<li><a href="http://oakland.github.io/2016/09/30/others-%E5%90%8C%E6%AD%A5%E5%92%8C%E5%BC%82%E6%AD%A5/" target="_blank" rel="external">同步和异步</a></li>
+<li><a href="http://oakland.github.io/2016/05/16/JS-%E9%98%AE%E4%B8%80%E5%B3%B0%E5%85%B3%E4%BA%8EJS%E6%A8%A1%E5%9D%97%E5%8C%96%E7%9A%84%E4%B8%89%E7%AF%87%E5%8D%9A%E5%AE%A2/" target="_blank" rel="external">阮一峰关于 JS 模块化的三篇博客</a></li>
+</ul>
+<p>但是，去查看这两篇博客，会发现我对于这些概念之间的关系依然没有理解的很透彻。</p>
+<h3 id="一句话来理解这些概念"><a href="#一句话来理解这些概念" class="headerlink" title="一句话来理解这些概念"></a>一句话来理解这些概念</h3><p>这次去面试，除了面试题之外，还聊了很多其他的内容。比如，面试官让我说说模块化有什么规范，以及他们之间的关系。说实话我只能知道是有 AMD, CMD, Commonjs 这三个概念，但是他们三者是什么关系我已经不记得了，只能说我对于他们之间的关系理解的不深刻，否则应该也不至于只知道概念，不知道概念背后的原理。面试官给了我一个他理解的答案，我觉得说的非常好：</p>
+<blockquote>
+<p>Commonjs 是在服务器端用的模块化规范，因为是在服务器端，所以模块的加载速度非常快，不需要异步加载。但是如果是客户端的话，需要从客户端发起请求到服务端，然后等待服务端返回模块才可以使用，所以是要异步加载的。所以说 AMD 和 CMD 都是异步加载的模块化规范。但是 Commonjs 是非异步加载的。</p>
+</blockquote>
+<h3 id="详细说明"><a href="#详细说明" class="headerlink" title="详细说明"></a>详细说明</h3><p>按照上面这个理解来看的话，所有概念之间的关系一下子就理顺了。</p>
+<p>首先，根据是否异步，将 Commonjs, AMD, CMD 分成两类。异步加载的：AMD, CMD；同步加载的：Commonjs。当然，我们要理解为什么要异步或者同步，原因就在于一个是服务器端，一个是客户端。服务器端加载的话请求的是服务器自身的硬盘，所以读取速度是非常快的，但是客户端请求，则是向服务器发起请求，等待服务器返回才能使用，因此要异步，否则将会阻塞程序。</p>
+<p>其次，requirejs 和 seajs，AMD 和 CMD 之间又有什么关系呢？ AMD 规范是 requirejs 在推广过程中对模块化规范的产出，而 CMD 则是 seajs 在推广过程中对模块化规范的产出。也就是说其实，requirejs 和 seajs 都是规范更加具体的实现。有点像类(class)和实例(instance)之间的关系。</p>
+<p>最后，AMD 和 CMD 之间又有什么区别呢？请查看下面几篇文章的链接。</p>
+<ul>
+<li><a href="https://www.zhihu.com/question/20351507/answer/14859415" target="_blank" rel="external">AMD 和 CMD 之间的区别有哪些</a></li>
+<li><a href="http://www.jianshu.com/p/09ffac7a3b2c" target="_blank" rel="external">浅析JS模块规范</a></li>
+</ul>
+<p>通过查看 AMD 和 CMD 之间的区别，就可以更清楚的了解实际中 requirejs 和 seajs 之间模块加载的代码实现的区别了。这样对于他们之间代码的理解也会更加深刻一些。</p>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>听完面试官的话，再去看所有这些博客也好，内容也会，你可以一下子就抓住文章的重点，或者说抓住你想要获取到的知识，而不是囫囵吞枣。所以多和别人聊天还是会有很大的收获。</p>
+<p>最近，除了在总结这些内容之外，心里总是不静，总是有事情，看不进去技术的内容，处于一种焦虑状态。焦虑什么呢？</p>
+<p>一，焦虑自己在乐视的面试不是很好，感觉进入二面有很大的难度。而面试的题目说实话都是比较简单的内容，因此可以说自己的基础还是非常不好的。虽然说这个和实际项目有很大的关系，但是基础不好的话，别人给你机会你也很难抓住。这样下去的话，只能一直耗在一个对技术要求不是很高的单位？那岂不是就陷入了一种恶性循环？</p>
+<p>其次，最近又看到很多篇创业的文章也好，看到周围的人也好，和我同龄的很多，经历已经非常丰富了，而且已经升到了比较高的位置，比如说妙计旅行创业的CEO张帆，创业的时候是 31 岁。想想自己目前已经快30了，依然处于一个非常基础的位置。然后周围还有技术的同事，只比我大一岁，但是已经是技术主管了，可以在下面招人了。我依然是一个技术初学者。周围的同龄人至少也是技术大牛了，只可惜自己前几年的宝贵时光都白白浪费了。</p>
+<p>然后，还焦虑现在技术的迭代更新太快，前几个月刚学的 angular1.0，现在已经更新到 ng4了。然后 es6 现在也越来越普及，但是鉴于实际项目中不使用，完全靠自己学，学完很快就会忘掉。再去面试又要花时间复习。还有等等，各种概念和框架都在快速迭代。但是自己的时间却越来越少，尤其是有了孩子之后，而且随着孩子长大，对你的时间要求也会越来越多，很矛盾。</p>
+<p>然后，还焦虑，计算机知识体系的庞大，虽然说我已经开始从前端到后端发展了，比如最近已经把 python 的教程看完了，实现了爬虫等等，但是要完全掌握一些概念，还是很花时间的。然后，自己的野心又不小，除了前后端通吃之外，还想能精通算法和数据结构，以及 http, tcp, ip 等等这些概念。知识量太庞大，每天留给自己的时间又越来越少，实在是很矛盾。</p>
+<p>然后，还焦虑未来的生活。背着高额的房贷，万万不敢随便辞职。但是技术上的限制，对于我跳槽提高收入而言又是很难突破的。如何才能找到一份收入更多的工作，让自己可以有更多的选择呢？然后，职业生涯的发展到底应该超哪个方向发展呢？技术？技术的要求越来越高，对转行者又会有或多或少的歧视，机会少的可怜。干其他的，比如做 sitecore，但是这些内容又很偏门，很冷门，以后学出来没用，万一 sitecore 的东西在国内没有做起来，自己出来学了这么偏门冷门的东西怎么办呢？到底应该走哪条路？</p>
+<p>焦虑没有出路，每天写一篇博客吧。把焦虑说出来，可能会好一些。</p>
+<p>人生需要能力，但是也需要一些机会和运气，尽自己的能力，希望运气和机会也可以光顾我。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/others/">others</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2017/04/06/other-AMD-CMD-Commonjs-seajs-requirejs/" data-title="other-AMD, CMD, Commonjs, seajs, requirejs | Steam" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2017/04/05/other-乐视前端面试记录/"  title="other-乐视前端面试记录">
+ <strong>旧一篇:</strong><br/> 
+ <span>other-乐视前端面试记录
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	
+	<div class="ds-thread" data-title="other-AMD, CMD, Commonjs, seajs, requirejs" data-thread-key="other-AMD-CMD-Commonjs-seajs-requirejs" data-author-key="Steam" data-url="http://yoursite.com/post/other-AMD-CMD-Commonjs-seajs-requirejs"></div>
+	
+</section>
+
+
+</div>  
+    </div>
+    <footer><div id="footer" >
+	<div class="copyright">
+		<span>Powered by <a href="https://github.com/hexojs/hexo">Hexo</a> and theme by 
+		<a href="https://github.com/levonlin/Tinnypp">Tinnypp</a>.</span>
+		
+			<span>© Steam</span>
+		
+	<div>
+</div></footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  //back to top
+  function backToTop(){
+    var buttonHTML = $("<a href=\"#top\" id=\"back-top\">" + "<span>Back to Top</span></a>");
+    buttonHTML.appendTo($("body"));
+    var buttonToTop = $("#back-top");
+    // hide #back-top first
+    buttonToTop.hide();
+
+    // fade in #back-top
+    $(function() {
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 200) {
+                buttonToTop.fadeIn();
+            } else {
+                buttonToTop.fadeOut();
+            }
+        });
+        // scroll body to 0px on click
+        buttonToTop.click(function() {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    });
+  }
+  backToTop();
+
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      ta = $('#toc.toc-aside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+        
+    }
+  });
+
+  var show = true;
+  c.click(function(){
+    if(show == true){
+        a.addClass('fadeOut').css('display', 'none');
+        ta.css('display', 'block').addClass('fadeIn');
+        m.addClass('moveMain');  
+    }else{
+        a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');     
+        ta.css('display', 'none'); 
+        m.removeClass('moveMain');
+        $('#toc.toc-aside').css('display', 'none');
+    }
+    show = !show;
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,240-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"tinnypp"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';    //change to ds.src = '/js/embed.js'; to add useragent for duoshuo
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+<script type="text/javascript">
+  function footerPosition() {
+    var contentHeight = document.documentElement.scrollHeight,
+        winHeight = window.innerHeight;
+    if(contentHeight <= winHeight) {
+      $('footer').addClass('fixed-bottom');
+    } else {
+      $('footer').removeClass('fixed-bottom');
+    }
+  }
+  footerPosition();
+  $(window).resize(footerPosition);
+</script>
+
+
+  </body>
+</html>
