@@ -4,13 +4,12 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>JS-promise 相关 | Steam</title>
+    <title>JS-也谈数组去重 | Steam</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Steam">
     
-    <meta name="description" content="promise 的流程基本的构造是这样： new Promise().then().catch()
-new Promise( function(resolve, reject) {  // 执行异步操作  // 对异步进行判断，如果是成功则执行 resolve( resolveData )  // ">
+    <meta name="description" content="前言面试中被经常问及的和算法相关的基础问题，就是关于数组的，比如数组去重，取最大最小值，排序，洗牌等等。关于数组的很多操作，比如 splice, slice, sort, reverse, concat, push, pop, unshift, shift 等等也都会被问及。还有就是关于高级函数，比">
     
     
     
@@ -93,10 +92,10 @@ var _hmt = _hmt || [];
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2017/03/27/JS-promise-相关/" title="JS-promise 相关" itemprop="url">JS-promise 相关</a>
+      <a href="/2017/04/07/JS-也谈数组去重/" title="JS-也谈数组去重" itemprop="url">JS-也谈数组去重</a>
   </h1>
   <p class="article-time">
-    <time datetime="2017-03-27T09:55:27.000Z" itemprop="datePublished">2017-03-27</time>
+    <time datetime="2017-04-07T05:34:16.000Z" itemprop="datePublished">2017-04-07</time>
   </p>
 </header>
 	<div class="article-content">
@@ -104,30 +103,54 @@ var _hmt = _hmt || [];
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title"></strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#promise-的流程"><span class="toc-number">1.</span> <span class="toc-text">promise 的流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#promise"><span class="toc-number">2.</span> <span class="toc-text">promise</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#方法"><span class="toc-number">2.</span> <span class="toc-text">方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#双重循环"><span class="toc-number">2.1.</span> <span class="toc-text">双重循环</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#一个比较讨巧的方法"><span class="toc-number">2.2.</span> <span class="toc-text">一个比较讨巧的方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#转化成-hash"><span class="toc-number">2.3.</span> <span class="toc-text">转化成 hash</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Set-实现"><span class="toc-number">2.4.</span> <span class="toc-text">Set() 实现</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#结语"><span class="toc-number">3.</span> <span class="toc-text">结语</span></a></li></ol>
 		</div>
 		
-		<h2 id="promise-的流程"><a href="#promise-的流程" class="headerlink" title="promise 的流程"></a>promise 的流程</h2><p>基本的构造是这样： new Promise().then().catch()</p>
-<p>new Promise( function(resolve, reject) {<br>  // 执行异步操作<br>  // 对异步进行判断，如果是成功则执行 resolve( resolveData )<br>  // 如果失败，则执行 reject( rejectData )<br>  // 其中 resolve 和 reject 是关键词，或者说大家已经达成共识的保留词<br>} )</p>
-<p>如果执行了 resolve 函数，则 then 会执行，<br>then(function(data) {<br>  // 处理 data，这个 data 就是上面的 resolveData<br>})<br>如果执行 reject 函数，则 catch 会执行，<br>catch(function(e) {<br>  // 处理 e，而 e 则是上面的 rejectData<br>})</p>
-<p>和普通回调函数相比， promise 只是将逻辑从回调转成了外部调用，使代码逻辑更加简洁了吗？这个我不太清粗。但是要注意的是，和普通回调相比，我们需要改造的就是回调部分，或者说异步执行的部分，这部分函数内部一定会执行 resolve() 或者 reject()，只是将回调函数放到了 then() 里而已了。<br>举例俩说，正常的 ajax 核心代码是这样的：</p>
-<pre><code>request.onreadystatechange = function () {
-    if (request.readyState === 4) {
-        if (request.status === 200) {
-            return success(request.responseText);
-        } else {
-            return fail(request.status);
+		<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>面试中被经常问及的和算法相关的基础问题，就是关于数组的，比如数组去重，取最大最小值，排序，洗牌等等。关于数组的很多操作，比如 splice, slice, sort, reverse, concat, push, pop, unshift, shift 等等也都会被问及。还有就是关于高级函数，比如 filter, forEach, map, some, every 等等。今天主要谈谈数组的去重问题。</p>
+<p>对于数组去重，最开始接触的一个题目是这样的：</p>
+<blockquote>
+<p>var arr = [ ‘h’, ‘e’, ‘l’, ‘l’, ‘o’, ‘w’, ‘o’, ‘r’, ‘l’, ‘d’ ];</p>
+<p>找到数组中出现次数最多的字母，并给出个数和每一个所在的位置</p>
+</blockquote>
+<p>因为当时是刚开始接触编程，所以对于这类题目完全不知道如何下手，更不知道什么是所谓的算法和数据结构。我已经不记得当时我是如何解决这道题了，但是只是记得老师给的建议是说我的方法太复杂了，然后给了一个将数组转化成 hash 的方式解决的。当时我看到这种解法之后觉得实在是太精妙了，所以一下就记住了。后来很多的问题我都是通过转化成 hash 的方式解决的。但是慢慢地，随着对计算机的了解，才知道原来这就是算法，然后就了解了更多的算法方面的内容。尤其是排序，学习了冒泡排序和快排两种算法之后，对于这两种算法的理解就更加深刻了。并且在学习 coursera 的 python for everybody 的过程中，Dr Chunk 通过 ppt 的形式，非常巧妙的讲解了数组求最大值、最小值的过程，所以对于求最大最小值也理解的更加深刻了。</p>
+<p>为什么这次又来谈去重这件事情呢？其实有很多原因共同促成的。首先，前两天的面试过程中，是有去重的；我使用了 hash 的方式，还有之前在一个国外博客上面发现的 filter 的方法。其次，在这个面试之前，我当时为了练习，使用了双重循环的方式也实现了去重。所以，这么多方法，有必要总结一下。其次，面试回来结束之后，我又 google 了一下 JS 去重的实现，在 SO 上也找到了很多相关的内容。发现还有很多种实现方式，所以需要把这些内容做一个整理，并记录下来。最后，你会发现每种方法都会其局限性，很多时候面试官对于去重的实现问的比较浅，如果深究的话其实里面还是有很多特殊的情况是这些方法解决不了的。比如数组的元素是对象等等。</p>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><p>一个一个说，先从最基本的开始。</p>
+<h4 id="双重循环"><a href="#双重循环" class="headerlink" title="双重循环"></a>双重循环</h4><pre><code>for (var i = 0; i &lt; arr.length; i++) {
+    for (var j = i+1; j &lt; arr.length; j++) {
+        if (arr[i] === arr[j]) {
+            arr.splice(j, j+1);
         }
     }
 }
-</code></pre><p>那么这个 onreadystatechange 就是回调函数，那在 promise 里改造的话就是改造这个。将 success() 这个回调部分直接改为 resolve()，而将 fail() 部分直接改为 reject()，然后再 promise 后再写 then() 替代 success 的功能，而 catch() 来替代 fail 的功能。</p>
-<p>同理，如果是 setTimeout 在 promise 里的话，应该就是对 setTimeout 里面的内容进行判断，成功的话就执行 resolve()，然后把 resolve 要处理的内容放在 then() 中处理，而失败的话则执行 reject()，然后在 catch() 里执行要处理的问题。</p>
-<h2 id="promise"><a href="#promise" class="headerlink" title="promise"></a>promise</h2><p>最近在看 promise 相关的内容，找到一些不错的资源先罗列下来。</p>
-<p><a href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/0014345008539155e93fc16046d4bb7854943814c4f9dc2000" target="_blank" rel="external">廖雪峰的 js 教程</a></p>
-<p><a href="https://davidwalsh.name/promises" target="_blank" rel="external">JavaScript Promise API</a>，这里面有一个原生 js 实现 ajax 的代码，非常值得一读，里面就是关于 promise 在实际中使用的非常好的例子，可以让你能更明白实际中使用 promise 的效果。</p>
-<p><a href="https://developers.google.com/web/fundamentals/getting-started/primers/promises" target="_blank" rel="external">JavaScript Promises: an Introduction</a>，这是一篇 google 开发者网页上的 promise 简介，目前还没有仔细阅读。</p>
-<hr>
-<p>2017.3.27 first published</p>
+</code></pre><p>这种方法，就是从头开始，固定一个数组的元素，然后遍历后面所有的元素，如果找到和这个元素相同的元素，则通过 splice() 方法将这个重复元素从 arr 中删除，然后再固定第二个元素，遍历从这个元素后面的元素，找到相同的，则删除。如此循环一遍，自然数组中就肯定没有相同的元素了，实现了去重。这两面有两件事情需要说明一下。</p>
+<ol>
+<li>循环内部嵌套循环可以从上一层循环开始，而不是完全重新开始，因为上一层循环之前的内容是都满足条件的。不会有重复的元素，但是如果需要的话，其实也会可以的。只不过增加了复杂度。</li>
+<li>splice() 方法可以删除元素。</li>
+</ol>
+<h4 id="一个比较讨巧的方法"><a href="#一个比较讨巧的方法" class="headerlink" title="一个比较讨巧的方法"></a>一个比较讨巧的方法</h4><pre><code>arr.filter(function(item, index, arr) {
+    return arr.indexOf(item) == index;
+})
+
+// 或者用 ES6 的写法写出来
+arr.filter((item, index, arr) =&gt; arr.indexOf(item) === index)
+</code></pre><p>这种方式就是保证元素是第一次出现，如果不是那么就被过滤掉了。或者说，第一个出现的元素不会被过滤掉，因为 arr.indexOf(item) == index 肯定为真，但是如果第二次出现同样的元素的时候，因为上述表达式为 false，那么自然就被过滤掉，返回的数组自然就是没有重复元素的数组。这里面用到了数组的 filter 方法。还有就是注意 ES6 的箭头函数的写法，没有用到 return 关键词，直接写表达式，就自动会作为返回值。</p>
+<h4 id="转化成-hash"><a href="#转化成-hash" class="headerlink" title="转化成 hash"></a>转化成 hash</h4><p>说是转化成 hash，其实在 JS 中就是相当于转化成 object。只不过有不同的叫法而已，也可以叫 map 或者 dictionary 等等。</p>
+<pre><code>var obj = {};
+for (var i = 0; i &lt; arr.length; i++) {
+    var currentEle = arr[i];
+    if( obj[currentEle] == undefined ) {
+        obj[currentEle] == [];
+    } 
+    obj[currentEle].push(i)
+}
+newArr = Object.keys(obj); // 获取的就是去重后的数组
+同时这个 obj 的每一个 key/value pair 而言，key 是出现的元素，而 value 则是出现的元素的位置组成的数组，可以通过获取数组的 length 来知道出现的次数，而位置则是数组中的该元素出现的位置。
+</code></pre><p>这个方法有很多变种，但是大概的思路都是这样的。主要是转化成数组的话可以知道这个元素出现的位置，如果转化成数字 1， 然后每次都加 1 的话，可以知道出现的次数。</p>
+<p>但是这种方式最大的问题在于，如果数组是有数字的话，返回的去重数组中数组转化为了字符串，比如 [1, 2, 3, 2, 1] 去重后得到的是 [‘1’, ‘2’, ‘3’]</p>
+<h4 id="Set-实现"><a href="#Set-实现" class="headerlink" title="Set() 实现"></a>Set() 实现</h4><p>[…new Set(arr)]</p>
+<p>这种方法是 ES6 的解决方式。目前对 set 还不是很了解，所以先不评论。</p>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>关于去重，大概就总结这么一些方法。但是还有很多方法，都是类似的。可以在 google 搜索 js uniq 就会出现很多不错的方式。下面是我参考的一些内容</p>
+<p><a href="http://stackoverflow.com/questions/1960473/unique-values-in-an-array" target="_blank" rel="external">http://stackoverflow.com/questions/1960473/unique-values-in-an-array</a><br><a href="http://stackoverflow.com/questions/840781/easiest-way-to-find-duplicate-values-in-a-javascript-array" target="_blank" rel="external">http://stackoverflow.com/questions/840781/easiest-way-to-find-duplicate-values-in-a-javascript-array</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -142,7 +165,7 @@ var _hmt = _hmt || [];
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2017/03/27/JS-promise-相关/" data-title="JS-promise 相关 | Steam" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2017/04/07/JS-也谈数组去重/" data-title="JS-也谈数组去重 | Steam" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -151,19 +174,11 @@ var _hmt = _hmt || [];
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2017/03/30/python-生成器中一句话引发的思考/" title="python-生成器中一句话引发的思考">
-  <strong>New:</strong><br/>
-  <span>
-  python-生成器中一句话引发的思考</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2017/03/24/other-webSocket-相关/"  title="other-webSocket 相关">
+<a href="/2017/04/06/other-AMD-CMD-Commonjs-seajs-requirejs/"  title="other-AMD, CMD, Commonjs, seajs, requirejs">
  <strong>Old:</strong><br/> 
- <span>other-webSocket 相关
+ <span>other-AMD, CMD, Commonjs, seajs, requirejs
 </span>
 </a>
 </div>
@@ -173,7 +188,7 @@ var _hmt = _hmt || [];
 	
 <section class="comment">
 	
-	<div class="ds-thread" data-title="JS-promise 相关" data-thread-key="JS-promise-相关" data-author-key="Steam" data-url="http://yoursite.com/post/JS-promise-相关"></div>
+	<div class="ds-thread" data-title="JS-也谈数组去重" data-thread-key="JS-也谈数组去重" data-author-key="Steam" data-url="http://yoursite.com/post/JS-也谈数组去重"></div>
 	
 </section>
 
