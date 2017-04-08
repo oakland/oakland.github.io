@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>others-关于 fallback colors | Steam</title>
+    <title>SICP相关资料整理 | Steam</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Steam">
     
-    <meta name="description" content="问题最近在学习 bootstrap3 的过程中，运行 grunt 总是在终端输出 warning: fallback background-color (hexo or rgb) should precede…的警告提示。网上搜了问题，终于找到了答案，其中一篇文章对这个问题的阐述比较清楚，链接如下：">
+    <meta name="description" content="前言作为一个转行人，一直以来对于计算机的基本原理怀有一颗敬畏的心。总是想把计算机相关的基础学好，但是计算机的基础也有很多，比如数据结构、算法、网络相关的各种协议，计算机组成、操作系统等等。有时候也不知道自己应该重点学习哪些内容，所以就也在不停地看各种各样的内容。算法也在看，网络也在看，组成也在看，甚">
     
     
     
@@ -92,10 +92,10 @@ var _hmt = _hmt || [];
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/08/24/others-关于-fallback-colors/" title="others-关于 fallback colors" itemprop="url">others-关于 fallback colors</a>
+      <a href="/2017/04/08/SICP相关资料整理/" title="SICP相关资料整理" itemprop="url">SICP相关资料整理</a>
   </h1>
   <p class="article-time">
-    <time datetime="2016-08-24T09:36:56.000Z" itemprop="datePublished">2016-08-24</time>
+    <time datetime="2017-04-07T23:24:28.000Z" itemprop="datePublished">2017-04-08</time>
   </p>
 </header>
 	<div class="article-content">
@@ -103,30 +103,33 @@ var _hmt = _hmt || [];
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title"></strong>
-		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题"><span class="toc-number">1.</span> <span class="toc-text">问题</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#艰难的开始"><span class="toc-number">2.</span> <span class="toc-text">艰难的开始</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#相关的资料"><span class="toc-number">3.</span> <span class="toc-text">相关的资料</span></a></li></ol>
 		</div>
 		
-		<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><p>最近在学习 bootstrap3 的过程中，运行 grunt 总是在终端输出 warning: fallback background-color (hexo or rgb) should precede…的警告提示。网上搜了问题，终于找到了答案，其中一篇文章对这个问题的阐述比较清楚，链接如下：</p>
-<p><a href="http://github.com/CSSLint/csslint/wiki/Require-fallback-colors" target="_blank" rel="external">http://github.com/CSSLint/csslint/wiki/Require-fallback-colors</a></p>
-<p>这篇文章的大概意思就是说，旧的浏览器只支持 hex 或者 rgb 格式的 color，但是后来 CSS3 新增了一些 color 的格式，比如 rgba(), hsl(), hsla()等等，这些浏览器不支持这种格式的 color 怎么办。我们就需要添加一个 fallback (background-)color，例如，本来我们的样式是：</p>
-<pre><code>.box {
-  background: #000;
-  color: rgba(100, 100, 200, 0.5);
-}
-</code></pre><p>但是因为老式浏览器不支持 rgba() 的写法，所以，我们需要把上面的 CSS 样式修改为：</p>
-<pre><code>.box {
-  background: #000;
-  color: blue;
-  color: rgba(100, 100, 200, 0.5)
-}
-</code></pre><p>而这个 fallback (background-)color 应该永远放在 CSS3 新的 color 样式写法的前面。这样的话，现代浏览器就会通过解析后面的样式进而覆盖前面的样式，实现新样式的应用。而老式浏览器则因为无法立即新样式的写法，所以只解析到 fallback (background-)color，再往下解析就因为无法理解而放弃。</p>
+		<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>作为一个转行人，一直以来对于计算机的基本原理怀有一颗敬畏的心。总是想把计算机相关的基础学好，但是计算机的基础也有很多，比如数据结构、算法、网络相关的各种协议，计算机组成、操作系统等等。有时候也不知道自己应该重点学习哪些内容，所以就也在不停地看各种各样的内容。算法也在看，网络也在看，组成也在看，甚至恨不得把硬件也看了。</p>
+<p>前两天，有个高中同学在武汉大学读的软件学院，后来出国从国外回来，前两天发朋友圈的时候留言，觉得正好可以问问他。就问他，有没有推荐的关于计算机方面的基础书籍。他很直白的告诉我说他觉得 SICP 这本书是他读过的最好的书籍，强烈建议我去读。然后还非常友好的给了官网的链接以及他觉得这本书之所以好的理由：他觉得读完之后，不论看什么语言，都觉得融会贯通。这本书的重点不是语言，而是概念。</p>
+<p>天啊，世界上竟然有如此奇特的书，可以横跨不同语言，打通任督二脉？！我一定要去看看！</p>
+<h3 id="艰难的开始"><a href="#艰难的开始" class="headerlink" title="艰难的开始"></a>艰难的开始</h3><p>他推荐给我这本书的当天，我就找到了官网以及 pdf 版本的书籍（后面参考链接会附上pdf书籍的链接地址）。然后在知乎、豆瓣、quora以及google 上面搜索了相关的内容，发现在大多数人对这本书赞不绝口的同时，也有一部分人对这本书作为基础书籍提出强烈的质疑。总之，是一本颇有些争议的书籍。这样一来，鉴于自己计算机基础很弱，我对这本书稍稍有些不自信，担心自己是否可以看得懂，或者看得完。</p>
+<p>下载下来只有就开始从头开始看。我自己看书喜欢从头开始看，所以书籍的序言、目录这些都要看，结果发现完全不知道在说什么，这样的开始确实让人头疼。实在看不下去就跳过，结果发现都看不下去，一直跳到了第一个章节……第一章节的开始就发现不知道在说什么，非常枯燥，而且说明了作者为什么采用 lisp 语言的原因，等等……作为一个只会 js 和 python 的人表示，用了不知道的语言，我就不知道该怎么看这本书了，自信心又开始不足了。然后就放下这本书，大概放了有一个礼拜多。后来有一天实在忍不住，又拿出来看，硬着头皮一点点看，静下心来看，发现似乎还是可以看得懂的。可能和自己心态急躁，想快速学成的心态也有关系，导致自己前面看不进去。</p>
+<p>但是不论怎么样，还是觉得非常枯燥，而且概念又非常多，因为我看的是英文原版，所以看起来更是觉得满屏的概念。后来实在太吃力，就去优达学城和 FCC 的微信群里问了下大家中文版翻译的怎么样，我的本来想法是说如果翻译的还不错的话可以考虑看中文版本的。结果大家也是说法不一，有人觉得应该坚持看英文版，有人觉得应该看中文版。后来有个人说，中文版也是满屏的概念，你还不如看英文版来的直接。我觉得说的挺有道理。然后关于不会 lisp 语言，是否可以看这本书的问题。大神觉得只要有 schama 的环境就可以了，不会语言没关系，照着书里的例子在环境里写代码就可以了。</p>
+<p>然后关于这个问题我又问了宇铎，宇铎给我的答复也是说不会语言没关系，但是一定要有一个语言的环境，可以照着写代码就 ok。</p>
+<p>后来我随便往后翻了几页，看到了一张图</p>
+<p><img src="sicpFig1.1.png" alt=""></p>
+<p>感觉突然一下就觉得这个图画的太好了，这不就是计算的过程吗？不就是程序的过程吗？程序的设计师从上而下的，而实现的过程则是从下而上的。感觉脑子里会瞬间多了一个程序的实现过程。所以一下子对这本就产生了好感。</p>
+<p>所以从今天开始打算坚持看完这本书了。</p>
+<h3 id="相关的资料"><a href="#相关的资料" class="headerlink" title="相关的资料"></a>相关的资料</h3><p><a href="http://numbbbbb.com/2016/03/28/20160328_%E6%88%91%E5%A6%82%E4%BD%95%E7%94%A8%E4%B8%A4%E5%91%A8%E6%97%B6%E9%97%B4%E5%88%B7%E5%AE%8C%20SICP/" target="_blank" rel="external">我是如何二十天刷完sicp的</a></p>
+<p><a href="https://www.gitbook.com/book/wizardforcel/sicp-in-python/details" target="_blank" rel="external">SICP in Python</a></p>
+<p><a href="http://irreal.org/blog/?p=968" target="_blank" rel="external">A new pdf version of sicp</a></p>
+<p><a href="https://www.v2ex.com/t/201499" target="_blank" rel="external">一个基于 python 的 sicp 链接</a></p>
+<p><a href="https://www.google.com.hk/?gws_rd=ssl#q=sicp+python+pdf" target="_blank" rel="external">sicp 的 google 搜索结果</a></p>
+<p><a href="http://www.tutorialspoint.com/lisp/index.htm" target="_blank" rel="external">lisp tutorial</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/others/">others</a>
+  <span></span> <a href="/tags/CS/">CS</a>
   </div>
 
 
@@ -134,7 +137,7 @@ var _hmt = _hmt || [];
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2016/08/24/others-关于-fallback-colors/" data-title="others-关于 fallback colors | Steam" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2017/04/08/SICP相关资料整理/" data-title="SICP相关资料整理 | Steam" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -143,19 +146,11 @@ var _hmt = _hmt || [];
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/08/25/bootstrap-BS3学习过程中的一些问题总结/" title="bootstrap-BS3学习过程中的一些问题总结">
-  <strong>新一篇:</strong><br/>
-  <span>
-  bootstrap-BS3学习过程中的一些问题总结</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/08/14/JS-前端MVC和传统MVC的区别/"  title="JS-前端MVC和传统MVC的区别">
+<a href="/2017/04/07/JS-也谈数组去重/"  title="JS-也谈数组去重">
  <strong>舊一篇:</strong><br/> 
- <span>JS-前端MVC和传统MVC的区别
+ <span>JS-也谈数组去重
 </span>
 </a>
 </div>
@@ -165,7 +160,7 @@ var _hmt = _hmt || [];
 	
 <section class="comment">
 	
-	<div class="ds-thread" data-title="others-关于 fallback colors" data-thread-key="others-关于-fallback-colors" data-author-key="Steam" data-url="http://yoursite.com/post/others-关于-fallback-colors"></div>
+	<div class="ds-thread" data-title="SICP相关资料整理" data-thread-key="SICP相关资料整理" data-author-key="Steam" data-url="http://yoursite.com/post/SICP相关资料整理"></div>
 	
 </section>
 
