@@ -4,15 +4,12 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>HTTP TCP IP 等的一些概念 | Steam</title>
+    <title>life: 人生的意义 | Steam</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Steam">
     
-    <meta name="description" content="前言最近在看 ‘HTTP: The Definitice Guide’，这本书里关于 HTTP/TCP/IP 等的一些概念讲解的很贴切，而且很系统，更容易让人理解，这里摘录一些做翻译，便于以后查找。
-
-翻译Overview of HTTP &amp;gt; Connections, 13 页
-在 HTTP ">
+    <meta name="description" content="有时候会觉得自己的人生活着就是一个漫无目的的被风吹起的塑料袋。风怎么吹，我就怎么走，我的人生可能是被吹向一片荒芜的隔壁，也可能是被吹向一片浓郁茂密的丛林，或者是漫无边际的海洋。而在这些环境里，我可能会停留，也可能会被掩埋，或者继续被吹走。我没有思考过我的人生的意义和目的，还有看起来更加让人奢望的理想">
     
     
     
@@ -95,10 +92,10 @@ var _hmt = _hmt || [];
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2016/09/09/HTTP-TCP-IP-等的一些概念/" title="HTTP TCP IP 等的一些概念" itemprop="url">HTTP TCP IP 等的一些概念</a>
+      <a href="/2018/11/05/life-人生的意义/" title="life: 人生的意义" itemprop="url">life: 人生的意义</a>
   </h1>
   <p class="article-time">
-    <time datetime="2016-09-09T13:35:48.000Z" itemprop="datePublished">2016-09-09</time>
+    <time datetime="2018-11-05T04:43:12.000Z" itemprop="datePublished">2018-11-05</time>
   </p>
 </header>
 	<div class="article-content">
@@ -106,43 +103,17 @@ var _hmt = _hmt || [];
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title"></strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#翻译"><span class="toc-number">2.</span> <span class="toc-text">翻译</span></a></li></ol>
+		
 		</div>
 		
-		<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在看 ‘HTTP: The Definitice Guide’，这本书里关于 HTTP/TCP/IP 等的一些概念讲解的很贴切，而且很系统，更容易让人理解，这里摘录一些做翻译，便于以后查找。</p>
-<hr>
-<h2 id="翻译"><a href="#翻译" class="headerlink" title="翻译"></a>翻译</h2><p>Overview of HTTP &gt; Connections, 13 页</p>
-<p>在 HTTP 客户端可以向服务器发送请求之前，客户端和服务端需要通过 Internet protocol address(因特网协议地址，即IP地址) 和 port numbers(端口号)来建立客户端和服务器端之间的联系。</p>
-<p>设置 TCP 连接有点像给公司办公室的某个人打电话。首先你需要拨通公司的电话，这一步让你找到正确的组织。接着你再拨通你想要找的人的分机号。（–steam comment–，这里把 IP 地址比喻成公司总机电话，而把端口号比喻成分机号）</p>
-<p>在 TCP 中，你需要服务器电脑的 IP 地址和 TCP 的端口号，这个端口号与运行在服务器上的具体的软件程序相关联。</p>
-<p>这种方式很好，但是你如何能够获取 IP 地址和 HTTP 端口号呢？还记得吗？！当然是用 URL 啊！我们之前说过，URL 是资源的地址，所以 URL 可以给我们提供拥有资源的机器的 IP 地址，这再自然不过了！我们来看几个 URL 的例子：</p>
-<ul>
-<li><a href="http://207.200.83.29:80/index.html" target="_blank" rel="external">http://207.200.83.29:80/index.html</a></li>
-<li><a href="http://www.netscape.com:80/index.html" target="_blank" rel="external">http://www.netscape.com:80/index.html</a></li>
-<li><a href="http://www.netscape.com/index.html" target="_blank" rel="external">http://www.netscape.com/index.html</a></li>
-</ul>
-<p>第一个 URL 拥有机器的 IP 地址，’207.200.83.29’，以及端口地址，’80’。</p>
-<p>第二个 URL 没有数字的 IP 地址，而是一个文本域名，或者称为主机名（“www.netscape.com”）。主机名相比于 IP 地址而言是一个更人性化的代号。主机名，借助 Domain Name Service （DNS），可以非常轻松地转化为 IP 地址，所以，我们又回到了这里。我们将会在第二章中详细讨论 DNS 和 URL。</p>
-<p>最后一个 URL 没有端口号。当 HTTP URL 中没有端口号的时候，你可以默认端口号的值是 80。</p>
-<p>通过 IP 地址和端口号，用户可以很容易地通过 TCP/IP 进行交流。图1-10所展示的就是浏览器如何通过 HTTP 来呈现一个简单的驻扎在远程服务器上的 HTML 资源。</p>
-<p>下面是整个过程：</p>
-<p>a. 浏览器从 URL 中提取服务器主机名。<br>b. 浏览器将服务器主机名转化为服务器 IP 地址。<br>c. 浏览器从 URL 中提取端口号，如果有的话。<br>d. 浏览器和服务器之间建立 TCP 连接。<br>e. 浏览器发送 HTTP 请求信息给服务器。<br>f. 服务器返回 HTTP 响应给浏览器。<br>g. 连接终止，浏览器展示文档。</p>
-<p><img src="HTTPTCPIP.png" alt="image"></p>
-<p>关于 DNS 相关的文章，参考下面两篇</p>
-<ul>
-<li><a href="http://computer.howstuffworks.com/dns.htm" target="_blank" rel="external">How Domain Name Servers Work</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Domain_Name_System" target="_blank" rel="external">Domain Name System</a></li>
-</ul>
-<p>GET 和 POST 请求的不同点在这本书里可以看到一个：</p>
-<p>GET 没有 Message Body 而 POST 有</p>
-<p><img src="./GETvsPOST.png" alt="get 和 post 的区别"></p>
+		<p>有时候会觉得自己的人生活着就是一个漫无目的的被风吹起的塑料袋。风怎么吹，我就怎么走，我的人生可能是被吹向一片荒芜的隔壁，也可能是被吹向一片浓郁茂密的丛林，或者是漫无边际的海洋。而在这些环境里，我可能会停留，也可能会被掩埋，或者继续被吹走。<br>我没有思考过我的人生的意义和目的，还有看起来更加让人奢望的理想。 BC 质疑过我，我其实一直没有思考过，我也没有理解这个问题的真正含义。<br>尽管这也是一种人生，但是似乎这并不是真正的作为人的人生。动物们似乎做的也比我好：有些鸟类，天生就知道冬天向南飞，夏天向北飞。尽管这看起来没有意义，但是他们有自己的目标，因为他们不会向东向西飞。我的人生则并不是这样的，我也并没有这样的规划和信仰。当然，尽管这些意义和存在都是为了生存，为了繁衍，为了永恒……<br>但是我的永恒呢？生存问题解决了之后的我，生命却无法永恒，那我靠什么永恒呢？精神，还是物质，还是后代？这些都可以，但是我却没有思考过这些人生的意义和方向。<br>我为什么工作？工作并不是用一份薪水购买了你的肉身和时间、精神，工作只是恰好你的人生轨迹和公司的人生轨迹在朝着某个方向前进的时候，有一些可以重合的东西。公司恰好提供了你这个人生阶段需要的东西，而你也恰好可以给公司提供公司需要的内容。你要知道这一点，你要理解这点，而去主动的为公司做出自己的贡献，或者去与公司争辩，争取自己的权益。如果你觉得自己把自己出卖给了公司，那么你就是一个没有目标的塑料袋，那么你就永远不知道自己该去哪个公司？也不知道自己该什么时候离开或者加入某个公司。人生的意义就仅仅是一个时间段的机械行为。我现在就是一个时间段的机械行为而已。你要清楚的知道你的人生永远掌握在自己的手里。<br>假设你是一只候鸟，如果你不知道南飞而向东向西飞，那么你可能会死的不明不白。如果你知道南飞而选择向东或者向西，这是一种有意义的选择。看似相同的选择，背后却有着不同的意义。我的意义是什么呢？我的南方在哪里？我为什么要想南飞？这是我要思考的问题。<br>你的人生意义如果没有，那么你会为一只狐狸的死亡而落泪，你也会为一只花朵的盛开而感动。但你不知道这一切的意义，你只是在留下了眼泪，或者翘起了嘴角微笑。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/network/">network</a>
+  <span></span> <a href="/tags/life/">life</a>
   </div>
 
 
@@ -150,7 +121,7 @@ var _hmt = _hmt || [];
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2016/09/09/HTTP-TCP-IP-等的一些概念/" data-title="HTTP TCP IP 等的一些概念 | Steam" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2018/11/05/life-人生的意义/" data-title="life: 人生的意义 | Steam" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -159,19 +130,11 @@ var _hmt = _hmt || [];
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2016/09/15/mac-macbook-存储空间中的其他是什么/" title="mac-macbook 存储空间中的其他是什么">
-  <strong>New:</strong><br/>
-  <span>
-  mac-macbook 存储空间中的其他是什么</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2016/08/30/nodejs-tips-on-nodejs-and-expressjs-and-so-on/"  title="nodejs-tips on nodejs and expressjs and so on">
+<a href="/2018/10/29/和父亲吵了一架，心烦意乱/"  title="和父亲吵了一架，心烦意乱">
  <strong>Old:</strong><br/> 
- <span>nodejs-tips on nodejs and expressjs and so on
+ <span>和父亲吵了一架，心烦意乱
 </span>
 </a>
 </div>
@@ -181,7 +144,7 @@ var _hmt = _hmt || [];
 	
 <section class="comment">
 	
-	<div class="ds-thread" data-title="HTTP TCP IP 等的一些概念" data-thread-key="HTTP-TCP-IP-等的一些概念" data-author-key="Steam" data-url="http://yoursite.com/post/HTTP-TCP-IP-等的一些概念"></div>
+	<div class="ds-thread" data-title="life: 人生的意义" data-thread-key="life-人生的意义" data-author-key="Steam" data-url="http://yoursite.com/post/life-人生的意义"></div>
 	
 </section>
 
